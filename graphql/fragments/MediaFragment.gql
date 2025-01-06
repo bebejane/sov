@@ -1,0 +1,7 @@
+fragment MediaFragment on FileField {
+	id
+	url
+	alt
+	width
+	height
+}

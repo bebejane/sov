@@ -1,0 +1,1 @@
+export const DATOCMS_API_KEY = '105634a3c32a70215441bd31ad5ead' 
