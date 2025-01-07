@@ -22,6 +22,12 @@ type Scalars = {
   UploadId: { input: any; output: any; }
 };
 
+/** Specifies how to filter Boolean fields */
+type BooleanFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
 type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType']['output'];
@@ -50,6 +56,24 @@ type ColorField = {
   green: Scalars['IntType']['output'];
   hex: Scalars['String']['output'];
   red: Scalars['IntType']['output'];
+};
+
+/** Specifies how to filter by creation datetime */
+type CreatedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 enum FaviconType {
@@ -222,33 +246,6 @@ type GlobalSeoField = {
   siteName?: Maybe<Scalars['String']['output']>;
   titleSuffix?: Maybe<Scalars['String']['output']>;
   twitterAccount?: Maybe<Scalars['String']['output']>;
-};
-
-/** Record of type Home (home) */
-type HomeRecord = RecordInterface & {
-  __typename?: 'HomeRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  image?: Maybe<FileField>;
-  text?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Record of type Home (home) */
-type HomeRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
 };
 
 type ImgixParams = {
@@ -1891,6 +1888,18 @@ type InUseFilter = {
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
+/** Specifies how to filter by ID */
+type ItemIdFilter = {
+  /** Search the record with the specified ID */
+  eq?: InputMaybe<Scalars['ItemId']['input']>;
+  /** Search records with the specified IDs */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']['input']>>>;
+  /** Exclude the record with the specified ID */
+  neq?: InputMaybe<Scalars['ItemId']['input']>;
+  /** Search records that do not have the specified IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']['input']>>>;
+};
+
 enum ItemStatus {
   draft = 'draft',
   published = 'published',
@@ -1911,21 +1920,54 @@ type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
+/** Specifies how to filter by publication datetime */
+type PublishedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
 /** The query root for this schema */
 type Query = {
   __typename?: 'Query';
+  /** Returns meta information regarding a record collection */
+  _allSovTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
+  /** Returns a collection of records */
+  allSovTakeCareOfYourselfCategories: Array<SovTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns the single instance record */
-  home?: Maybe<HomeRecord>;
+  sovHome?: Maybe<SovHomeRecord>;
   /** Returns the single instance record */
-  sofValuedDirection?: Maybe<SofValuedDirectionRecord>;
+  sovTakeCareOfMyself?: Maybe<SovTakeCareOfMyselfRecord>;
+  /** Returns a specific record */
+  sovTakeCareOfYourselfCategory?: Maybe<SovTakeCareOfYourselfCategoryRecord>;
+  /** Returns the single instance record */
+  sovValuedDirection?: Maybe<SovValuedDirectionRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovTakeCareOfYourselfCategoriesMetaArgs = {
+  filter?: InputMaybe<SovTakeCareOfYourselfCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -1944,6 +1986,17 @@ type Query_siteArgs = {
 
 
 /** The query root for this schema */
+type QueryallSovTakeCareOfYourselfCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovTakeCareOfYourselfCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovTakeCareOfYourselfCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
 type QueryallUploadsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<UploadFilter>;
@@ -1955,14 +2008,30 @@ type QueryallUploadsArgs = {
 
 
 /** The query root for this schema */
-type QueryhomeArgs = {
+type QuerysovHomeArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** The query root for this schema */
-type QuerysofValuedDirectionArgs = {
+type QuerysovTakeCareOfMyselfArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovTakeCareOfYourselfCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovTakeCareOfYourselfCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovTakeCareOfYourselfCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovValuedDirectionArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2065,9 +2134,133 @@ enum SiteLocale {
   sv = 'sv'
 }
 
-/** Record of type Värderad riktning med mål (sof_valued_direction) */
-type SofValuedDirectionRecord = RecordInterface & {
-  __typename?: 'SofValuedDirectionRecord';
+/** Record of type Home (sov_home) */
+type SovHomeRecord = RecordInterface & {
+  __typename?: 'SovHomeRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Home (sov_home) */
+type SovHomeRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
+type SovTakeCareOfMyselfRecord = RecordInterface & {
+  __typename?: 'SovTakeCareOfMyselfRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  categories: Array<SovTakeCareOfYourselfCategoryRecord>;
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
+type SovTakeCareOfMyselfRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
+type SovTakeCareOfMyselfRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SovTakeCareOfYourselfCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovTakeCareOfYourselfCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovTakeCareOfYourselfCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SovTakeCareOfYourselfCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Kategori (Ta hand om dig själv) (sov_take_care_of_yourself_category) */
+type SovTakeCareOfYourselfCategoryRecord = RecordInterface & {
+  __typename?: 'SovTakeCareOfYourselfCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Kategori (Ta hand om dig själv) (sov_take_care_of_yourself_category) */
+type SovTakeCareOfYourselfCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Värderad riktning med mål (sov_valued_direction) */
+type SovValuedDirectionRecord = RecordInterface & {
+  __typename?: 'SovValuedDirectionRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2086,24 +2279,59 @@ type SofValuedDirectionRecord = RecordInterface & {
   image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
+  textInput?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Record of type Värderad riktning med mål (sof_valued_direction) */
-type SofValuedDirectionRecord_seoMetaTagsArgs = {
+/** Record of type Värderad riktning med mål (sov_valued_direction) */
+type SovValuedDirectionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
-/** Record of type Värderad riktning med mål (sof_valued_direction) */
-type SofValuedDirectionRecordintroArgs = {
+/** Record of type Värderad riktning med mål (sov_valued_direction) */
+type SovValuedDirectionRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Record of type Värderad riktning med mål (sof_valued_direction) */
-type SofValuedDirectionRecordtextArgs = {
+/** Record of type Värderad riktning med mål (sov_valued_direction) */
+type SovValuedDirectionRecordtextArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Specifies how to filter by status */
+type StatusFilter = {
+  /** Search the record with the specified status */
+  eq?: InputMaybe<ItemStatus>;
+  /** Search records with the specified statuses */
+  in?: InputMaybe<Array<InputMaybe<ItemStatus>>>;
+  /** Exclude the record with the specified status */
+  neq?: InputMaybe<ItemStatus>;
+  /** Search records without the specified statuses */
+  notIn?: InputMaybe<Array<InputMaybe<ItemStatus>>>;
+};
+
+/** Specifies how to filter Single-line string fields */
+type StringFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records that equal one of the specified values */
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['String']['input']>;
+  /** Filter records that do not equal one of the specified values */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
 type StringMatchesFilter = {
@@ -2129,6 +2357,24 @@ type TypeFilter = {
   neq?: InputMaybe<UploadType>;
   /** Search uploads without the specified types */
   notIn?: InputMaybe<Array<InputMaybe<UploadType>>>;
+};
+
+/** Specifies how to filter by update datetime */
+type UpdatedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 /** Specifies how to filter by default alt */
@@ -2505,4 +2751,9 @@ type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: str
 type ValuedDirectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ValuedDirectionQuery = { __typename?: 'Query', sofValuedDirection?: { __typename?: 'SofValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } | null } | null };
+type ValuedDirectionQuery = { __typename?: 'Query', sovValuedDirection?: { __typename?: 'SovValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, textInput?: string | null, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } | null } | null };
+
+type TakeCareOfYourselfQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type TakeCareOfYourselfQuery = { __typename?: 'Query', sovTakeCareOfMyself?: { __typename?: 'SovTakeCareOfMyselfRecord', id: any, intro?: string | null, categories: Array<{ __typename?: 'SovTakeCareOfYourselfCategoryRecord', id: any, title?: string | null }> } | null };

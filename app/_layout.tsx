@@ -20,6 +20,13 @@ export default function Layout() {
 						title: "Värderad riktning med mål",
 					}}
 				/>
+				<Drawer.Screen
+					name='take-care-of-myself/index'
+					options={{
+						drawerLabel: "Ta hand om mig",
+						title: "Ta hand om mig",
+					}}
+				/>
 			</Drawer>
 		</GestureHandlerRootView>
 	);

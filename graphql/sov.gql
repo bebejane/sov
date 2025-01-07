@@ -1,10 +1,22 @@
 query ValuedDirection {
-	sofValuedDirection {
+	sovValuedDirection {
 		id
 		intro
 		text
+		textInput
 		image {
 			...MediaFragment
+		}
+	}
+}
+
+query TakeCareOfYourself {
+	sovTakeCareOfMyself {
+		id
+		intro
+		categories {
+			id
+			title
 		}
 	}
 }
