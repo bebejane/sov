@@ -12,9 +12,8 @@ const themeVars = {
   fontSize: {
     default: 14,
     small: 12,
-    h1: 42,
-    h2: 36,
-    h3: 28,
+    medium: 16,
+    large: 20,
   },
   padding: 20,
   margin: 20,

@@ -1,4 +1,4 @@
-import { Text, ScrollView, Loader, TextInput } from "@/styles";
+import { Paragraph, ScrollView, Loader, TextInput } from "@/styles";
 import { useQuery } from "@/lib/client";
 import { TakeCareOfYourselfDocument } from "@/graphql";
 import Theme from "@/styles/theme";
@@ -14,11 +14,11 @@ export default function TekeCareOfMyself() {
 
 	return (
 		<ScrollView>
-			<Text>{sovTakeCareOfMyself?.intro}</Text>
+			<Paragraph>{sovTakeCareOfMyself?.intro}</Paragraph>
 			{sovTakeCareOfMyself?.categories.map(({ id, title }) => (
 				<TextInput
 					key={id}
-					header={title}
+					label={title}
 					value={categories[id]}
 					onChangeText={(text) => setCategories((t) => ({ ...t, [id]: text }))}
 				/>

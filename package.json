@@ -16,6 +16,8 @@
 	"dependencies": {
 		"@datocms/cda-client": "0.2.5",
 		"@expo/vector-icons": "^14.0.4",
+		"@react-native-community/datetimepicker": "8.2.0",
+		"@react-native-community/slider": "4.5.5",
 		"@react-navigation/drawer": "^7.1.1",
 		"@react-navigation/native": "^7.0.14",
 		"expo": "~52.0.23",

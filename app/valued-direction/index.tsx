@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import { Text, View, Loader, TextInput } from "@/styles";
+import { Paragraph, View, Loader, TextInput } from "@/styles";
 import { useQuery } from "@/lib/client";
 import { ValuedDirectionDocument } from "@/graphql";
 import Theme from "@/styles/theme";
@@ -15,13 +15,13 @@ export default function ValuedDirectionWithGoal() {
 
 	return (
 		<View>
-			<Text>{sovValuedDirection?.intro}</Text>
+			<Paragraph>{sovValuedDirection?.intro}</Paragraph>
 			<TextInput
-				header={sovValuedDirection?.textInput}
+				label={sovValuedDirection?.textInput}
 				value={text}
 				onChangeText={(t) => setText(t)}
 			/>
-			<Text>{sovValuedDirection?.text}</Text>
+			<Paragraph>{sovValuedDirection?.text}</Paragraph>
 			<Image
 				width={Theme.screenWidth - Theme.padding * 2}
 				height={200}

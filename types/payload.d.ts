@@ -1942,17 +1942,27 @@ type PublishedAtFilter = {
 type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
+  _allSovAssessViolenceCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
   /** Returns a collection of records */
+  allSovAssessViolenceCategories: Array<SovAssessViolenceCategoryRecord>;
+  /** Returns a collection of records */
   allSovTakeCareOfYourselfCategories: Array<SovTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns the single instance record */
+  sovAssessViolence?: Maybe<SovAssessViolenceRecord>;
+  /** Returns a specific record */
+  sovAssessViolenceCategory?: Maybe<SovAssessViolenceCategoryRecord>;
+  /** Returns the single instance record */
   sovHome?: Maybe<SovHomeRecord>;
+  /** Returns the single instance record */
+  sovHomeAssignment?: Maybe<SovHomeAssignmentRecord>;
   /** Returns the single instance record */
   sovTakeCareOfMyself?: Maybe<SovTakeCareOfMyselfRecord>;
   /** Returns a specific record */
@@ -1961,6 +1971,13 @@ type Query = {
   sovValuedDirection?: Maybe<SovValuedDirectionRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovAssessViolenceCategoriesMetaArgs = {
+  filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -1982,6 +1999,17 @@ type Query_allUploadsMetaArgs = {
 type Query_siteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovAssessViolenceCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 
@@ -2008,7 +2036,30 @@ type QueryallUploadsArgs = {
 
 
 /** The query root for this schema */
+type QuerysovAssessViolenceArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovAssessViolenceCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
 type QuerysovHomeArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovHomeAssignmentArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2133,6 +2184,136 @@ type SiteglobalSeoArgs = {
 enum SiteLocale {
   sv = 'sv'
 }
+
+type SovAssessViolenceCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SovAssessViolenceCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Kategori (skatta våld) (sov_assess_violence_category) */
+type SovAssessViolenceCategoryRecord = RecordInterface & {
+  __typename?: 'SovAssessViolenceCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Kategori (skatta våld) (sov_assess_violence_category) */
+type SovAssessViolenceCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Skatta våld (sov_assess_violence) */
+type SovAssessViolenceRecord = RecordInterface & {
+  __typename?: 'SovAssessViolenceRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  otherProblems: Array<SovAssessViolenceCategoryRecord>;
+  sinceLastSession: Array<SovAssessViolenceCategoryRecord>;
+};
+
+
+/** Record of type Skatta våld (sov_assess_violence) */
+type SovAssessViolenceRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Skatta våld (sov_assess_violence) */
+type SovAssessViolenceRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Hemmauppgift (sov_home_assignment) */
+type SovHomeAssignmentRecord = RecordInterface & {
+  __typename?: 'SovHomeAssignmentRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Hemmauppgift (sov_home_assignment) */
+type SovHomeAssignmentRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Hemmauppgift (sov_home_assignment) */
+type SovHomeAssignmentRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 /** Record of type Home (sov_home) */
 type SovHomeRecord = RecordInterface & {
@@ -2757,3 +2938,13 @@ type TakeCareOfYourselfQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type TakeCareOfYourselfQuery = { __typename?: 'Query', sovTakeCareOfMyself?: { __typename?: 'SovTakeCareOfMyselfRecord', id: any, intro?: string | null, categories: Array<{ __typename?: 'SovTakeCareOfYourselfCategoryRecord', id: any, title?: string | null }> } | null };
+
+type HomeAssignmentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HomeAssignmentQuery = { __typename?: 'Query', sovHomeAssignment?: { __typename?: 'SovHomeAssignmentRecord', id: any, intro?: string | null } | null };
+
+type AssessViolenceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AssessViolenceQuery = { __typename?: 'Query', sovAssessViolence?: { __typename?: 'SovAssessViolenceRecord', id: any, intro?: string | null, sinceLastSession: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }>, otherProblems: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }> } | null };

@@ -13,6 +13,8 @@ declare module '*/sov.gql' {
   const defaultDocument: DocumentNode;
   export const ValuedDirection: DocumentNode;
 export const TakeCareOfYourself: DocumentNode;
+export const HomeAssignment: DocumentNode;
+export const AssessViolence: DocumentNode;
 
   export default defaultDocument;
 }

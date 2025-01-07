@@ -1,6 +1,5 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { Text } from "react-native";
 
 export default function Layout() {
 	return (
@@ -9,8 +8,8 @@ export default function Layout() {
 				<Drawer.Screen
 					name='index'
 					options={{
-						drawerLabel: "Home",
-						title: "Home",
+						drawerLabel: "Hem",
+						title: "Hem",
 					}}
 				/>
 				<Drawer.Screen
@@ -25,6 +24,20 @@ export default function Layout() {
 					options={{
 						drawerLabel: "Ta hand om mig",
 						title: "Ta hand om mig",
+					}}
+				/>
+				<Drawer.Screen
+					name='home-assignment/index'
+					options={{
+						drawerLabel: "Hemmauppgift",
+						title: "Hemmeuppgift",
+					}}
+				/>
+				<Drawer.Screen
+					name='assess-violence/index'
+					options={{
+						drawerLabel: "Skatta våld",
+						title: "Skatta våld",
 					}}
 				/>
 			</Drawer>

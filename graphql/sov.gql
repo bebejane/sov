@@ -20,3 +20,25 @@ query TakeCareOfYourself {
 		}
 	}
 }
+
+query HomeAssignment {
+	sovHomeAssignment {
+		id
+		intro
+	}
+}
+
+query AssessViolence {
+	sovAssessViolence {
+		id
+		intro
+		sinceLastSession {
+			id
+			title
+		}
+		otherProblems {
+			id
+			title
+		}
+	}
+}
