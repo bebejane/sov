@@ -15,6 +15,8 @@ declare module '*/sov.gql' {
 export const TakeCareOfYourself: DocumentNode;
 export const HomeAssignment: DocumentNode;
 export const AssessViolence: DocumentNode;
+export const Sork: DocumentNode;
+export const SoundExercise: DocumentNode;
 
   export default defaultDocument;
 }

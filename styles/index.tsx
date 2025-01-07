@@ -7,11 +7,23 @@ import {
 	Button as ButtonElement,
 	Image as ImageElement,
 } from "react-native";
+
 import DateTimePickerElement, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import SliderElement from "@react-native-community/slider";
 
 import Theme from "./theme";
+import { useEffect, useState } from "react";
+import React from "react";
 
-export const Text = ({ children, style }: { children: any; style?: any }) => {
+export const Text = ({
+	children,
+	style,
+	onPress,
+}: {
+	children: any;
+	style?: any;
+	onPress?: () => void;
+}) => {
 	const s = StyleSheet.create({
 		text: {
 			fontSize: Theme.fontSize.default,
@@ -19,7 +31,14 @@ export const Text = ({ children, style }: { children: any; style?: any }) => {
 			...style,
 		},
 	});
-	return <TextElement style={s.text}>{children}</TextElement>;
+	return (
+		<TextElement
+			style={s.text}
+			onPress={onPress}
+		>
+			{children}
+		</TextElement>
+	);
 };
 
 export const Paragraph = ({ children, style }: { children: any; style?: any }) => {
@@ -35,12 +54,14 @@ export const Header = ({
 	style?: any;
 	size: "small" | "medium" | "large";
 }) => {
+	const marginBottom = size === "small" ? Theme.margin / 4 : Theme.margin / 2;
+
 	return (
 		<Text
 			style={{
 				fontSize: Theme.fontSize[size],
 				fontWeight: "bold",
-				marginBottom: Theme.margin / 2,
+				marginBottom,
 				...style,
 			}}
 		>
@@ -145,10 +166,12 @@ export const Button = ({
 	title,
 	style,
 	onPress,
+	disabled = false,
 }: {
 	title: string;
 	style?: any;
 	onPress: () => void;
+	disabled?: boolean;
 }) => {
 	const s = StyleSheet.create({
 		button: {
@@ -162,7 +185,7 @@ export const Button = ({
 		<ButtonElement
 			onPress={onPress}
 			title={title}
-			//style={s.button}
+			disabled={disabled}
 		/>
 	);
 };
@@ -202,5 +225,46 @@ export const DateTimePicker = ({
 				style={s.picker}
 			/>
 		</>
+	);
+};
+
+export const Slider = ({
+	id,
+	label,
+	value: _value,
+	onValueChange,
+}: {
+	id: string;
+	label?: string | null | undefined;
+	value: number;
+	onValueChange: (value: number) => void;
+}) => {
+	const [value, setValue] = useState<number>(_value);
+
+	useEffect(() => {
+		onValueChange(value ?? 0);
+	}, [value]);
+
+	useEffect(() => {
+		setValue(_value);
+	}, [_value]);
+
+	return (
+		<React.Fragment key={id}>
+			<Text>
+				{label} ({value ?? "0"})
+			</Text>
+			<SliderElement
+				key={id}
+				style={{ width: "100%", height: 40 }}
+				value={value}
+				minimumValue={0}
+				maximumValue={10}
+				step={1}
+				minimumTrackTintColor='#000000'
+				maximumTrackTintColor='#FFFFFF'
+				onValueChange={(step: number) => setValue(step)}
+			/>
+		</React.Fragment>
 	);
 };

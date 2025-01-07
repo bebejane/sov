@@ -239,6 +239,20 @@ type FileFieldInterfaceurlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
+/** Specifies how to filter Single-file/image fields */
+type FileFilter = {
+  /** Search for records with an exact match. The specified value must be an Upload ID */
+  eq?: InputMaybe<Scalars['UploadId']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records that have one of the specified uploads */
+  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
+  /** Exclude records with an exact match. The specified value must be an Upload ID */
+  neq?: InputMaybe<Scalars['UploadId']['input']>;
+  /** Filter records that do not have one of the specified uploads */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
+};
+
 type GlobalSeoField = {
   __typename?: 'GlobalSeoField';
   facebookPageUrl?: Maybe<Scalars['String']['output']>;
@@ -1944,6 +1958,10 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allSovAssessViolenceCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSovSorkCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSovSoundExerciseItemsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
@@ -1951,6 +1969,10 @@ type Query = {
   _site: Site;
   /** Returns a collection of records */
   allSovAssessViolenceCategories: Array<SovAssessViolenceCategoryRecord>;
+  /** Returns a collection of records */
+  allSovSorkCategories: Array<SovSorkCategoryRecord>;
+  /** Returns a collection of records */
+  allSovSoundExerciseItems: Array<SovSoundExerciseItemRecord>;
   /** Returns a collection of records */
   allSovTakeCareOfYourselfCategories: Array<SovTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of assets */
@@ -1963,6 +1985,14 @@ type Query = {
   sovHome?: Maybe<SovHomeRecord>;
   /** Returns the single instance record */
   sovHomeAssignment?: Maybe<SovHomeAssignmentRecord>;
+  /** Returns the single instance record */
+  sovSork?: Maybe<SovSorkRecord>;
+  /** Returns a specific record */
+  sovSorkCategory?: Maybe<SovSorkCategoryRecord>;
+  /** Returns the single instance record */
+  sovSoundExercise?: Maybe<SovSoundExerciseRecord>;
+  /** Returns a specific record */
+  sovSoundExerciseItem?: Maybe<SovSoundExerciseItemRecord>;
   /** Returns the single instance record */
   sovTakeCareOfMyself?: Maybe<SovTakeCareOfMyselfRecord>;
   /** Returns a specific record */
@@ -1977,6 +2007,20 @@ type Query = {
 /** The query root for this schema */
 type Query_allSovAssessViolenceCategoriesMetaArgs = {
   filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovSorkCategoriesMetaArgs = {
+  filter?: InputMaybe<SovSorkCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovSoundExerciseItemsMetaArgs = {
+  filter?: InputMaybe<SovSoundExerciseItemModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2009,6 +2053,28 @@ type QueryallSovAssessViolenceCategoriesArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovSorkCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovSorkCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovSoundExerciseItemsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovSoundExerciseItemModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2062,6 +2128,38 @@ type QuerysovHomeArgs = {
 type QuerysovHomeAssignmentArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovSorkArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovSorkCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovSorkCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovSoundExerciseArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovSoundExerciseItemArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovSoundExerciseItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelOrderBy>>>;
 };
 
 
@@ -2223,7 +2321,7 @@ enum SovAssessViolenceCategoryModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Kategori (skatta våld) (sov_assess_violence_category) */
+/** Record of type Skatta våld (kategori) (sov_assess_violence_category) */
 type SovAssessViolenceCategoryRecord = RecordInterface & {
   __typename?: 'SovAssessViolenceCategoryRecord';
   _createdAt: Scalars['DateTime']['output'];
@@ -2244,7 +2342,7 @@ type SovAssessViolenceCategoryRecord = RecordInterface & {
 };
 
 
-/** Record of type Kategori (skatta våld) (sov_assess_violence_category) */
+/** Record of type Skatta våld (kategori) (sov_assess_violence_category) */
 type SovAssessViolenceCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2342,6 +2440,205 @@ type SovHomeRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+type SovSorkCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  text?: InputMaybe<TextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SovSorkCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Sork (kategori) (sov_sork_category) */
+type SovSorkCategoryRecord = RecordInterface & {
+  __typename?: 'SovSorkCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Sork (kategori) (sov_sork_category) */
+type SovSorkCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Sork (kategori) (sov_sork_category) */
+type SovSorkCategoryRecordtextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Sork (sov_sork) */
+type SovSorkRecord = RecordInterface & {
+  __typename?: 'SovSorkRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  categories: Array<SovSorkCategoryRecord>;
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type Sork (sov_sork) */
+type SovSorkRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SovSoundExerciseItemModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  file?: InputMaybe<FileFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+  youtube?: InputMaybe<VideoFilter>;
+};
+
+enum SovSoundExerciseItemModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Ljudövning (sov_sound_exercise_item) */
+type SovSoundExerciseItemRecord = RecordInterface & {
+  __typename?: 'SovSoundExerciseItemRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  file?: Maybe<FileField>;
+  id: Scalars['ItemId']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  youtube?: Maybe<VideoField>;
+};
+
+
+/** Record of type Ljudövning (sov_sound_exercise_item) */
+type SovSoundExerciseItemRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Ljudövningar (sov_sound_exercise) */
+type SovSoundExerciseRecord = RecordInterface & {
+  __typename?: 'SovSoundExerciseRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  exercises: Array<SovSoundExerciseItemRecord>;
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Ljudövningar (sov_sound_exercise) */
+type SovSoundExerciseRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Ljudövningar (sov_sound_exercise) */
+type SovSoundExerciseRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
 type SovTakeCareOfMyselfRecord = RecordInterface & {
   __typename?: 'SovTakeCareOfMyselfRecord';
@@ -2413,7 +2710,7 @@ enum SovTakeCareOfYourselfCategoryModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Kategori (Ta hand om dig själv) (sov_take_care_of_yourself_category) */
+/** Record of type Ta hand om dig själv (kategori) (sov_take_care_of_yourself_category) */
 type SovTakeCareOfYourselfCategoryRecord = RecordInterface & {
   __typename?: 'SovTakeCareOfYourselfCategoryRecord';
   _createdAt: Scalars['DateTime']['output'];
@@ -2434,7 +2731,7 @@ type SovTakeCareOfYourselfCategoryRecord = RecordInterface & {
 };
 
 
-/** Record of type Kategori (Ta hand om dig själv) (sov_take_care_of_yourself_category) */
+/** Record of type Ta hand om dig själv (kategori) (sov_take_care_of_yourself_category) */
 type SovTakeCareOfYourselfCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2526,6 +2823,20 @@ type Tag = {
   attributes?: Maybe<Scalars['MetaTagAttributes']['output']>;
   content?: Maybe<Scalars['String']['output']>;
   tag: Scalars['String']['output'];
+};
+
+/** Specifies how to filter text fields */
+type TextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
 /** Specifies how to filter by upload type */
@@ -2915,6 +3226,23 @@ type UploadWidthFilter = {
   neq?: InputMaybe<Scalars['IntType']['input']>;
 };
 
+type VideoField = {
+  __typename?: 'VideoField';
+  height: Scalars['IntType']['output'];
+  provider: Scalars['String']['output'];
+  providerUid: Scalars['String']['output'];
+  thumbnailUrl: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+  width: Scalars['IntType']['output'];
+};
+
+/** Specifies how to filter Video fields */
+type VideoFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
 enum VideoMp4Res {
   high = 'high',
   low = 'low',
@@ -2948,3 +3276,13 @@ type AssessViolenceQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type AssessViolenceQuery = { __typename?: 'Query', sovAssessViolence?: { __typename?: 'SovAssessViolenceRecord', id: any, intro?: string | null, sinceLastSession: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }>, otherProblems: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }> } | null };
+
+type SorkQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SorkQuery = { __typename?: 'Query', sovSork?: { __typename?: 'SovSorkRecord', id: any, categories: Array<{ __typename?: 'SovSorkCategoryRecord', id: any, title?: string | null, text?: string | null }> } | null };
+
+type SoundExerciseQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SoundExerciseQuery = { __typename?: 'Query', sovSoundExercise?: { __typename?: 'SovSoundExerciseRecord', id: any, intro?: string | null, exercises: Array<{ __typename?: 'SovSoundExerciseItemRecord', id: any, title?: string | null, file?: { __typename?: 'FileField', filename: string, url: string } | null, youtube?: { __typename?: 'VideoField', thumbnailUrl: string, url: string, title: string, providerUid: string, provider: string } | null }> } | null };

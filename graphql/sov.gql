@@ -42,3 +42,36 @@ query AssessViolence {
 		}
 	}
 }
+
+query Sork {
+	sovSork {
+		id
+		categories {
+			id
+			title
+			text
+		}
+	}
+}
+
+query SoundExercise {
+	sovSoundExercise {
+		id
+		intro
+		exercises {
+			id
+			title
+			file {
+				filename
+				url
+			}
+			youtube {
+				thumbnailUrl
+				url
+				title
+				providerUid
+				provider
+			}
+		}
+	}
+}

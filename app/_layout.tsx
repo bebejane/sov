@@ -40,6 +40,27 @@ export default function Layout() {
 						title: "Skatta våld",
 					}}
 				/>
+				<Drawer.Screen
+					name='sork/index'
+					options={{
+						drawerLabel: "Sork",
+						title: "Sork",
+					}}
+				/>
+				<Drawer.Screen
+					name='emotional-diary/index'
+					options={{
+						drawerLabel: "Enkel känslodagbok",
+						title: "Enkel känslodagbok",
+					}}
+				/>
+				<Drawer.Screen
+					name='sound-exercises/index'
+					options={{
+						drawerLabel: "Ljudövningar",
+						title: "Ljudövningar",
+					}}
+				/>
 			</Drawer>
 		</GestureHandlerRootView>
 	);
