@@ -110,19 +110,19 @@ export const AudioPlayerView = ({
 					<Text>Not playable...</Text>
 				</View>
 			) : null}
-			{loading ? (
-				<View>
-					<Text>Loading...</Text>
-				</View>
-			) : (
-				<Ionicons
-					style={{ flexGrow: 1, flexShrink: 1, marginLeft: 10 }}
-					name={!isPlaying ? "play" : "pause"}
-					size={28}
-					color={Theme.color.black}
-					onPress={(e) => handleIconClick(e)}
-				/>
-			)}
+			<Ionicons
+				style={{
+					flexGrow: 1,
+					flexShrink: 1,
+					marginLeft: 10,
+				}}
+				disabled={loading}
+				name={!isPlaying ? "play" : "pause"}
+				size={28}
+				color={Theme.color.black}
+				onPress={(e) => handleIconClick(e)}
+			/>
+
 			<Slider
 				style={{
 					flexGrow: 6,
