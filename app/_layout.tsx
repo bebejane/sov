@@ -1,5 +1,7 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
+import { Header } from "../styles";
+import CustomDrawerContent from "../components/CustomDrawerContent";
 
 export default function Layout() {
 	return (
@@ -66,6 +68,13 @@ export default function Layout() {
 					options={{
 						drawerLabel: "Vidmakthållandeplan",
 						title: "Vidmakthållandeplan",
+					}}
+				/>
+				<Drawer.Screen
+					name='stop-and-think-steps/index'
+					options={{
+						drawerLabel: "Stop & Tänk stegen",
+						title: "Stop & Tänk stegen",
 					}}
 				/>
 			</Drawer>
