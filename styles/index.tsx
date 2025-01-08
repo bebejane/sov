@@ -54,7 +54,7 @@ export const Header = ({
 	style?: any;
 	size: "small" | "medium" | "large";
 }) => {
-	const marginBottom = size === "small" ? Theme.margin / 4 : Theme.margin / 2;
+	const marginBottom = size === "small" ? 0 : Theme.margin / 2;
 
 	return (
 		<Text

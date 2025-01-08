@@ -1958,6 +1958,8 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allSovAssessViolenceCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSovMaintenencePlanQuestionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovSorkCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSovSoundExerciseItemsMeta: CollectionMetadata;
@@ -1969,6 +1971,8 @@ type Query = {
   _site: Site;
   /** Returns a collection of records */
   allSovAssessViolenceCategories: Array<SovAssessViolenceCategoryRecord>;
+  /** Returns a collection of records */
+  allSovMaintenencePlanQuestions: Array<SovMaintenencePlanQuestionRecord>;
   /** Returns a collection of records */
   allSovSorkCategories: Array<SovSorkCategoryRecord>;
   /** Returns a collection of records */
@@ -1986,6 +1990,10 @@ type Query = {
   /** Returns the single instance record */
   sovHomeAssignment?: Maybe<SovHomeAssignmentRecord>;
   /** Returns the single instance record */
+  sovMaintanencePlan?: Maybe<SovMaintanencePlanRecord>;
+  /** Returns a specific record */
+  sovMaintenencePlanQuestion?: Maybe<SovMaintenencePlanQuestionRecord>;
+  /** Returns the single instance record */
   sovSork?: Maybe<SovSorkRecord>;
   /** Returns a specific record */
   sovSorkCategory?: Maybe<SovSorkCategoryRecord>;
@@ -1993,6 +2001,8 @@ type Query = {
   sovSoundExercise?: Maybe<SovSoundExerciseRecord>;
   /** Returns a specific record */
   sovSoundExerciseItem?: Maybe<SovSoundExerciseItemRecord>;
+  /** Returns the single instance record */
+  sovStopAndThinkStep?: Maybe<SovStopAndThinkStepRecord>;
   /** Returns the single instance record */
   sovTakeCareOfMyself?: Maybe<SovTakeCareOfMyselfRecord>;
   /** Returns a specific record */
@@ -2007,6 +2017,13 @@ type Query = {
 /** The query root for this schema */
 type Query_allSovAssessViolenceCategoriesMetaArgs = {
   filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovMaintenencePlanQuestionsMetaArgs = {
+  filter?: InputMaybe<SovMaintenencePlanQuestionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2053,6 +2070,17 @@ type QueryallSovAssessViolenceCategoriesArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovMaintenencePlanQuestionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovMaintenencePlanQuestionModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovMaintenencePlanQuestionModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2132,6 +2160,22 @@ type QuerysovHomeAssignmentArgs = {
 
 
 /** The query root for this schema */
+type QuerysovMaintanencePlanArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovMaintenencePlanQuestionArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovMaintenencePlanQuestionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovMaintenencePlanQuestionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
 type QuerysovSorkArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -2160,6 +2204,13 @@ type QuerysovSoundExerciseItemArgs = {
   filter?: InputMaybe<SovSoundExerciseItemModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovStopAndThinkStepArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2440,6 +2491,103 @@ type SovHomeRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Record of type Vidmakthållandeplan (sov_maintanence_plan) */
+type SovMaintanencePlanRecord = RecordInterface & {
+  __typename?: 'SovMaintanencePlanRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  questions: Array<SovMaintenencePlanQuestionRecord>;
+};
+
+
+/** Record of type Vidmakthållandeplan (sov_maintanence_plan) */
+type SovMaintanencePlanRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Vidmakthållandeplan (sov_maintanence_plan) */
+type SovMaintanencePlanRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SovMaintenencePlanQuestionModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovMaintenencePlanQuestionModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovMaintenencePlanQuestionModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SovMaintenencePlanQuestionModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Vidmakthållandeplan (fråga) (sov_maintenence_plan_question) */
+type SovMaintenencePlanQuestionRecord = RecordInterface & {
+  __typename?: 'SovMaintenencePlanQuestionRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Vidmakthållandeplan (fråga) (sov_maintenence_plan_question) */
+type SovMaintenencePlanQuestionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type SovSorkCategoryModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
@@ -2637,6 +2785,31 @@ type SovSoundExerciseRecord_seoMetaTagsArgs = {
 /** Record of type Ljudövningar (sov_sound_exercise) */
 type SovSoundExerciseRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Stop & tänk stegen (sov_stop_and_think_step) */
+type SovStopAndThinkStepRecord = RecordInterface & {
+  __typename?: 'SovStopAndThinkStepRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type Stop & tänk stegen (sov_stop_and_think_step) */
+type SovStopAndThinkStepRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
@@ -3286,3 +3459,13 @@ type SoundExerciseQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SoundExerciseQuery = { __typename?: 'Query', sovSoundExercise?: { __typename?: 'SovSoundExerciseRecord', id: any, intro?: string | null, exercises: Array<{ __typename?: 'SovSoundExerciseItemRecord', id: any, title?: string | null, file?: { __typename?: 'FileField', filename: string, url: string } | null, youtube?: { __typename?: 'VideoField', thumbnailUrl: string, url: string, title: string, providerUid: string, provider: string } | null }> } | null };
+
+type MaintanencePlanQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typename?: 'SovMaintanencePlanRecord', intro?: string | null, questions: Array<{ __typename?: 'SovMaintenencePlanQuestionRecord', id: any, title?: string | null }> } | null };
+
+type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThinkStep?: { __typename?: 'SovStopAndThinkStepRecord', id: any } | null };

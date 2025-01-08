@@ -1,11 +1,8 @@
-import { ScrollView, Loader, Button, Slider, TextInput, Header, Text } from "@/styles";
+import { View, Button, Slider, TextInput, Header, Text } from "@/styles";
 import { FlatList } from "react-native";
-
-import { useQuery } from "@/lib/client";
-import { AssessViolenceDocument } from "@/graphql";
-
+import { useCallback, useState } from "react";
+import { format } from "date-fns";
 import Theme from "@/styles/theme";
-import { useCallback, useEffect, useState } from "react";
 import React from "react";
 
 type Item = {
@@ -47,7 +44,7 @@ export default function EmotionalDiary() {
 	//if (loading) return <Loader loading={loading} />;
 
 	return (
-		<ScrollView>
+		<View>
 			<TextInput
 				value={values.situation}
 				onChangeText={(val: string) => setValues((v) => ({ ...v, situation: val }))}
@@ -75,32 +72,37 @@ export default function EmotionalDiary() {
 				disabled={!isValidItem()}
 			/>
 			<Header size='large'>Dagbokslogg</Header>
-			<FlatList
-				data={items}
-				renderItem={({ item, separators }) => (
-					<>
-						<Text
-							onPress={() =>
-								setItems((items) =>
-									items.map((i) => (i.date === item.date ? { ...i, open: !i.open } : i))
-								)
-							}
-						>
-							{item.date}
-						</Text>
-						{item.open && (
-							<>
-								<Header size='small'>Situation</Header>
-								<Text>{item.situation}</Text>
-								<Header size='small'>Grundkänsla</Header>
-								<Text>{item.baseFeeling}</Text>
-								<Header size='small'>Känslan i kroppen</Header>
-								<Text>{item.feeling}</Text>
-							</>
-						)}
-					</>
-				)}
-			/>
-		</ScrollView>
+			{items.length === 0 ? (
+				<Text>Det finns inga dagboksinlägg...</Text>
+			) : (
+				<FlatList
+					data={items}
+					style={{ width: "100%" }}
+					renderItem={({ item, separators }) => (
+						<>
+							<Text
+								onPress={() =>
+									setItems((items) =>
+										items.map((i) => (i.date === item.date ? { ...i, open: !i.open } : i))
+									)
+								}
+							>
+								{format(new Date(item.date), "yyyy-MM-dd HH:mm:ss")}
+							</Text>
+							{item.open && (
+								<>
+									<Header size='small'>Situation</Header>
+									<Text>{item.situation}</Text>
+									<Header size='small'>Grundkänsla</Header>
+									<Text>{item.baseFeeling}</Text>
+									<Header size='small'>Känslan i kroppen</Header>
+									<Text>{item.feeling}</Text>
+								</>
+							)}
+						</>
+					)}
+				/>
+			)}
+		</View>
 	);
 }

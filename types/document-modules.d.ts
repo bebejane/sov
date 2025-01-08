@@ -17,6 +17,8 @@ export const HomeAssignment: DocumentNode;
 export const AssessViolence: DocumentNode;
 export const Sork: DocumentNode;
 export const SoundExercise: DocumentNode;
+export const MaintanencePlan: DocumentNode;
+export const StopAndThinkSteps: DocumentNode;
 
   export default defaultDocument;
 }

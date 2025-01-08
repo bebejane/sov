@@ -61,6 +61,13 @@ export default function Layout() {
 						title: "Ljudövningar",
 					}}
 				/>
+				<Drawer.Screen
+					name='maintenance-plan/index'
+					options={{
+						drawerLabel: "Vidmakthållandeplan",
+						title: "Vidmakthållandeplan",
+					}}
+				/>
 			</Drawer>
 		</GestureHandlerRootView>
 	);
