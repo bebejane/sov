@@ -17,7 +17,7 @@ export default function AudioPlayer({ src }: { src: string }) {
 async function loadAndPlayAudio({ uri }: { uri: string }) {
 	const { sound, status } = await Audio.Sound.createAsync(
 		{ uri },
-		{ isLooping: false, shouldPlay: true }
+		{ isLooping: false, shouldPlay: false }
 	);
 	console.log(uri);
 
@@ -28,6 +28,6 @@ async function loadAndPlayAudio({ uri }: { uri: string }) {
 		console.log("done");
 	}
 	sound.setOnPlaybackStatusUpdate(function (status) {
-		//console.log(status.volume);
+		console.log(status);
 	});
 }
