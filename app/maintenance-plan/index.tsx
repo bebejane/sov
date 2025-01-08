@@ -1,4 +1,4 @@
-import { Paragraph, ScrollView, Loader, TextInput } from "@/styles";
+import { Paragraph, ScrollView, Loader, TextInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { MaintanencePlanDocument } from "@/graphql";
 import Theme from "@/styles/theme";

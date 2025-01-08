@@ -1,8 +1,7 @@
-import { View, Button, Slider, TextInput, Header, Text } from "@/styles";
+import { View, Button, Slider, TextInput, Header, Text } from "@/components/ui";
 import { FlatList } from "react-native";
 import { useCallback, useState } from "react";
 import { format } from "date-fns";
-import Theme from "@/styles/theme";
 import React from "react";
 
 type Item = {

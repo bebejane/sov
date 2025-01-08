@@ -1,9 +1,6 @@
-import { Image } from "react-native";
-import { Paragraph, View, Loader, TextInput, Header } from "@/styles";
+import { Paragraph, View, Loader, TextInput, Header } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SoundExerciseDocument } from "@/graphql";
-import Theme from "@/styles/theme";
-import { useState } from "react";
 import React from "react";
 import AudioPlayer from "@/components/AudioPlayer";
 import YoutubePlayer from "@/components/YoutubePlayer";

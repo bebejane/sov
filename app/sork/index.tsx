@@ -1,7 +1,6 @@
-import { Text, ScrollView, Loader, Button, Header, Paragraph, TextInput, Slider } from "@/styles";
+import { ScrollView, Loader, Button, Header, TextInput, Slider } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SorkDocument } from "@/graphql";
-import Theme from "@/styles/theme";
 import { useState } from "react";
 import React from "react";
 

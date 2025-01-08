@@ -1,8 +1,6 @@
-import { ScrollView, Loader, TextInput, Button, DateTimePicker, Paragraph } from "@/styles";
+import { ScrollView, Loader, TextInput, Button, DateTimePicker, Paragraph } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
-
-import Theme from "@/styles/theme";
 import { useState } from "react";
 
 const form = [

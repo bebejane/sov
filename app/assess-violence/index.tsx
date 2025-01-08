@@ -1,4 +1,4 @@
-import { Paragraph, ScrollView, Loader, Header, Slider } from "@/styles";
+import { Paragraph, ScrollView, Loader, Header, Slider } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
 import { useState } from "react";

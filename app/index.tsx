@@ -1,5 +1,9 @@
-import { Text } from "react-native";
+import { Text, View } from "@/components/ui";
 
 export default function Home() {
-	return <Text>Hem</Text>;
+	return (
+		<View>
+			<Text>Hem</Text>
+		</View>
+	);
 }
