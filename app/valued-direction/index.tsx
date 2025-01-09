@@ -3,11 +3,9 @@ import { Paragraph, View, Loader, TextInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { ValuedDirectionDocument } from "@/graphql";
 import Theme from "@/styles/theme";
-import { useState } from "react";
 
 export default function ValuedDirectionWithGoal() {
 	const [data, error, loading] = useQuery<ValuedDirectionQuery>(ValuedDirectionDocument);
-	const [text, setText] = useState("");
 
 	if (loading) return <Loader loading={loading} />;
 
@@ -17,9 +15,8 @@ export default function ValuedDirectionWithGoal() {
 		<View>
 			<Paragraph>{sovValuedDirection?.intro}</Paragraph>
 			<TextInput
-				label={sovValuedDirection?.textInput}
-				value={text}
-				onChangeText={(t) => setText(t)}
+				slug={sovValuedDirection?.input.slug}
+				label={sovValuedDirection?.input.label}
 			/>
 			<Paragraph>{sovValuedDirection?.text}</Paragraph>
 			<Image

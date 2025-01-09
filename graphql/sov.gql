@@ -3,7 +3,12 @@ query ValuedDirection {
 		id
 		intro
 		text
-		textInput
+		input {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+		}
 		image {
 			...MediaFragment
 		}
@@ -14,9 +19,11 @@ query TakeCareOfYourself {
 	sovTakeCareOfMyself {
 		id
 		intro
-		categories {
-			id
-			title
+		inputs {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
 		}
 	}
 }
@@ -25,6 +32,15 @@ query HomeAssignment {
 	sovHomeAssignment {
 		id
 		intro
+		inputs {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+			... on SovInputDateRecord {
+				...DateInputFragment
+			}
+		}
 	}
 }
 
@@ -33,12 +49,10 @@ query AssessViolence {
 		id
 		intro
 		sinceLastSession {
-			id
-			title
+			...SliderInputFragment
 		}
 		otherProblems {
-			id
-			title
+			...SliderInputFragment
 		}
 	}
 }
@@ -46,10 +60,14 @@ query AssessViolence {
 query Sork {
 	sovSork {
 		id
-		categories {
-			id
-			title
-			text
+		inputs {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+			... on SovInputSliderRecord {
+				...SliderInputFragment
+			}
 		}
 	}
 }
@@ -79,9 +97,8 @@ query SoundExercise {
 query MaintanencePlan {
 	sovMaintanencePlan {
 		intro(markdown: false)
-		questions {
-			id
-			title
+		inputs {
+			...TextInputFragment
 		}
 	}
 }
@@ -90,4 +107,42 @@ query StopAndThinkSteps {
 	sovStopAndThinkStep {
 		id
 	}
+}
+
+query EmotionalDiary {
+	sovEmotionalDiary {
+		id
+		inputs {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+			... on SovInputSliderRecord {
+				...SliderInputFragment
+			}
+		}
+	}
+}
+
+fragment TextInputFragment on SovInputTextRecord {
+	id
+	label
+	text
+	slug
+}
+
+fragment DateInputFragment on SovInputDateRecord {
+	id
+	label
+	text
+	slug
+}
+
+fragment SliderInputFragment on SovInputSliderRecord {
+	id
+	label
+	text
+	slug
+	min
+	max
 }

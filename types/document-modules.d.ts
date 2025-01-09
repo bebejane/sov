@@ -19,6 +19,10 @@ export const Sork: DocumentNode;
 export const SoundExercise: DocumentNode;
 export const MaintanencePlan: DocumentNode;
 export const StopAndThinkSteps: DocumentNode;
+export const EmotionalDiary: DocumentNode;
+export const TextInputFragment: DocumentNode;
+export const DateInputFragment: DocumentNode;
+export const SliderInputFragment: DocumentNode;
 
   export default defaultDocument;
 }

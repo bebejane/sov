@@ -6,5 +6,5 @@ export { Header } from "./Header";
 export { Paragraph } from "./Paragraph";
 export { Loader } from "./Loader";
 export { ScrollView } from "./ScrollView";
-export { Slider } from "./Slider";
+export { SliderInput } from "./SliderInput";
 export { DateTimePicker } from "./DateTimePicker";

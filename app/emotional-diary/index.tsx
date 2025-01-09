@@ -1,70 +1,86 @@
-import { View, Button, Slider, TextInput, Header, Text } from "@/components/ui";
+import "react-native-get-random-values";
+import { nanoid } from "nanoid";
+import { View, Button, TextInput, Header, Text, Loader, SliderInput } from "@/components/ui";
 import { FlatList } from "react-native";
-import { useCallback, useState } from "react";
 import { format } from "date-fns";
 import React from "react";
-
-type Item = {
-	date: string;
-	situation: string;
-	baseFeeling: string;
-	feeling: string;
-	temp: number;
-	open: boolean;
-};
-
-const defaultItem = {
-	date: "",
-	situation: "",
-	baseFeeling: "",
-	feeling: "",
-	temp: 0,
-	open: false,
-};
+import { useQuery } from "../../lib/client";
+import { EmotionalDiaryDocument } from "../../graphql";
+import useStore from "../../lib/store";
 
 export default function EmotionalDiary() {
-	const [values, setValues] = useState<Item>(defaultItem);
-	const [items, setItems] = useState<Item[]>([]);
-	const isValidItem = useCallback(() => {
-		return (
-			values.situation !== "" &&
-			values.baseFeeling !== "" &&
-			values.feeling !== "" &&
-			values.temp >= 0 &&
-			values.temp <= 10
-		);
-	}, [values]);
+	const [data, error, loading] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
+	const { setData, data: storeData, resetKeys } = useStore();
+	const items = storeData.diary ?? [];
 
-	const save = () => {
-		setItems((i) => [...i, { ...values, date: new Date().toString() }]);
-		setValues(defaultItem);
+	const isValidItem = () => {
+		const currentItem: { [key: string]: string | number } = {};
+
+		sovEmotionalDiary?.inputs.forEach((item) => {
+			currentItem[item.slug] = storeData[item.slug];
+		});
+
+		let valid = true;
+
+		Object.keys(currentItem).forEach((key) => {
+			if (currentItem[key] === undefined || currentItem[key] === null || currentItem[key] === "") {
+				valid = false;
+				return;
+			}
+		});
+
+		return valid;
 	};
 
-	//if (loading) return <Loader loading={loading} />;
+	const save = () => {
+		const currentItem: { [key: string]: string | number } = {
+			id: nanoid(),
+			date: new Date().toString(),
+		};
 
+		sovEmotionalDiary?.inputs.forEach((item) => {
+			currentItem[item.slug] = storeData[item.slug];
+		});
+
+		const data: { [key: string]: string | number | (string | number)[] } = {
+			diary: [...items, currentItem],
+		};
+
+		const resetFields = sovEmotionalDiary?.inputs.map((item) => item.slug);
+		setData(data);
+		resetKeys(resetFields);
+	};
+
+	const remove = (item: any) => {
+		const data: { [key: string]: string | number | (string | number)[] } = {
+			diary: items.filter((i: any) => i.id !== item.id),
+		};
+		setData(data);
+	};
+
+	if (loading) return <Loader loading={loading} />;
+
+	const { sovEmotionalDiary } = data;
 	return (
 		<View>
-			<TextInput
-				value={values.situation}
-				onChangeText={(val: string) => setValues((v) => ({ ...v, situation: val }))}
-				label='Situation'
-			/>
-			<TextInput
-				value={values.baseFeeling}
-				onChangeText={(val: string) => setValues((v) => ({ ...v, baseFeeling: val }))}
-				label='Grundkänsla'
-			/>
-			<Slider
-				id='temp'
-				label='Känslotermometer'
-				value={values.temp ? Number(values.temp) : 0}
-				onValueChange={(val: number) => setValues((v) => ({ ...v, temp: val }))}
-			/>
-			<TextInput
-				value={values.feeling}
-				onChangeText={(val: string) => setValues((v) => ({ ...v, feeling: val }))}
-				label='Känslan i kroppen'
-			/>
+			{sovEmotionalDiary?.inputs.map((item) =>
+				item.__typename === "SovInputTextRecord" ? (
+					<TextInput
+						key={item.id}
+						slug={item.slug}
+						label={item.label}
+					/>
+				) : (
+					<SliderInput
+						key={item.id}
+						id={item.id}
+						label={item.label}
+						slug={item.slug}
+						min={item.min}
+						max={item.max}
+					/>
+				)
+			)}
 			<Button
 				title={"Spara"}
 				onPress={save}
@@ -81,21 +97,34 @@ export default function EmotionalDiary() {
 						<>
 							<Text
 								onPress={() =>
-									setItems((items) =>
-										items.map((i) => (i.date === item.date ? { ...i, open: !i.open } : i))
-									)
+									setData({
+										diary: items.map((i: any) =>
+											i.id === item.id ? { ...i, _open: !i._open } : i
+										),
+									})
 								}
 							>
 								{format(new Date(item.date), "yyyy-MM-dd HH:mm:ss")}
 							</Text>
-							{item.open && (
+							{item._open && (
 								<>
-									<Header size='small'>Situation</Header>
-									<Text>{item.situation}</Text>
-									<Header size='small'>Grundkänsla</Header>
-									<Text>{item.baseFeeling}</Text>
-									<Header size='small'>Känslan i kroppen</Header>
-									<Text>{item.feeling}</Text>
+									{sovEmotionalDiary?.inputs.map((input) => (
+										<React.Fragment key={input.id}>
+											<Header
+												size='small'
+												key={item.id}
+											>
+												{input.label}
+											</Header>
+											<Text>
+												{storeData.diary.find((i: any) => i.slug === item.slug)?.[input.slug]}
+											</Text>
+										</React.Fragment>
+									))}
+									<Button
+										title={"Ta bort"}
+										onPress={() => remove(item)}
+									/>
 								</>
 							)}
 						</>

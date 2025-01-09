@@ -1,41 +1,41 @@
-import { ScrollView, Loader, Button, Header, TextInput, Slider } from "@/components/ui";
+import { ScrollView, Loader, Button, Header, TextInput, SliderInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SorkDocument } from "@/graphql";
-import { useState } from "react";
 import React from "react";
+import useStore from "../../lib/store";
 
 export default function Sork() {
 	const [data, error, loading] = useQuery<SorkQuery>(SorkDocument);
-	const [values, setValues] = useState<{ [key: string]: string | number }>({});
-	const reset = () => {
-		setValues({});
-	};
-
+	const { setData, data: storeData, resetKeys } = useStore();
 	if (loading) return <Loader loading={loading} />;
 
 	const { sovSork } = data;
 
 	return (
 		<ScrollView>
-			{sovSork?.categories.map(({ id, title, text }) => (
-				<React.Fragment key={id}>
-					<Header size='large'>{title}</Header>
-					<TextInput
-						label={text}
-						value={(values[id] as string) ?? ""}
-						onChangeText={(t) => setValues((v) => ({ ...v, [id]: t }))}
+			{sovSork?.inputs.map((item) =>
+				item.__typename === "SovInputTextRecord" ? (
+					<React.Fragment key={item.id}>
+						<Header size='large'>{item.label}</Header>
+						<TextInput
+							label={item.text}
+							slug={item.slug}
+						/>
+					</React.Fragment>
+				) : (
+					<SliderInput
+						key={item.id}
+						id={item.id}
+						label={item.label}
+						slug={item.slug}
+						min={item.min}
+						max={item.max}
 					/>
-				</React.Fragment>
-			))}
-			<Slider
-				id='temp'
-				label='Känslotermometer'
-				value={(values.temp as number) ?? 0}
-				onValueChange={(num) => setValues((s) => ({ ...s, temp: num }))}
-			/>
+				)
+			)}
 			<Button
 				title={"Rensa"}
-				onPress={reset}
+				onPress={() => resetKeys(sovSork?.inputs.map((item) => item.slug))}
 			/>
 		</ScrollView>
 	);

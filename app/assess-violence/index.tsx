@@ -1,11 +1,10 @@
-import { Paragraph, ScrollView, Loader, Header, Slider } from "@/components/ui";
+import { Paragraph, ScrollView, Loader, Header, SliderInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
 import { useState } from "react";
 
 export default function AssessViolence() {
 	const [data, error, loading] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
-	const [values, setValues] = useState<{ [key: string]: string }>({});
 
 	if (loading) return <Loader loading={loading} />;
 
@@ -15,23 +14,25 @@ export default function AssessViolence() {
 		<ScrollView>
 			<Paragraph>{sovAssessViolence?.intro}</Paragraph>
 			<Header size='medium'>Skatta våld sedan senaste samtalet</Header>
-			{sovAssessViolence?.sinceLastSession.map(({ id, title }) => (
-				<Slider
+			{sovAssessViolence?.sinceLastSession.map(({ id, label, slug, min, max }) => (
+				<SliderInput
 					key={id}
-					label={title}
 					id={id}
-					value={values[id] ? Number(values[id]) : 0}
-					onValueChange={(step) => setValues((t) => ({ ...t, [id]: step }))}
+					label={label}
+					slug={slug}
+					min={min}
+					max={max}
 				/>
 			))}
 			<Header size='medium'>Andra bekymmer och problem</Header>
-			{sovAssessViolence?.otherProblems.map(({ id, title }) => (
-				<Slider
+			{sovAssessViolence?.otherProblems.map(({ id, label, slug, min, max }) => (
+				<SliderInput
 					key={id}
-					label={title}
 					id={id}
-					value={values[id] ? Number(values[id]) : 0}
-					onValueChange={(step) => setValues((t) => ({ ...t, [id]: step }))}
+					label={label}
+					slug={slug}
+					min={min}
+					max={max}
 				/>
 			))}
 		</ScrollView>

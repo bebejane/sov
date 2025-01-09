@@ -15,6 +15,7 @@ const config: IGraphQLConfig = {
 		[`https://graphql.datocms.com`]: {
 			headers: {
 				"Authorization": DATOCMS_API_TOKEN,
+				"X-Exclude-Invalid": 'true'
 			},
 		},
 	},

@@ -2,35 +2,11 @@ import { ScrollView, Loader, TextInput, Button, DateTimePicker, Paragraph } from
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import { useState } from "react";
-
-const form = [
-	{
-		id: "what",
-		header: "Vad ska jag gära?",
-		placeholder: "Vad ska jag gära?",
-	},
-	{
-		id: "why",
-		header: "Varför ska jag göra det?",
-		placeholder: "Varför ska jag göra det?",
-	},
-	{
-		id: "comments",
-		header: "Egna kommentarer om uppgiften",
-		placeholder: "När ska jag göra det?",
-	},
-];
+import useStore from "../../lib/store";
 
 export default function HomeAssignment() {
 	const [data, error, loading] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
-	const [values, setValues] = useState<{ [key: string]: string }>({});
-	const [today, setToday] = useState<Date | null>(new Date());
-	const [nextSession, setNextSession] = useState<Date | null>(null);
-	const reset = () => {
-		setValues({});
-		setToday(new Date());
-		setNextSession(null);
-	};
+	const { setData, data: storeData, resetKeys } = useStore();
 
 	if (loading) return <Loader loading={loading} />;
 
@@ -39,29 +15,25 @@ export default function HomeAssignment() {
 	return (
 		<ScrollView>
 			<Paragraph>{sovHomeAssignment?.intro}</Paragraph>
-			<DateTimePicker
-				id='today'
-				label={"När ska jag göra det?"}
-				value={today}
-				onChange={(e) => setToday(new Date(e.nativeEvent.timestamp))}
-			/>
-			<DateTimePicker
-				id='nextSession'
-				label={"Nästa session"}
-				value={nextSession}
-				onChange={(e) => setNextSession(new Date(e.nativeEvent.timestamp))}
-			/>
-			{form.map(({ id, header, placeholder }) => (
-				<TextInput
-					key={id}
-					label={header}
-					value={values[id]}
-					onChangeText={(text) => setValues((t) => ({ ...t, [id]: text }))}
-				/>
-			))}
+			{sovHomeAssignment?.inputs.map((item) =>
+				item.__typename === "SovInputTextRecord" ? (
+					<TextInput
+						key={item.id}
+						slug={item.slug}
+						label={item.label}
+					/>
+				) : (
+					<DateTimePicker
+						key={item.id}
+						id={item.id}
+						label={item.label}
+						slug={item.slug}
+					/>
+				)
+			)}
 			<Button
 				title={"Rensa"}
-				onPress={reset}
+				onPress={() => resetKeys(sovHomeAssignment?.inputs.map((item) => item.slug))}
 			/>
 		</ScrollView>
 	);

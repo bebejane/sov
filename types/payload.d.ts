@@ -1902,6 +1902,24 @@ type InUseFilter = {
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
+/** Specifies how to filter Integer fields */
+type IntegerFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']['input']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']['input']>;
+};
+
 /** Specifies how to filter by ID */
 type ItemIdFilter = {
   /** Search the record with the specified ID */
@@ -1958,6 +1976,12 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allSovAssessViolenceCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSovInputDatesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSovInputSlidersMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSovInputTextsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovMaintenencePlanQuestionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSovSorkCategoriesMeta: CollectionMetadata;
@@ -1971,6 +1995,12 @@ type Query = {
   _site: Site;
   /** Returns a collection of records */
   allSovAssessViolenceCategories: Array<SovAssessViolenceCategoryRecord>;
+  /** Returns a collection of records */
+  allSovInputDates: Array<SovInputDateRecord>;
+  /** Returns a collection of records */
+  allSovInputSliders: Array<SovInputSliderRecord>;
+  /** Returns a collection of records */
+  allSovInputTexts: Array<SovInputTextRecord>;
   /** Returns a collection of records */
   allSovMaintenencePlanQuestions: Array<SovMaintenencePlanQuestionRecord>;
   /** Returns a collection of records */
@@ -1986,9 +2016,17 @@ type Query = {
   /** Returns a specific record */
   sovAssessViolenceCategory?: Maybe<SovAssessViolenceCategoryRecord>;
   /** Returns the single instance record */
+  sovEmotionalDiary?: Maybe<SovEmotionalDiaryRecord>;
+  /** Returns the single instance record */
   sovHome?: Maybe<SovHomeRecord>;
   /** Returns the single instance record */
   sovHomeAssignment?: Maybe<SovHomeAssignmentRecord>;
+  /** Returns a specific record */
+  sovInputDate?: Maybe<SovInputDateRecord>;
+  /** Returns a specific record */
+  sovInputSlider?: Maybe<SovInputSliderRecord>;
+  /** Returns a specific record */
+  sovInputText?: Maybe<SovInputTextRecord>;
   /** Returns the single instance record */
   sovMaintanencePlan?: Maybe<SovMaintanencePlanRecord>;
   /** Returns a specific record */
@@ -2017,6 +2055,27 @@ type Query = {
 /** The query root for this schema */
 type Query_allSovAssessViolenceCategoriesMetaArgs = {
   filter?: InputMaybe<SovAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovInputDatesMetaArgs = {
+  filter?: InputMaybe<SovInputDateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovInputSlidersMetaArgs = {
+  filter?: InputMaybe<SovInputSliderModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovInputTextsMetaArgs = {
+  filter?: InputMaybe<SovInputTextModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2070,6 +2129,39 @@ type QueryallSovAssessViolenceCategoriesArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovInputDatesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputDateModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputDateModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovInputSlidersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputSliderModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputSliderModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovInputTextsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputTextModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputTextModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2146,6 +2238,13 @@ type QuerysovAssessViolenceCategoryArgs = {
 
 
 /** The query root for this schema */
+type QuerysovEmotionalDiaryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 type QuerysovHomeArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -2156,6 +2255,33 @@ type QuerysovHomeArgs = {
 type QuerysovHomeAssignmentArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovInputDateArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputDateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputDateModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovInputSliderArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputSliderModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputSliderModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovInputTextArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovInputTextModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovInputTextModelOrderBy>>>;
 };
 
 
@@ -2334,6 +2460,18 @@ enum SiteLocale {
   sv = 'sv'
 }
 
+/** Specifies how to filter Slug fields */
+type SlugFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Filter records that have one of the specified slugs */
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['String']['input']>;
+  /** Filter records that do have one of the specified slugs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 type SovAssessViolenceCategoryModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
@@ -2389,7 +2527,7 @@ type SovAssessViolenceCategoryRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 
@@ -2416,8 +2554,8 @@ type SovAssessViolenceRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
   intro?: Maybe<Scalars['String']['output']>;
-  otherProblems: Array<SovAssessViolenceCategoryRecord>;
-  sinceLastSession: Array<SovAssessViolenceCategoryRecord>;
+  otherProblems: Array<SovInputSliderRecord>;
+  sinceLastSession: Array<SovInputSliderRecord>;
 };
 
 
@@ -2431,6 +2569,36 @@ type SovAssessViolenceRecord_seoMetaTagsArgs = {
 type SovAssessViolenceRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
+
+type SovEmotionalDiaryModelInputsField = SovInputSliderRecord | SovInputTextRecord;
+
+/** Record of type Enkel känslodagbok (sov_emotional_diary) */
+type SovEmotionalDiaryRecord = RecordInterface & {
+  __typename?: 'SovEmotionalDiaryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SovEmotionalDiaryModelInputsField>;
+};
+
+
+/** Record of type Enkel känslodagbok (sov_emotional_diary) */
+type SovEmotionalDiaryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SovHomeAssignmentModelInputsField = SovInputDateRecord | SovInputTextRecord;
 
 /** Record of type Hemmauppgift (sov_home_assignment) */
 type SovHomeAssignmentRecord = RecordInterface & {
@@ -2449,6 +2617,7 @@ type SovHomeAssignmentRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
+  inputs: Array<SovHomeAssignmentModelInputsField>;
   intro?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2491,6 +2660,224 @@ type SovHomeRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+type SovInputDateModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovInputDateModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovInputDateModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SovInputDateModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Date Input (sov_input_date) */
+type SovInputDateRecord = RecordInterface & {
+  __typename?: 'SovInputDateRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Date Input (sov_input_date) */
+type SovInputDateRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SovInputSliderModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovInputSliderModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovInputSliderModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  max?: InputMaybe<IntegerFilter>;
+  min?: InputMaybe<IntegerFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SovInputSliderModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  max_ASC = 'max_ASC',
+  max_DESC = 'max_DESC',
+  min_ASC = 'min_ASC',
+  min_DESC = 'min_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Slider Input (sov_input_slider) */
+type SovInputSliderRecord = RecordInterface & {
+  __typename?: 'SovInputSliderRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  max: Scalars['IntType']['output'];
+  min: Scalars['IntType']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Slider Input (sov_input_slider) */
+type SovInputSliderRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SovInputTextModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovInputTextModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovInputTextModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SovInputTextModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Text Input (sov_input_text) */
+type SovInputTextRecord = RecordInterface & {
+  __typename?: 'SovInputTextRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Text Input (sov_input_text) */
+type SovInputTextRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Record of type Vidmakthållandeplan (sov_maintanence_plan) */
 type SovMaintanencePlanRecord = RecordInterface & {
   __typename?: 'SovMaintanencePlanRecord';
@@ -2508,8 +2895,8 @@ type SovMaintanencePlanRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
+  inputs: Array<SovInputTextRecord>;
   intro?: Maybe<Scalars['String']['output']>;
-  questions: Array<SovMaintenencePlanQuestionRecord>;
 };
 
 
@@ -2579,7 +2966,7 @@ type SovMaintenencePlanQuestionRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 
@@ -2644,8 +3031,8 @@ type SovSorkCategoryRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  text?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  text: Scalars['String']['output'];
+  title: Scalars['String']['output'];
 };
 
 
@@ -2659,6 +3046,8 @@ type SovSorkCategoryRecord_seoMetaTagsArgs = {
 type SovSorkCategoryRecordtextArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
+
+type SovSorkModelInputsField = SovInputSliderRecord | SovInputTextRecord;
 
 /** Record of type Sork (sov_sork) */
 type SovSorkRecord = RecordInterface & {
@@ -2676,8 +3065,8 @@ type SovSorkRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  categories: Array<SovSorkCategoryRecord>;
   id: Scalars['ItemId']['output'];
+  inputs: Array<SovSorkModelInputsField>;
 };
 
 
@@ -2828,8 +3217,8 @@ type SovTakeCareOfMyselfRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  categories: Array<SovTakeCareOfYourselfCategoryRecord>;
   id: Scalars['ItemId']['output'];
+  inputs: Array<SovInputTextRecord>;
   intro?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2900,7 +3289,7 @@ type SovTakeCareOfYourselfCategoryRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 
@@ -2928,9 +3317,9 @@ type SovValuedDirectionRecord = RecordInterface & {
   header?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   image?: Maybe<FileField>;
+  input: SovInputTextRecord;
   intro?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
-  textInput?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3433,27 +3822,27 @@ type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: str
 type ValuedDirectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ValuedDirectionQuery = { __typename?: 'Query', sovValuedDirection?: { __typename?: 'SovValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, textInput?: string | null, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } | null } | null };
+type ValuedDirectionQuery = { __typename?: 'Query', sovValuedDirection?: { __typename?: 'SovValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, input: { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } | null } | null };
 
 type TakeCareOfYourselfQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TakeCareOfYourselfQuery = { __typename?: 'Query', sovTakeCareOfMyself?: { __typename?: 'SovTakeCareOfMyselfRecord', id: any, intro?: string | null, categories: Array<{ __typename?: 'SovTakeCareOfYourselfCategoryRecord', id: any, title?: string | null }> } | null };
+type TakeCareOfYourselfQuery = { __typename?: 'Query', sovTakeCareOfMyself?: { __typename?: 'SovTakeCareOfMyselfRecord', id: any, intro?: string | null, inputs: Array<{ __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type HomeAssignmentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type HomeAssignmentQuery = { __typename?: 'Query', sovHomeAssignment?: { __typename?: 'SovHomeAssignmentRecord', id: any, intro?: string | null } | null };
+type HomeAssignmentQuery = { __typename?: 'Query', sovHomeAssignment?: { __typename?: 'SovHomeAssignmentRecord', id: any, intro?: string | null, inputs: Array<{ __typename: 'SovInputDateRecord', id: any, label: string, text?: string | null, slug: string } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type AssessViolenceQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AssessViolenceQuery = { __typename?: 'Query', sovAssessViolence?: { __typename?: 'SovAssessViolenceRecord', id: any, intro?: string | null, sinceLastSession: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }>, otherProblems: Array<{ __typename?: 'SovAssessViolenceCategoryRecord', id: any, title?: string | null }> } | null };
+type AssessViolenceQuery = { __typename?: 'Query', sovAssessViolence?: { __typename?: 'SovAssessViolenceRecord', id: any, intro?: string | null, sinceLastSession: Array<{ __typename?: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any }>, otherProblems: Array<{ __typename?: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any }> } | null };
 
 type SorkQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SorkQuery = { __typename?: 'Query', sovSork?: { __typename?: 'SovSorkRecord', id: any, categories: Array<{ __typename?: 'SovSorkCategoryRecord', id: any, title?: string | null, text?: string | null }> } | null };
+type SorkQuery = { __typename?: 'Query', sovSork?: { __typename?: 'SovSorkRecord', id: any, inputs: Array<{ __typename: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type SoundExerciseQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3463,9 +3852,20 @@ type SoundExerciseQuery = { __typename?: 'Query', sovSoundExercise?: { __typenam
 type MaintanencePlanQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typename?: 'SovMaintanencePlanRecord', intro?: string | null, questions: Array<{ __typename?: 'SovMaintenencePlanQuestionRecord', id: any, title?: string | null }> } | null };
+type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typename?: 'SovMaintanencePlanRecord', intro?: string | null, inputs: Array<{ __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThinkStep?: { __typename?: 'SovStopAndThinkStepRecord', id: any } | null };
+
+type EmotionalDiaryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type EmotionalDiaryQuery = { __typename?: 'Query', sovEmotionalDiary?: { __typename?: 'SovEmotionalDiaryRecord', id: any, inputs: Array<{ __typename: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
+
+type TextInputFragment = { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string };
+
+type DateInputFragment = { __typename?: 'SovInputDateRecord', id: any, label: string, text?: string | null, slug: string };
+
+type SliderInputFragment = { __typename?: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any };

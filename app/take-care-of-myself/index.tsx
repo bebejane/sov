@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function TekeCareOfMyself() {
 	const [data, error, loading] = useQuery<TakeCareOfYourselfQuery>(TakeCareOfYourselfDocument);
-	const [categories, setCategories] = useState<{ [key: string]: string }>({});
 
 	if (loading) return <Loader loading={loading} />;
 
@@ -15,12 +14,11 @@ export default function TekeCareOfMyself() {
 	return (
 		<ScrollView>
 			<Paragraph>{sovTakeCareOfMyself?.intro}</Paragraph>
-			{sovTakeCareOfMyself?.categories.map(({ id, title }) => (
+			{sovTakeCareOfMyself?.inputs.map(({ id, label, slug }) => (
 				<TextInput
 					key={id}
-					label={title}
-					value={categories[id]}
-					onChangeText={(text) => setCategories((t) => ({ ...t, [id]: text }))}
+					slug={slug}
+					label={label}
 				/>
 			))}
 		</ScrollView>
