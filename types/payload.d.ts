@@ -3193,6 +3193,7 @@ type SovStopAndThinkStepRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
+  steps: Array<Scalars['String']['output']>;
 };
 
 
