@@ -3,6 +3,7 @@
     ".expo": true,
     ".tmp": true,
     ".vscode": true,
-    "node_modules": true
+    "node_modules": true,
+    "android": true
   }
 }

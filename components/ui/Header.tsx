@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import { Text } from "./Text";
 import Theme from "@/styles/theme";
 
@@ -12,16 +13,12 @@ export const Header = ({
 }) => {
 	const marginBottom = size === "small" ? 0 : Theme.margin / 2;
 
-	return (
-		<Text
-			style={{
-				fontSize: Theme.fontSize[size],
-				fontWeight: "bold",
-				marginBottom,
-				...style,
-			}}
-		>
-			{children}
-		</Text>
-	);
+	return <Text style={[s.text, { marginBottom, ...style }]}>{children}</Text>;
 };
+
+const s = StyleSheet.create({
+	text: {
+		fontSize: Theme.fontSize.default,
+		fontWeight: "bold",
+	},
+});

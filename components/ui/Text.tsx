@@ -10,19 +10,19 @@ export const Text = ({
 	style?: any;
 	onPress?: () => void;
 }) => {
-	const s = StyleSheet.create({
-		text: {
-			fontSize: Theme.fontSize.default,
-			color: Theme.color.black,
-			...style,
-		},
-	});
 	return (
 		<TextElement
-			style={s.text}
+			style={[s.text, style]}
 			onPress={onPress}
 		>
 			{children}
 		</TextElement>
 	);
 };
+
+const s = StyleSheet.create({
+	text: {
+		fontSize: Theme.fontSize.default,
+		color: Theme.color.black,
+	},
+});

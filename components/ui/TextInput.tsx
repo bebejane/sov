@@ -3,14 +3,6 @@ import { Text } from "./Text";
 import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
 
-const s = StyleSheet.create({
-	text: {
-		color: Theme.color.greyDark,
-		fontSize: Theme.fontSize.small,
-		marginBottom: Theme.margin / 2,
-	},
-});
-
 export const TextInput = ({
 	label,
 	slug,
@@ -29,12 +21,7 @@ export const TextInput = ({
 		<>
 			<Text style={s.text}>{label}</Text>
 			<TextInputElement
-				style={{
-					height: Theme.fontSize.default * 4,
-					padding: 10,
-					marginBottom: Theme.margin,
-					backgroundColor: Theme.color.grey,
-				}}
+				style={s.input}
 				multiline={true}
 				placeholder={placeholder}
 				onChangeText={handleChangeText}
@@ -43,3 +30,17 @@ export const TextInput = ({
 		</>
 	);
 };
+
+const s = StyleSheet.create({
+	text: {
+		color: Theme.color.greyDark,
+		fontSize: Theme.fontSize.small,
+		marginBottom: Theme.margin / 2,
+	},
+	input: {
+		height: Theme.fontSize.default * 4,
+		padding: 10,
+		marginBottom: Theme.margin,
+		backgroundColor: Theme.color.grey,
+	},
+});

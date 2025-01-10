@@ -4,18 +4,6 @@ import { Text } from "./Text";
 import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
 
-const s = StyleSheet.create({
-	text: {
-		color: Theme.color.greyDark,
-		fontSize: Theme.fontSize.small,
-		marginBottom: Theme.margin / 2,
-	},
-	picker: {
-		marginBottom: Theme.margin,
-		marginLeft: 0,
-	},
-});
-
 export const DateTimePicker = ({
 	id,
 	label,
@@ -45,3 +33,15 @@ export const DateTimePicker = ({
 		</>
 	);
 };
+
+const s = StyleSheet.create({
+	text: {
+		color: Theme.color.greyDark,
+		fontSize: Theme.fontSize.small,
+		marginBottom: Theme.margin / 2,
+	},
+	picker: {
+		marginBottom: Theme.margin,
+		marginLeft: 0,
+	},
+});

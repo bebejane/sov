@@ -12,14 +12,6 @@ export const Button = ({
 	onPress: () => void;
 	disabled?: boolean;
 }) => {
-	const s = StyleSheet.create({
-		button: {
-			fontSize: Theme.fontSize.default,
-			color: Theme.color.black,
-			marginBottom: Theme.margin,
-			...style,
-		},
-	});
 	return (
 		<ButtonElement
 			onPress={onPress}
@@ -28,3 +20,11 @@ export const Button = ({
 		/>
 	);
 };
+
+const s = StyleSheet.create({
+	button: {
+		fontSize: Theme.fontSize.default,
+		color: Theme.color.black,
+		marginBottom: Theme.margin,
+	},
+});

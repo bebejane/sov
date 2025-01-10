@@ -1,5 +1,5 @@
-import { AVPlaybackStatus, AVPlaybackStatusSuccess, Audio } from "expo-av";
-import { View, Text } from "react-native";
+import { AVPlaybackStatusSuccess, Audio } from "expo-av";
+import { View, Text, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
 import React, { useEffect, useRef } from "react";
 import { Platform } from "react-native";
@@ -95,27 +95,14 @@ export const AudioPlayerView = ({
 	}
 
 	return (
-		<View
-			style={{
-				flex: 1,
-				flexDirection: "row",
-				alignItems: "center",
-				width: "100%",
-				height: 40,
-				backgroundColor: Theme.color.grey,
-			}}
-		>
+		<View style={s.view}>
 			{!playable ? (
 				<View>
 					<Text>Not playable...</Text>
 				</View>
 			) : null}
 			<Ionicons
-				style={{
-					flexGrow: 1,
-					flexShrink: 1,
-					marginLeft: 10,
-				}}
+				style={s.icon}
 				disabled={loading}
 				name={!isPlaying ? "play" : "pause"}
 				size={28}
@@ -124,13 +111,7 @@ export const AudioPlayerView = ({
 			/>
 
 			<Slider
-				style={{
-					flexGrow: 6,
-					flexShrink: 6,
-					height: 30,
-					marginLeft: 10,
-					marginRight: 10,
-				}}
+				style={s.slider}
 				value={duration}
 				minimumValue={0}
 				maximumValue={totalDuration == 0 ? 100 : totalDuration}
@@ -140,9 +121,36 @@ export const AudioPlayerView = ({
 				accessibilityLabel='Audio Player'
 				onValueChange={(step: number) => seekAudio(step)}
 			/>
-			<Text style={{ color: Theme.color.black, flexGrow: 1, flexShrink: 1, marginRight: 10 }}>
-				{audioDuration(duration)}
-			</Text>
+			<Text style={s.duration}>{audioDuration(duration)}</Text>
 		</View>
 	);
 };
+
+const s = StyleSheet.create({
+	view: {
+		flex: 1,
+		flexDirection: "row",
+		alignItems: "center",
+		width: "100%",
+		height: 40,
+		backgroundColor: Theme.color.grey,
+	},
+	icon: {
+		flexGrow: 1,
+		flexShrink: 1,
+		marginLeft: 10,
+	},
+	slider: {
+		flexGrow: 6,
+		flexShrink: 6,
+		height: 30,
+		marginLeft: 10,
+		marginRight: 10,
+	},
+	duration: {
+		color: Theme.color.black,
+		flexGrow: 1,
+		flexShrink: 1,
+		marginRight: 10,
+	},
+});

@@ -54,10 +54,10 @@ export function CustomDrawerContent(props: any) {
 						onPress={() => setOpen((o: any) => ({ ...o, [id]: !o[id] }))}
 						key={title}
 					>
-						<View style={styles.dropdown}>
-							<Text style={styles.header}>{title}</Text>
+						<View style={s.dropdown}>
+							<Text style={s.header}>{title}</Text>
 							<Ionicons
-								style={styles.arrow}
+								style={s.arrow}
 								name={open[id] ? "chevron-down" : "chevron-up"}
 								size={16}
 								color='black'
@@ -69,8 +69,8 @@ export function CustomDrawerContent(props: any) {
 							<DrawerItem
 								key={name}
 								label={options.title}
-								style={styles.item}
-								labelStyle={styles.label}
+								style={s.item}
+								labelStyle={s.label}
 								focused={props.state.index - 1 === index++}
 								//@ts-ignore
 								onPress={() => props.navigation.navigate(name)}
@@ -82,7 +82,7 @@ export function CustomDrawerContent(props: any) {
 	);
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
 	dropdown: {
 		flexDirection: "row",
 		alignItems: "center",
