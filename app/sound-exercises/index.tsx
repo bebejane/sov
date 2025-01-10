@@ -8,9 +8,16 @@ import Theme from "../../styles/theme";
 import { View } from "react-native";
 
 export default function SoundExercises() {
-	const [data, error, loading] = useQuery<SoundExerciseQuery>(SoundExerciseDocument);
+	const [data, error, loading, retry] = useQuery<SoundExerciseQuery>(SoundExerciseDocument);
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovSoundExercise } = data;
 

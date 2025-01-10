@@ -3,9 +3,16 @@ import { useQuery } from "@/lib/client";
 import { MaintanencePlanDocument } from "@/graphql";
 
 export default function MaintenancePlan() {
-	const [data, error, loading] = useQuery<MaintanencePlanQuery>(MaintanencePlanDocument);
+	const [data, error, loading, retry] = useQuery<MaintanencePlanQuery>(MaintanencePlanDocument);
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovMaintanencePlan } = data;
 

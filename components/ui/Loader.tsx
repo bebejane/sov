@@ -1,28 +1,52 @@
-import { StyleSheet, View as ViewElement } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "./Text";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
 
-export const Loader = ({ loading }: { loading: boolean }) => {
+type Props = {
+	loading: boolean;
+	error: any;
+	onRetry?: () => void;
+};
+
+export const Loader = ({ loading, error, onRetry }: Props) => {
 	return (
-		<ViewElement style={s.view}>
-			<Text>Loading...</Text>
-		</ViewElement>
+		<View style={s.view}>
+			{!error && loading && <Text>Loading...</Text>}
+			{error && (
+				<View style={s.error}>
+					<Text style={s.errorText}>Ett fel uppstod</Text>
+					<TouchableOpacity onPress={() => onRetry?.()}>
+						<Ionicons
+							name='refresh'
+							size={Theme.fontSize.large}
+							color={Theme.color.black}
+						/>
+					</TouchableOpacity>
+				</View>
+			)}
+		</View>
 	);
 };
 
 const s = StyleSheet.create({
-	text: {
-		color: Theme.color.white,
-		fontSize: Theme.fontSize.default,
-	},
 	view: {
 		flex: 1,
-		top: 0,
-		left: 0,
-		zIndex: 10,
 		justifyContent: "center",
 		alignItems: "center",
 		width: Theme.screenWidth,
-		height: Theme.screenHeight,
+	},
+	loading: {
+		color: Theme.color.white,
+		fontSize: Theme.fontSize.default,
+	},
+	error: {
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	errorText: {
+		color: Theme.color.black,
+		marginBottom: 10,
 	},
 });

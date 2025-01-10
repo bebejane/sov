@@ -10,14 +10,13 @@ export async function executeQuery<T>(query: any, options?: any): Promise<T> {
   });
 }
 
-export function useQuery<T>(query: any, options?: any): [data: T, error: Error | null, loading: boolean] {
+export function useQuery<T>(query: any, options?: any): [data: T, error: Error | null, loading: boolean, retry: () => void] {
 
   const [data, setData] = useState<any | null>({})
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
-  useEffect(() => {
-    setLoading(true)
+  const execute = () => {
     executeQuery(query, options)
       .then((res) => {
         setData(res)
@@ -28,11 +27,17 @@ export function useQuery<T>(query: any, options?: any): [data: T, error: Error |
       .finally(() => {
         setLoading(false)
       })
+  }
+
+  useEffect(() => {
+    setLoading(true)
+    execute()
   }, [query, options])
 
   return [
     data,
     error,
-    loading
+    loading,
+    execute
   ]
 }

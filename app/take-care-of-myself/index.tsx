@@ -5,9 +5,18 @@ import Theme from "@/styles/theme";
 import { useState } from "react";
 
 export default function TekeCareOfMyself() {
-	const [data, error, loading] = useQuery<TakeCareOfYourselfQuery>(TakeCareOfYourselfDocument);
+	const [data, error, loading, retry] = useQuery<TakeCareOfYourselfQuery>(
+		TakeCareOfYourselfDocument
+	);
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovTakeCareOfMyself } = data;
 

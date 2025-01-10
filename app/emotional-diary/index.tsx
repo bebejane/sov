@@ -9,7 +9,7 @@ import { EmotionalDiaryDocument } from "../../graphql";
 import useStore from "../../lib/store";
 
 export default function EmotionalDiary() {
-	const [data, error, loading] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
+	const [data, error, loading, retry] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
 	const { setData, data: storeData, resetKeys } = useStore();
 	const items = storeData.diary ?? [];
 
@@ -58,7 +58,14 @@ export default function EmotionalDiary() {
 		setData(data);
 	};
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovEmotionalDiary } = data;
 	return (

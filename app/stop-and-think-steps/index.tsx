@@ -4,10 +4,17 @@ import { StopAndThinkStepsDocument } from "@/graphql";
 import { useState } from "react";
 
 export default function StopAndThinkSteps() {
-	const [data, error, loading] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
+	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const [values, setValues] = useState<{ [key: string]: string }>({});
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovStopAndThinkStep } = data;
 

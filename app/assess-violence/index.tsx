@@ -1,12 +1,17 @@
 import { Paragraph, ScrollView, Loader, Header, SliderInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
-import { useState } from "react";
 
 export default function AssessViolence() {
-	const [data, error, loading] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
-
-	if (loading) return <Loader loading={loading} />;
+	const [data, error, loading, retry] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovAssessViolence } = data;
 

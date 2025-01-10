@@ -87,7 +87,7 @@ const groups = [
   {
     id: "other",
     title: "Övrigt",
-    items: menu.slice(6),
+    items: menu.slice(7),
     open: false,
   },
 ];

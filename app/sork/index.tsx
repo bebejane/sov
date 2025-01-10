@@ -5,9 +5,17 @@ import React from "react";
 import useStore from "../../lib/store";
 
 export default function Sork() {
-	const [data, error, loading] = useQuery<SorkQuery>(SorkDocument);
+	const [data, error, loading, retry] = useQuery<SorkQuery>(SorkDocument);
 	const { setData, data: storeData, resetKeys } = useStore();
-	if (loading) return <Loader loading={loading} />;
+
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovSork } = data;
 

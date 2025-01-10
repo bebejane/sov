@@ -5,10 +5,17 @@ import { useState } from "react";
 import useStore from "../../lib/store";
 
 export default function HomeAssignment() {
-	const [data, error, loading] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
+	const [data, error, loading, retry] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
 	const { setData, data: storeData, resetKeys } = useStore();
 
-	if (loading) return <Loader loading={loading} />;
+	if (loading || error)
+		return (
+			<Loader
+				loading={loading}
+				error={error}
+				onRetry={retry}
+			/>
+		);
 
 	const { sovHomeAssignment } = data;
 
