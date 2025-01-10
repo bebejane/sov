@@ -7,4 +7,4 @@ export { Paragraph } from "./Paragraph";
 export { Loader } from "./Loader";
 export { ScrollView } from "./ScrollView";
 export { SliderInput } from "./SliderInput";
-export { DateTimePicker } from "./DateTimePicker";
+export { DatePicker } from "./DatePicker";

@@ -17,9 +17,6 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: 1.23.1
         version: 1.23.1(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))
-      '@react-native-community/datetimepicker':
-        specifier: 8.2.0
-        version: 8.2.0(expo@52.0.24(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)))(graphql@16.10.0)(react-native-webview@13.12.5(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       '@react-native-community/slider':
         specifier: 4.5.5
         version: 4.5.5
@@ -98,6 +95,9 @@ importers:
       react-native-screens:
         specifier: ~4.4.0
         version: 4.4.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
+      react-native-ui-datepicker:
+        specifier: ^2.0.4
+        version: 2.0.4(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       react-native-vector-icons:
         specifier: ^10.2.0
         version: 10.2.0
@@ -1536,19 +1536,6 @@ packages:
     peerDependencies:
       react-native: ^0.0.0-0 || >=0.60 <1.0
 
-  '@react-native-community/datetimepicker@8.2.0':
-    resolution: {integrity: sha512-qrUPhiBvKGuG9Y+vOqsc56RPFcHa1SU2qbAMT0hfGkoFIj3FodE0VuPVrEa8fgy7kcD5NQmkZIKgHOBLV0+hWg==}
-    peerDependencies:
-      expo: '>=50.0.0'
-      react: '*'
-      react-native: '*'
-      react-native-windows: '*'
-    peerDependenciesMeta:
-      expo:
-        optional: true
-      react-native-windows:
-        optional: true
-
   '@react-native-community/slider@4.5.5':
     resolution: {integrity: sha512-x2N415pg4ZxIltArOKczPwn7JEYh+1OxQ4+hTnafomnMsqs65HZuEWcX+Ch8c5r8V83DiunuQUf5hWGWlw8hQQ==}
 
@@ -2539,6 +2526,9 @@ packages:
 
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -4611,6 +4601,13 @@ packages:
       react: '*'
       react-native: '*'
 
+  react-native-ui-datepicker@2.0.4:
+    resolution: {integrity: sha512-IDHUSx/Mns5hiVAm+mSRgIEIlC79GnA7ldX5J4l1PtxPNMfIaWZzkT+O/g9lcHZnZhWlpN+5VK+PyhPtm+ux0g==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+
   react-native-vector-icons@10.2.0:
     resolution: {integrity: sha512-n5HGcxUuVaTf9QJPs/W22xQpC2Z9u0nb0KgLPnVltP8vdUvOp6+R26gF55kilP/fV4eL4vsAHUqUjewppJMBOQ==}
     hasBin: true
@@ -4626,6 +4623,9 @@ packages:
     peerDependencies:
       react: '*'
       react-native: '*'
+
+  react-native-wheely@0.6.0:
+    resolution: {integrity: sha512-WDnynKOdHZ3m0VnXF5pC11dXSJZDC/6/e9LuZ6UKs4IjIRI1NTTd14pRwKYEnTgWmJdlDjqJvNSIVbd7EuMxHQ==}
 
   react-native-youtube-iframe@2.3.0:
     resolution: {integrity: sha512-M+z63xwXVtS4dX3k8PbtHUUcWN+gRZt6J1EtPE7Y60BMOB979KjpkdrHqeR96or9pNR2W8K5tQhIkMXW2jwo7Q==}
@@ -7855,14 +7855,6 @@ snapshots:
       merge-options: 3.0.4
       react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)
 
-  '@react-native-community/datetimepicker@8.2.0(expo@52.0.24(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)))(graphql@16.10.0)(react-native-webview@13.12.5(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      invariant: 2.2.4
-      react: 18.3.1
-      react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)
-    optionalDependencies:
-      expo: 52.0.24(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)))(graphql@16.10.0)(react-native-webview@13.12.5(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
-
   '@react-native-community/slider@4.5.5': {}
 
   '@react-native/assets-registry@0.76.5': {}
@@ -9122,6 +9114,8 @@ snapshots:
   dataloader@2.2.3: {}
 
   date-fns@4.1.0: {}
+
+  dayjs@1.11.13: {}
 
   debounce@1.2.1: {}
 
@@ -11544,6 +11538,14 @@ snapshots:
       react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)
       warn-once: 0.1.1
 
+  react-native-ui-datepicker@2.0.4(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      react: 18.3.1
+      react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)
+      react-native-wheely: 0.6.0
+
   react-native-vector-icons@10.2.0:
     dependencies:
       prop-types: 15.8.1
@@ -11570,6 +11572,8 @@ snapshots:
       invariant: 2.2.4
       react: 18.3.1
       react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1)
+
+  react-native-wheely@0.6.0: {}
 
   react-native-youtube-iframe@2.3.0(react-native-webview@13.12.5(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
     dependencies:

@@ -1,4 +1,4 @@
-import { ScrollView, Loader, TextInput, Button, DateTimePicker, Paragraph } from "@/components/ui";
+import { ScrollView, Loader, TextInput, Button, DatePicker, Paragraph } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import { useState } from "react";
@@ -30,7 +30,7 @@ export default function HomeAssignment() {
 						label={item.label}
 					/>
 				) : (
-					<DateTimePicker
+					<DatePicker
 						key={item.id}
 						id={item.id}
 						label={item.label}

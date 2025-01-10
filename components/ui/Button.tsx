@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import Theme from "@/styles/theme";
 
 type Props = {
@@ -8,24 +9,42 @@ type Props = {
 	label?: string;
 	buttonStyles?: any;
 	textStyles?: any;
+	size?: "small" | "large" | "full";
+	icon?: (typeof Ionicons.defaultProps)["name"];
 };
 
-export function Button(props: Props) {
+export function Button({
+	onPress,
+	children,
+	disabled,
+	label,
+	buttonStyles,
+	textStyles,
+	size = "full",
+	icon,
+}: Props) {
 	return (
 		<TouchableOpacity
-			style={[s.container, props.buttonStyles, props.disabled && s.disabled]}
-			disabled={props.disabled}
-			onPress={props.onPress}
-			accessibilityLabel={props.label || "A Button"}
+			style={[s.container, buttonStyles, disabled && s.disabled, s[size]]}
+			disabled={disabled}
+			onPress={onPress}
+			accessibilityLabel={label || "A Button"}
 		>
-			<Text style={[s.text, props.textStyles]}>{props.children || props.label}</Text>
+			{icon && (
+				<Ionicons
+					name={icon}
+					size={20}
+					color={Theme.color.black}
+				/>
+			)}
+			<Text style={[s.text, textStyles]}>{children ?? label}</Text>
 		</TouchableOpacity>
 	);
 }
 
 const s = StyleSheet.create({
 	container: {
-		display: "flex",
+		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 0,
@@ -33,6 +52,15 @@ const s = StyleSheet.create({
 		borderColor: Theme.color.grey,
 		borderWidth: 2,
 		padding: 10,
+	},
+	small: {
+		width: "33%",
+	},
+	large: {
+		width: "50%",
+	},
+	full: {
+		width: "100%",
 	},
 	disabled: {
 		opacity: 0.5,
