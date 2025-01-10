@@ -38,10 +38,9 @@ export default function HomeAssignment() {
 					/>
 				)
 			)}
-			<Button
-				title={"Rensa"}
-				onPress={() => resetKeys(sovHomeAssignment?.inputs.map((item) => item.slug))}
-			/>
+			<Button onPress={() => resetKeys(sovHomeAssignment?.inputs.map((item) => item.slug))}>
+				Rensa
+			</Button>
 		</ScrollView>
 	);
 }

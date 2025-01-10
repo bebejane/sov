@@ -88,11 +88,14 @@ export default function EmotionalDiary() {
 					/>
 				)
 			)}
+
 			<Button
-				title={"Spara"}
 				onPress={save}
 				disabled={!isValidItem()}
-			/>
+			>
+				Spara
+			</Button>
+
 			<Header size='large'>Dagbokslogg</Header>
 			{items.length === 0 ? (
 				<Text>Det finns inga dagboksinlägg...</Text>
@@ -128,10 +131,7 @@ export default function EmotionalDiary() {
 											</Text>
 										</React.Fragment>
 									))}
-									<Button
-										title={"Ta bort"}
-										onPress={() => remove(item)}
-									/>
+									<Button onPress={() => remove(item)}>Ta bort</Button>
 								</>
 							)}
 						</>
