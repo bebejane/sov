@@ -13,6 +13,7 @@ export default function AudioPlayer({ src }: { src: string }) {
 
 	useEffect(() => {
 		const loadAudio = async () => {
+			console.log("loading audio");
 			setError(null);
 			soundRef.current = null;
 
@@ -32,7 +33,18 @@ export default function AudioPlayer({ src }: { src: string }) {
 		};
 
 		loadAudio();
+		return () => {
+			soundRef.current?.unloadAsync();
+		};
 	}, []);
+
+	const play = () => {
+		soundRef.current?.playAsync();
+	};
+
+	const pause = () => {
+		soundRef.current?.pauseAsync();
+	};
 
 	return (
 		<AudioPlayerView
@@ -40,8 +52,8 @@ export default function AudioPlayer({ src }: { src: string }) {
 			playable={true}
 			loading={status?.isLoaded ? false : true}
 			isPlaying={status?.isPlaying ?? false}
-			playAudio={() => soundRef.current?.playAsync()}
-			pauseAudio={() => soundRef.current?.pauseAsync()}
+			playAudio={play}
+			pauseAudio={pause}
 			totalDuration={status?.durationMillis ?? 0}
 			seekAudio={(value: number) => soundRef.current?.setPositionAsync(value)}
 			duration={status?.positionMillis ?? 0}
@@ -109,7 +121,6 @@ export const AudioPlayerView = ({
 				color={Theme.color.black}
 				onPress={(e) => handleIconClick(e)}
 			/>
-
 			<Slider
 				style={s.slider}
 				value={duration}

@@ -1,6 +1,6 @@
 import Slider from "@react-native-community/slider";
 import { Text } from "./Text";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
 import useStore from "../../lib/store";
 
@@ -20,6 +20,9 @@ export const SliderInput = ({
 	const { setData, data } = useStore();
 	const [value, setValue] = useState<number>(slug ? data[slug] : min);
 
+	const handleOnChange = (step: number) => {
+		setValue(step);
+	};
 	useEffect(() => {
 		slug && setData({ [slug]: value ?? min });
 	}, [value]);
@@ -32,13 +35,13 @@ export const SliderInput = ({
 			<Slider
 				key={id}
 				style={{ width: "100%", height: 40 }}
-				value={slug ? data[slug] : min}
+				value={value}
 				minimumValue={min}
 				maximumValue={max}
 				step={1}
 				minimumTrackTintColor='#000000'
 				maximumTrackTintColor='#FFFFFF'
-				onValueChange={(step: number) => setValue(step)}
+				onValueChange={handleOnChange}
 			/>
 		</React.Fragment>
 	);

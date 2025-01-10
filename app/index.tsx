@@ -1,9 +1,63 @@
-import { Text, View } from "@/components/ui";
+import { View, Text, Pressable } from "react-native";
+import { StyleSheet } from "react-native";
+import Theme from "@/styles/theme";
+import { RelativePathString, useRouter } from "expo-router";
+import { Header } from "../components/ui";
+
+const shortcuts: { name: string; route: string }[] = [
+	{ name: "Värderad riktning med mål", route: "/valued-direction" },
+	{ name: "Ta hand om mig", route: "/take-care-of-myself" },
+	{ name: "Hemmauppgift", route: "/home-assignment" },
+	{ name: "Skatta våld", route: "/assess-violence" },
+];
 
 export default function Home() {
+	const router = useRouter();
+
 	return (
-		<View>
-			<Text>Hem</Text>
+		<View style={s.container}>
+			<View style={s.shortcuts}>
+				{shortcuts.map(({ name, route }) => (
+					<Pressable
+						style={s.button}
+						key={name}
+						onPress={() => router.push(route as RelativePathString)}
+					>
+						<Text style={s.label}>{name}</Text>
+					</Pressable>
+				))}
+			</View>
+			<View style={s.shortcuts}>
+				<Header size='medium'>Dagbok</Header>
+			</View>
 		</View>
 	);
 }
+
+const s = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: Theme.padding,
+	},
+	shortcuts: {
+		display: "flex",
+		width: "100%",
+		flexDirection: "row",
+		flexWrap: "wrap",
+		justifyContent: "space-between",
+		gap: Theme.padding,
+		marginBottom: Theme.margin,
+	},
+	button: {
+		flex: 1,
+		flexShrink: 1,
+		flexGrow: 1,
+		flexBasis: "40%",
+		height: 100,
+		padding: Theme.padding,
+		backgroundColor: Theme.color.green,
+	},
+	label: {
+		color: Theme.color.white,
+	},
+});

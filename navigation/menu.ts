@@ -4,7 +4,7 @@ const menu: Menu = [
   {
     name: "index",
     options: {
-      title: "Hem",
+      title: "Samtal om Våld",
       drawerItemStyle: { display: "none" },
     },
   },

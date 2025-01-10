@@ -8,7 +8,8 @@ const themeVars = {
     white: '#FFFFFF',
     grey: '#ededed',
     greyDark: '#333333',
-    error: '#8a0a01'
+    error: '#8a0a01',
+    green: 'green'
   },
   fontSize: {
     default: 14,
