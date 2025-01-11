@@ -17,14 +17,14 @@ export const SliderInput = ({
 	min: number;
 	max: number;
 }) => {
-	const { setData, data } = useStore();
+	const { updateData, data } = useStore();
 	const [value, setValue] = useState<number>(slug ? data[slug] : min);
 
 	const handleOnChange = (step: number) => {
 		setValue(step);
 	};
 	useEffect(() => {
-		slug && setData({ [slug]: value ?? min });
+		slug && updateData({ [slug]: value ?? min });
 	}, [value]);
 
 	return (

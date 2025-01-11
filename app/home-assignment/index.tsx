@@ -6,7 +6,7 @@ import useStore from "../../lib/store";
 
 export default function HomeAssignment() {
 	const [data, error, loading, retry] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
-	const { setData, data: storeData, resetKeys } = useStore();
+	const { updateData, data: storeData, resetKeys } = useStore();
 
 	if (loading || error)
 		return (

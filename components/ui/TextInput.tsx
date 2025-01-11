@@ -12,9 +12,9 @@ export const TextInput = ({
 	slug: string | undefined | null;
 	placeholder?: string;
 }) => {
-	const { setData, data } = useStore();
+	const { updateData, data } = useStore();
 	const handleChangeText = (t: string) => {
-		slug && setData({ [slug]: t });
+		slug && updateData({ [slug]: t });
 	};
 
 	return (

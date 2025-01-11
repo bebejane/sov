@@ -18,11 +18,11 @@ export const DatePicker = ({
 	label?: string | undefined | null;
 	slug: string | undefined | null;
 }) => {
-	const { setData, data } = useStore();
+	const { updateData, data } = useStore();
 	const [show, setShow] = useState(false);
 
 	const handleOnChange = (e: any) => {
-		slug && setData({ [slug]: e.date });
+		slug && updateData({ [slug]: e.date });
 		setShow(false);
 	};
 

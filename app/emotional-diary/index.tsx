@@ -10,7 +10,7 @@ import useStore from "../../lib/store";
 
 export default function EmotionalDiary() {
 	const [data, error, loading, retry] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
-	const { setData, data: storeData, resetKeys } = useStore();
+	const { updateData, data: storeData, resetKeys } = useStore();
 	const items = storeData.diary ?? [];
 
 	const isValidItem = () => {
@@ -47,7 +47,7 @@ export default function EmotionalDiary() {
 		};
 
 		const resetFields = sovEmotionalDiary?.inputs.map((item) => item.slug);
-		setData(data);
+		updateData(data);
 		resetKeys(resetFields);
 	};
 
@@ -55,7 +55,7 @@ export default function EmotionalDiary() {
 		const data: { [key: string]: string | number | (string | number)[] } = {
 			diary: items.filter((i: any) => i.id !== item.id),
 		};
-		setData(data);
+		updateData(data);
 	};
 
 	if (loading || error)
@@ -107,7 +107,7 @@ export default function EmotionalDiary() {
 						<>
 							<Text
 								onPress={() =>
-									setData({
+									updateData({
 										diary: items.map((i: any) =>
 											i.id === item.id ? { ...i, _open: !i._open } : i
 										),
