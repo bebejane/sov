@@ -42,5 +42,6 @@ const s = StyleSheet.create({
 		padding: 10,
 		marginBottom: Theme.margin,
 		backgroundColor: Theme.color.grey,
+		borderRadius: Theme.borderRadius,
 	},
 });

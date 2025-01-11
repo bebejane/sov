@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { shallow } from 'zustand/shallow';
 import { persist, createJSONStorage } from 'zustand/middleware'
+import file from '../file.json'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface StoreState {

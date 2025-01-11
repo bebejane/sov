@@ -11,15 +11,21 @@ import Animated, {
 	withTiming,
 	useAnimatedStyle,
 	Easing,
+	withSpring,
 } from "react-native-reanimated";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { menu, groups } from "./menu";
 
 export default function Navigation() {
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
-			<Drawer drawerContent={CustomDrawerContent}>
+			<Drawer
+				drawerContent={CustomDrawerContent}
+				screenOptions={{
+					headerTintColor: Theme.color.green,
+				}}
+			>
 				{menu.map(({ name, options }) => (
 					<Drawer.Screen
 						key={name}
@@ -41,44 +47,86 @@ export function CustomDrawerContent(props: any) {
 		other: false,
 	});
 
-	let index = 0;
-
 	return (
 		<DrawerContentScrollView
 			{...props}
 			scrollEnabled={false}
 		>
-			{groups.map(({ id, title, items }, i) => (
-				<View key={title}>
-					<TouchableOpacity
-						onPress={() => setOpen((o: any) => ({ ...o, [id]: !o[id] }))}
-						key={title}
-					>
-						<View style={s.dropdown}>
-							<Text style={s.header}>{title}</Text>
-							<Ionicons
-								style={s.arrow}
-								name={open[id] ? "chevron-down" : "chevron-up"}
-								size={16}
-								color='black'
-							/>
-						</View>
-					</TouchableOpacity>
-					{open[id] &&
-						items.map(({ name, options }, x) => (
-							<DrawerItem
-								key={name}
-								label={options.title}
-								style={s.item}
-								labelStyle={s.label}
-								focused={props.state.index - 1 === index++}
-								//@ts-ignore
-								onPress={() => props.navigation.navigate(name)}
-							/>
-						))}
-				</View>
+			{groups.map((g, i) => (
+				<DrawerGroup
+					key={i}
+					{...g}
+					active={props.state.routeNames[props.state.index]}
+					onPress={(name: string) => props.navigation.navigate(name)}
+				/>
 			))}
 		</DrawerContentScrollView>
+	);
+}
+
+type DrawerGroupProps = {
+	title: string;
+	items: any[];
+	active: string;
+	onPress: (name: string) => void;
+};
+
+export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps) {
+	const ref = useRef<View>(null);
+	const [height, setHeight] = useState<number | null>(null);
+	const heightAnimation = useSharedValue(0);
+	const [open, setOpen] = useState(true);
+
+	useLayoutEffect(() => {
+		height === null && ref.current?.measure((x, y, w, h, e) => setHeight(h));
+	}, []);
+
+	const animatedStyle = useAnimatedStyle(() => {
+		return {
+			height: withTiming(heightAnimation.value, {
+				duration: 350,
+				easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			}),
+		};
+	});
+
+	useEffect(() => {
+		heightAnimation.value = open && height !== null ? height : 0;
+	}, [open, height]);
+
+	return (
+		<View key={title}>
+			<TouchableOpacity
+				onPress={() => setOpen(!open)}
+				key={title}
+			>
+				<View style={s.dropdown}>
+					<Text style={s.header}>{title}</Text>
+					<Ionicons
+						style={s.arrow}
+						name={open ? "chevron-down" : "chevron-up"}
+						size={16}
+						color='black'
+					/>
+				</View>
+			</TouchableOpacity>
+			<Animated.View
+				ref={ref}
+				style={[s.items, height !== null && animatedStyle]}
+			>
+				{items.map(({ name, options }) => (
+					<DrawerItem
+						key={name}
+						label={options.title}
+						style={s.item}
+						activeTintColor={Theme.color.green}
+						labelStyle={s.label}
+						focused={name === active}
+						onPress={() => onPress(name)}
+					/>
+				))}
+			</Animated.View>
+		</View>
 	);
 }
 
@@ -102,8 +150,13 @@ const s = StyleSheet.create({
 		fontSize: 16,
 		margin: 0,
 	},
+	items: {
+		overflow: "hidden",
+	},
 	item: {
+		justifyContent: "center",
 		borderRadius: 0,
 		padding: 0,
+		height: 50,
 	},
 });

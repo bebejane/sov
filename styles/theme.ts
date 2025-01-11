@@ -9,7 +9,7 @@ const themeVars = {
     grey: '#ededed',
     greyDark: '#333333',
     error: '#8a0a01',
-    green: 'green'
+    green: '#015154'
   },
   fontSize: {
     default: 14,
@@ -20,6 +20,7 @@ const themeVars = {
   padding: 20,
   margin: 20,
   borderWidth: 1,
+  borderRadius: 4,
   animationSpeed: 350,
   screenWidth: width,
   screenHeight: height,

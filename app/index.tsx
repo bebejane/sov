@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 import { RelativePathString, useRouter } from "expo-router";
@@ -18,13 +18,14 @@ export default function Home() {
 		<View style={s.container}>
 			<View style={s.shortcuts}>
 				{shortcuts.map(({ name, route }) => (
-					<Pressable
+					<TouchableOpacity
 						style={s.button}
+						activeOpacity={0.5}
 						key={name}
 						onPress={() => router.push(route as RelativePathString)}
 					>
 						<Text style={s.label}>{name}</Text>
-					</Pressable>
+					</TouchableOpacity>
 				))}
 			</View>
 			<View style={s.shortcuts}>
@@ -52,6 +53,7 @@ const s = StyleSheet.create({
 		flex: 1,
 		flexShrink: 1,
 		flexGrow: 1,
+		borderRadius: Theme.borderRadius,
 		flexBasis: "40%",
 		height: 100,
 		padding: Theme.padding,
