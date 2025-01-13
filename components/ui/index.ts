@@ -1,10 +1,9 @@
-export { PageView } from "./PageView";
 export { Text } from "./Text";
 export { TextInput } from "./TextInput";
 export { Button } from "./Button";
 export { Header } from "./Header";
 export { Paragraph } from "./Paragraph";
 export { Loader } from "./Loader";
-export { PageScrollView } from "./PageScrollView";
+export { PageView } from "./PageView";
 export { SliderInput } from "./SliderInput";
 export { DatePicker } from "./DatePicker";

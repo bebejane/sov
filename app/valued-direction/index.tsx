@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import { Paragraph, PageView, Loader, TextInput } from "@/components/ui";
+import { Paragraph, Loader, TextInput, PageView } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { ValuedDirectionDocument } from "@/graphql";
 import Theme from "@/styles/theme";

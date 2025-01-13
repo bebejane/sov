@@ -1,6 +1,6 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
-import { PageView, Button, TextInput, Header, Text, Loader, SliderInput } from "@/components/ui";
+import { Button, TextInput, Header, Text, Loader, SliderInput, PageView } from "@/components/ui";
 import { FlatList } from "react-native";
 import { format } from "date-fns";
 import React from "react";

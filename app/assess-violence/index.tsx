@@ -1,4 +1,4 @@
-import { Paragraph, PageScrollView, Loader, Header, SliderInput } from "@/components/ui";
+import { Paragraph, PageView, Loader, Header, SliderInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
 
@@ -16,7 +16,7 @@ export default function AssessViolence() {
 	const { sovAssessViolence } = data;
 
 	return (
-		<PageScrollView>
+		<PageView>
 			<Paragraph>{sovAssessViolence?.intro}</Paragraph>
 			<Header size='medium'>Skatta våld sedan senaste samtalet</Header>
 			{sovAssessViolence?.sinceLastSession.map(({ id, label, slug, min, max }) => (
@@ -40,6 +40,6 @@ export default function AssessViolence() {
 					max={max}
 				/>
 			))}
-		</PageScrollView>
+		</PageView>
 	);
 }

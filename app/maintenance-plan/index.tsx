@@ -1,4 +1,4 @@
-import { Paragraph, PageScrollView, Loader, TextInput } from "@/components/ui";
+import { Paragraph, PageView, Loader, TextInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { MaintanencePlanDocument } from "@/graphql";
 
@@ -17,7 +17,7 @@ export default function MaintenancePlan() {
 	const { sovMaintanencePlan } = data;
 
 	return (
-		<PageScrollView>
+		<PageView>
 			<Paragraph>{sovMaintanencePlan?.intro}</Paragraph>
 			{sovMaintanencePlan?.inputs.map(({ id, label, slug }) => (
 				<TextInput
@@ -26,6 +26,6 @@ export default function MaintenancePlan() {
 					slug={slug}
 				/>
 			))}
-		</PageScrollView>
+		</PageView>
 	);
 }

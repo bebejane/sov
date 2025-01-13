@@ -1,8 +1,8 @@
-import { StyleSheet, View as ViewElement } from "react-native";
+import { StyleSheet, ScrollView as ScrollViewElement } from "react-native";
 import Theme from "@/styles/theme";
 
 export const PageView = ({ children, style }: { children?: any; style?: any }) => {
-	return <ViewElement style={[s.view, style]}>{children}</ViewElement>;
+	return <ScrollViewElement style={[s.view, style]}>{children}</ScrollViewElement>;
 };
 
 const s = StyleSheet.create({

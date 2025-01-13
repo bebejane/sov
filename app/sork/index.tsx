@@ -1,4 +1,4 @@
-import { PageScrollView, Loader, Button, Header, TextInput, SliderInput } from "@/components/ui";
+import { PageView, Loader, Button, Header, TextInput, SliderInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SorkDocument } from "@/graphql";
 import React from "react";
@@ -20,7 +20,7 @@ export default function Sork() {
 	const { sovSork } = data;
 
 	return (
-		<PageScrollView>
+		<PageView>
 			{sovSork?.inputs.map((item) =>
 				item.__typename === "SovInputTextRecord" ? (
 					<React.Fragment key={item.id}>
@@ -42,6 +42,6 @@ export default function Sork() {
 				)
 			)}
 			<Button onPress={() => resetKeys(sovSork?.inputs.map((item) => item.slug))}>Rensa</Button>
-		</PageScrollView>
+		</PageView>
 	);
 }

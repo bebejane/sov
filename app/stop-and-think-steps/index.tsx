@@ -1,4 +1,4 @@
-import { Paragraph, PageScrollView, Loader, Header, SliderInput, Text } from "@/components/ui";
+import { Paragraph, PageView, Loader, Header, SliderInput, Text } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import { useState } from "react";
@@ -19,8 +19,8 @@ export default function StopAndThinkSteps() {
 	const { sovStopAndThinkStep } = data;
 
 	return (
-		<PageScrollView>
+		<PageView>
 			<Text>Stopp och tänk stegen</Text>
-		</PageScrollView>
+		</PageView>
 	);
 }
