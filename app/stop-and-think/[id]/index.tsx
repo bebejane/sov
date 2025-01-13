@@ -37,6 +37,8 @@ export default function Modal() {
 			<StructuredContent content={sovStopAndThinkTool?.content} />
 			<Spacer />
 			<Button onPress={retry}>Refresh</Button>
+			<Spacer />
+			<Button onPress={() => router.push("/stop-and-think")}>Back</Button>
 		</PageView>
 	);
 }
