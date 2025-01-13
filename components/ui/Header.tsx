@@ -20,5 +20,6 @@ const s = StyleSheet.create({
 	text: {
 		fontSize: Theme.fontSize.default,
 		fontWeight: "bold",
+		paddingBottom: Theme.margin / 2,
 	},
 });

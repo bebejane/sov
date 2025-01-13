@@ -139,7 +139,7 @@ const s = StyleSheet.create({
 	header: {
 		fontSize: 16,
 		fontWeight: "bold",
-		marginBottom: 5,
+		marginBottom: 10,
 		marginTop: 20,
 		flex: 1,
 	},
@@ -149,6 +149,7 @@ const s = StyleSheet.create({
 	label: {
 		fontSize: 16,
 		margin: 0,
+		lineHeight: 20
 	},
 	items: {
 		overflow: "hidden",

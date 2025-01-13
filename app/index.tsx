@@ -16,6 +16,8 @@ export default function Home() {
 
 	return (
 		<View style={s.container}>
+			<Header size='medium'>Genvägar</Header>
+
 			<View style={s.shortcuts}>
 				{shortcuts.map(({ name, route }) => (
 					<TouchableOpacity
@@ -46,7 +48,7 @@ const s = StyleSheet.create({
 		flexDirection: "row",
 		flexWrap: "wrap",
 		justifyContent: "space-between",
-		gap: Theme.padding,
+		gap: Theme.padding / 2,
 		marginBottom: Theme.margin,
 	},
 	button: {
@@ -54,12 +56,13 @@ const s = StyleSheet.create({
 		flexShrink: 1,
 		flexGrow: 1,
 		borderRadius: Theme.borderRadius,
-		flexBasis: "40%",
-		height: 100,
+		flexBasis: "45%",
+		height: 140,
 		padding: Theme.padding / 1.5,
 		backgroundColor: Theme.color.green,
 	},
 	label: {
 		color: Theme.color.white,
+		fontWeight: 600,
 	},
 });

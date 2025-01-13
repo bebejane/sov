@@ -67,6 +67,7 @@ const s = StyleSheet.create({
 	},
 	value: {
 		fontWeight: "bold",
+		color: Theme.color.green
 	},
 	slider: { width: "100%", height: 40 },
 });
