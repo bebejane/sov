@@ -8,6 +8,8 @@ export const Paragraph = ({ children, style }: { children: any; style?: any }) =
 
 const s = StyleSheet.create({
 	text: {
+		fontSize: Theme.fontSize.default,
 		marginBottom: Theme.margin,
+		backgroundColor: '#002333',
 	},
 });

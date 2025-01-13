@@ -8,6 +8,7 @@ export default function YoutubePlayer({ src }: { src: string }) {
 	return (
 		<YTPlayer
 			height={200}
+			paddingTop={20}
 			videoId={youtubeId}
 		/>
 	);

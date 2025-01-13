@@ -35,13 +35,14 @@ const s = StyleSheet.create({
 	text: {
 		color: Theme.color.greyDark,
 		fontSize: Theme.fontSize.default,
-		marginBottom: Theme.margin,
+		marginBottom: Theme.margin / ,
 	},
 	input: {
-		height: Theme.fontSize.default * 4,
+		height: Theme.fontSize.default * 5,
 		padding: 10,
 		marginBottom: Theme.margin,
-		backgroundColor: Theme.color.grey,
+		backgroundColor: Theme.color.green,
+		borderColor: Theme.color.grey,
 		borderRadius: Theme.borderRadius,
 	},
 });
