@@ -57,14 +57,23 @@ const menu: Menu = [
     },
   },
   {
-    name: "stop-and-think-steps/index",
+    name: "stop-and-think/index",
     options: {
       title: "Stop & Tänk stegen",
     },
   },
+  {
+    name: "stop-and-think/modal",
+    options: {
+      title: "Stop & Tänk",
+      presentation: 'transparentModal',
+      animation: 'fade',
+      headerShown: false,
+      drawerItemStyle: { display: "none" },
+    },
+  },
 ].map((screen) => ({
   ...screen,
-
   options: {
     ...screen.options,
     drawerLabel: screen.options.title,
@@ -87,7 +96,7 @@ const groups = [
   {
     id: "other",
     title: "Övrigt",
-    items: menu.slice(7),
+    items: menu.slice(7, 10),
     open: false,
   },
 ];

@@ -104,8 +104,18 @@ query MaintanencePlan {
 }
 
 query StopAndThinkSteps {
-	sovStopAndThinkStep {
+	sovStopAndThink {
 		id
+	}
+	allSovStopAndThinkTools {
+		id
+		title
+		description
+		content {
+			value
+			blocks
+			links
+		}
 	}
 }
 

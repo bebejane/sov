@@ -18,6 +18,7 @@ type Scalars = {
   FloatType: { input: any; output: any; }
   IntType: { input: any; output: any; }
   ItemId: { input: any; output: any; }
+  JsonField: { input: any; output: any; }
   MetaTagAttributes: { input: any; output: any; }
   UploadId: { input: any; output: any; }
 };
@@ -1988,6 +1989,8 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allSovSoundExerciseItemsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSovStopAndThinkToolsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
@@ -2007,6 +2010,8 @@ type Query = {
   allSovSorkCategories: Array<SovSorkCategoryRecord>;
   /** Returns a collection of records */
   allSovSoundExerciseItems: Array<SovSoundExerciseItemRecord>;
+  /** Returns a collection of records */
+  allSovStopAndThinkTools: Array<SovStopAndThinkToolRecord>;
   /** Returns a collection of records */
   allSovTakeCareOfYourselfCategories: Array<SovTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of assets */
@@ -2040,7 +2045,9 @@ type Query = {
   /** Returns a specific record */
   sovSoundExerciseItem?: Maybe<SovSoundExerciseItemRecord>;
   /** Returns the single instance record */
-  sovStopAndThinkStep?: Maybe<SovStopAndThinkStepRecord>;
+  sovStopAndThink?: Maybe<SovStopAndThinkRecord>;
+  /** Returns a specific record */
+  sovStopAndThinkTool?: Maybe<SovStopAndThinkToolRecord>;
   /** Returns the single instance record */
   sovTakeCareOfMyself?: Maybe<SovTakeCareOfMyselfRecord>;
   /** Returns a specific record */
@@ -2097,6 +2104,13 @@ type Query_allSovSorkCategoriesMetaArgs = {
 /** The query root for this schema */
 type Query_allSovSoundExerciseItemsMetaArgs = {
   filter?: InputMaybe<SovSoundExerciseItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSovStopAndThinkToolsMetaArgs = {
+  filter?: InputMaybe<SovStopAndThinkToolModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2195,6 +2209,17 @@ type QueryallSovSoundExerciseItemsArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovSoundExerciseItemModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSovStopAndThinkToolsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovStopAndThinkToolModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovStopAndThinkToolModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2334,9 +2359,18 @@ type QuerysovSoundExerciseItemArgs = {
 
 
 /** The query root for this schema */
-type QuerysovStopAndThinkStepArgs = {
+type QuerysovStopAndThinkArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysovStopAndThinkToolArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SovStopAndThinkToolModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SovStopAndThinkToolModelOrderBy>>>;
 };
 
 
@@ -3176,9 +3210,9 @@ type SovSoundExerciseRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Record of type Stop & tänk stegen (sov_stop_and_think_step) */
-type SovStopAndThinkStepRecord = RecordInterface & {
-  __typename?: 'SovStopAndThinkStepRecord';
+/** Record of type Stop & Tänk (sov_stop_and_think) */
+type SovStopAndThinkRecord = RecordInterface & {
+  __typename?: 'SovStopAndThinkRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3197,9 +3231,90 @@ type SovStopAndThinkStepRecord = RecordInterface & {
 };
 
 
-/** Record of type Stop & tänk stegen (sov_stop_and_think_step) */
-type SovStopAndThinkStepRecord_seoMetaTagsArgs = {
+/** Record of type Stop & Tänk (sov_stop_and_think) */
+type SovStopAndThinkRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+type SovStopAndThinkToolModelContentField = {
+  __typename?: 'SovStopAndThinkToolModelContentField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+type SovStopAndThinkToolModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SovStopAndThinkToolModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SovStopAndThinkToolModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  description?: InputMaybe<TextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SovStopAndThinkToolModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Stop & Tänk Verktyg (sov_stop_and_think_tool) */
+type SovStopAndThinkToolRecord = RecordInterface & {
+  __typename?: 'SovStopAndThinkToolRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  content?: Maybe<SovStopAndThinkToolModelContentField>;
+  description: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Stop & Tänk Verktyg (sov_stop_and_think_tool) */
+type SovStopAndThinkToolRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Stop & Tänk Verktyg (sov_stop_and_think_tool) */
+type SovStopAndThinkToolRecorddescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Record of type Ta hand om mig själv (sov_take_care_of_myself) */
@@ -3379,6 +3494,20 @@ type StringMatchesFilter = {
   caseSensitive?: InputMaybe<Scalars['BooleanType']['input']>;
   pattern: Scalars['String']['input'];
   regexp?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
+/** Specifies how to filter Structured Text fields values */
+type StructuredTextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with the specified field set as blank (null or single empty paragraph) */
+  isBlank?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']['input']>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
 type Tag = {
@@ -3858,7 +3987,7 @@ type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typ
 type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThinkStep?: { __typename?: 'SovStopAndThinkStepRecord', id: any } | null };
+type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, blocks: Array<string>, links: Array<string> } | null }> };
 
 type EmotionalDiaryQueryVariables = Exact<{ [key: string]: never; }>;
 
