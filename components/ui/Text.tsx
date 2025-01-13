@@ -24,5 +24,6 @@ const s = StyleSheet.create({
 	text: {
 		fontSize: Theme.fontSize.default,
 		color: Theme.color.black,
+		lineHeight: 20,
 	},
 });

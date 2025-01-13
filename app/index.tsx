@@ -56,7 +56,7 @@ const s = StyleSheet.create({
 		borderRadius: Theme.borderRadius,
 		flexBasis: "40%",
 		height: 100,
-		padding: Theme.padding,
+		padding: Theme.padding / 1.5,
 		backgroundColor: Theme.color.green,
 	},
 	label: {

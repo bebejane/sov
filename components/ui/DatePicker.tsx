@@ -39,6 +39,8 @@ export const DatePicker = ({
 					mode={"single"}
 					date={date}
 					onChange={handleOnChange}
+					selectedRangeBackgroundColor={Theme.color.green}
+
 				/>
 			)}
 		</>
@@ -53,6 +55,7 @@ const s = StyleSheet.create({
 	},
 	picker: {
 		marginBottom: Theme.margin,
+		marginTop: Theme.margin,
 		marginLeft: 0,
 	},
 });

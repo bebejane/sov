@@ -47,11 +47,11 @@ const s = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: Theme.color.white,
-		borderColor: Theme.color.grey,
+		backgroundColor: Theme.color.green,
+		borderColor: Theme.color.greeen,
 		borderRadius: Theme.borderRadius,
-		borderWidth: 2,
-		padding: 10,
+		borderWidth: 0,
+		padding: 15,
 	},
 	small: {
 		width: "33%",
@@ -66,7 +66,8 @@ const s = StyleSheet.create({
 		opacity: 0.5,
 	},
 	text: {
-		color: Theme.color.black,
+		color: Theme.color.white,
 		textTransform: "uppercase",
+		letterSpacing: 2,
 	},
 });
