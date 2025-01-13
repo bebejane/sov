@@ -34,9 +34,10 @@ export const SliderInput = ({
 			key={id}
 			style={s.container}
 		>
-			<Text>
-				{label} ({value ?? "0"})
-			</Text>
+			<View style={s.label}>
+				<Text style={s.title}>{label}</Text>
+				<Text style={s.value}>{value ?? "0"}</Text>
+			</View>
 			<Slider
 				key={id}
 				style={s.slider}
@@ -56,6 +57,16 @@ const s = StyleSheet.create({
 	container: {
 		width: "100%",
 		paddingBottom: Theme.margin / 2,
+	},
+	label: {
+		flexDirection: "row",
+		alignItems: "center",
+	},
+	title: {
+		flex: 1,
+	},
+	value: {
+		fontWeight: "bold",
 	},
 	slider: { width: "100%", height: 40 },
 });
