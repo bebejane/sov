@@ -11,9 +11,8 @@ export const Paragraph = ({ children }: { children: any }) => {
 
 const s = StyleSheet.create({
 	body: {
-		color: "red",
 		fontSize: Theme.fontSize.default,
-		marginBottom: Theme.margin,
-		backgroundColor: "#002333",
+		marginBottom: Theme.margin / 2,
+		lineHeight: 20
 	},
 });
