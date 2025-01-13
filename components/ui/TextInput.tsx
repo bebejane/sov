@@ -1,4 +1,3 @@
-
 import { StyleSheet, TextInput as TextInputElement } from "react-native";
 import { Text } from "./Text";
 import Theme from "@/styles/theme";
@@ -16,19 +15,18 @@ export const TextInput = ({
 }) => {
 	const { updateData, data } = useStore();
 	const [isFocused, setIsFocused] = useState(false);
+	const [haveText, setHaveText] = useState(false);
 
 	const handleChangeText = (t: string) => {
 		slug && updateData({ [slug]: t });
+		setHaveText(t?.length > 0);
 	};
 
 	return (
 		<>
 			<Text style={s.text}>{label}</Text>
 			<TextInputElement
-				style={[
-					s.input,
-					isFocused && { backgroundColor: Theme.color.white },
-				]}
+				style={[s.input, isFocused && { backgroundColor: Theme.color.white }]}
 				multiline={true}
 				placeholder={placeholder}
 				onChangeText={handleChangeText}
@@ -46,7 +44,6 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.default,
 		marginBottom: Theme.margin / 2,
 		lineHeight: 20,
-
 	},
 	input: {
 		height: Theme.fontSize.default * 5,
@@ -59,4 +56,3 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.default,
 	},
 });
-
