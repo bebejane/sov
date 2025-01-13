@@ -34,8 +34,8 @@ export const TextInput = ({
 const s = StyleSheet.create({
 	text: {
 		color: Theme.color.greyDark,
-		fontSize: Theme.fontSize.small,
-		marginBottom: Theme.margin / 2,
+		fontSize: Theme.fontSize.default,
+		marginBottom: Theme.margin,
 	},
 	input: {
 		height: Theme.fontSize.default * 4,

@@ -143,7 +143,7 @@ const s = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		width: "100%",
-		height: 40,
+		height: 50,
 		backgroundColor: Theme.color.grey,
 	},
 	icon: {

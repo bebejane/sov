@@ -12,13 +12,13 @@ const themeVars = {
     green: '#015154'
   },
   fontSize: {
-    default: 14,
+    default: 16,
     small: 12,
-    medium: 16,
+    medium: 14,
     large: 20,
   },
   padding: 20,
-  margin: 20,
+  margin: 25,
   borderWidth: 1,
   borderRadius: 4,
   animationSpeed: 350,
