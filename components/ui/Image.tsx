@@ -22,5 +22,6 @@ const s = StyleSheet.create({
 	image: {
 		width: Theme.screenWidth - Theme.padding * 2,
 		marginTop: Theme.margin,
+		objectFit: "contain",
 	},
 });

@@ -148,6 +148,22 @@ fragment StopAndThinkToolFragment on SovStopAndThinkToolRecord {
 					...MediaFragment
 				}
 			}
+			... on AudioBlockRecord {
+				id
+				audio {
+					url
+				}
+			}
+			... on TextInputBlockRecord {
+				id
+				input {
+					...TextInputFragment
+				}
+			}
+			... on TableBlockRecord {
+				id
+				tableData
+			}
 		}
 	}
 }

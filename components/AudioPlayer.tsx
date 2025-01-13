@@ -142,6 +142,7 @@ const s = StyleSheet.create({
 		flex: 1,
 		flexDirection: "row",
 		alignItems: "center",
+		marginTop: Theme.margin,
 		width: "100%",
 		height: 50,
 		backgroundColor: Theme.color.grey,

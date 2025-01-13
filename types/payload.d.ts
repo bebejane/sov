@@ -23,6 +23,32 @@ type Scalars = {
   UploadId: { input: any; output: any; }
 };
 
+/** Block of type Ljud (audio_block) */
+type AudioBlockRecord = RecordInterface & {
+  __typename?: 'AudioBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  audio: FileField;
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Block of type Ljud (audio_block) */
+type AudioBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Boolean fields */
 type BooleanFilter = {
   /** Search for records with an exact match */
@@ -3262,9 +3288,11 @@ type SovStopAndThinkRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+type SovStopAndThinkToolModelContentBlocksField = AudioBlockRecord | ImageBlockRecord | TableBlockRecord | TextInputBlockRecord;
+
 type SovStopAndThinkToolModelContentField = {
   __typename?: 'SovStopAndThinkToolModelContentField';
-  blocks: Array<ImageBlockRecord>;
+  blocks: Array<SovStopAndThinkToolModelContentBlocksField>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3536,6 +3564,32 @@ type StructuredTextFilter = {
   notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
+/** Block of type Tabell (table_block) */
+type TableBlockRecord = RecordInterface & {
+  __typename?: 'TableBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  tableData?: Maybe<Scalars['JsonField']['output']>;
+};
+
+
+/** Block of type Tabell (table_block) */
+type TableBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type Tag = {
   __typename?: 'Tag';
   attributes?: Maybe<Scalars['MetaTagAttributes']['output']>;
@@ -3555,6 +3609,32 @@ type TextFilter = {
   matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records based on a regular expression */
   notMatches?: InputMaybe<StringMatchesFilter>;
+};
+
+/** Block of type Text Input (block) (text_input_block) */
+type TextInputBlockRecord = RecordInterface & {
+  __typename?: 'TextInputBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  input?: Maybe<SovInputTextRecord>;
+};
+
+
+/** Block of type Text Input (block) (text_input_block) */
+type TextInputBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by upload type */
@@ -4013,21 +4093,21 @@ type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typ
 type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null }> };
+type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null }> };
 
 type StopAndThinkToolQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ItemId']['input']>;
 }>;
 
 
-type StopAndThinkToolQuery = { __typename?: 'Query', sovStopAndThinkTool?: { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null } | null };
+type StopAndThinkToolQuery = { __typename?: 'Query', sovStopAndThinkTool?: { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null } | null };
 
 type EmotionalDiaryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type EmotionalDiaryQuery = { __typename?: 'Query', sovEmotionalDiary?: { __typename?: 'SovEmotionalDiaryRecord', id: any, inputs: Array<{ __typename: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
-type StopAndThinkToolFragment = { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null };
+type StopAndThinkToolFragment = { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null };
 
 type TextInputFragment = { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string };
 

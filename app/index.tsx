@@ -8,7 +8,7 @@ const shortcuts: { name: string; route: string }[] = [
 	{ name: "Värderad riktning med mål", route: "/valued-direction" },
 	{ name: "Ta hand om mig", route: "/take-care-of-myself" },
 	{ name: "Hemmauppgift", route: "/home-assignment" },
-	{ name: "Skatta våld", route: "/assess-violence" },
+	{ name: "Stop & Tänk", route: "/stop-and-think" },
 ];
 
 export default function Home() {

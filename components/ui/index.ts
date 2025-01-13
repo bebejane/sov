@@ -9,4 +9,4 @@ export { SliderInput } from "./SliderInput";
 export { DatePicker } from "./DatePicker";
 export { Spacer } from "./Spacer"
 export { Image } from "./Image";
-export { StructuredContent } from './StructuredContent'
+export { Table } from './Table'
