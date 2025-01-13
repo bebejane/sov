@@ -108,14 +108,13 @@ query StopAndThinkSteps {
 		id
 	}
 	allSovStopAndThinkTools {
-		id
-		title
-		description
-		content {
-			value
-			blocks
-			links
-		}
+		...StopAndThinkToolFragment
+	}
+}
+
+query StopAndThinkTool($id: ItemId) {
+	sovStopAndThinkTool(filter: { id: { eq: $id } }) {
+		...StopAndThinkToolFragment
 	}
 }
 
@@ -129,6 +128,25 @@ query EmotionalDiary {
 			}
 			... on SovInputSliderRecord {
 				...SliderInputFragment
+			}
+		}
+	}
+}
+
+fragment StopAndThinkToolFragment on SovStopAndThinkToolRecord {
+	id
+	title
+	description
+	content {
+		value
+		links
+		blocks {
+			__typename
+			... on ImageBlockRecord {
+				id
+				image {
+					...MediaFragment
+				}
 			}
 		}
 	}

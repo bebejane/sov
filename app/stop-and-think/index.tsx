@@ -1,12 +1,14 @@
-import { Loader, Text } from "@/components/ui";
+import { Button, Loader, Text } from "@/components/ui";
 import { View, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import { useState } from "react";
 import Theme from "@/styles/theme";
 import { Link, useRouter } from "expo-router";
+import useStore from "../../lib/store";
 
-const NUM_STEPS = 6;
+export const NUM_STEPS = 6;
+export const defaultSteps = new Array(NUM_STEPS).fill(null);
 
 type Step = {
 	tool: StopAndThinkStepsQuery["allSovStopAndThinkTools"][0];
@@ -14,7 +16,8 @@ type Step = {
 
 export default function StopAndThink() {
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
-	const [steps, setSteps] = useState<(Step | null)[]>(new Array(NUM_STEPS).fill(null));
+	const { updateData, data: storeData } = useStore();
+	const steps = defaultSteps.map((s, i) => storeData?.steps?.[i] ?? defaultSteps[i]);
 
 	if (loading || error)
 		return (
@@ -26,33 +29,39 @@ export default function StopAndThink() {
 		);
 
 	const { sovStopAndThink, allSovStopAndThinkTools: tools } = data;
-
+	//console.log(storeData.steps, steps);
 	return (
 		<View style={s.container}>
 			{steps.map((s, i) => {
+				const tool = tools.find((t) => t.id === s);
 				return (
 					<Step
 						key={i}
-						step={i + 1}
-						label={s?.tool.title}
+						toolId={tool?.id}
+						step={i}
+						label={tool?.title}
 					/>
 				);
 			})}
+			<Button onPress={() => updateData({ steps: [] })}>Rensa</Button>
 		</View>
 	);
 }
 
 type StepProps = {
+	toolId?: string;
 	step: number;
 	label?: string;
 };
 
-const Step = ({ step, label }: StepProps) => {
+const Step = ({ toolId, step, label }: StepProps) => {
 	const router = useRouter();
 	return (
 		<TouchableOpacity
 			style={[s.step, label ? s.enabled : undefined]}
-			onPress={() => router.push(`/stop-and-think/modal?step=${step}`)}
+			onPress={() =>
+				router.push(toolId ? `/stop-and-think/${toolId}` : `/stop-and-think/modal/${step}`)
+			}
 		>
 			<Text style={s.stepText}>{label ?? "+"}</Text>
 		</TouchableOpacity>
@@ -71,7 +80,7 @@ const s = StyleSheet.create({
 	},
 	step: {
 		display: "flex",
-		flex: 1,
+		flexBasis: "15%",
 		flexDirection: "column",
 		borderRadius: Theme.borderRadius,
 		backgroundColor: Theme.color.lightGreen,

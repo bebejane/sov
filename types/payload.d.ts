@@ -263,6 +263,32 @@ type GlobalSeoField = {
   twitterAccount?: Maybe<Scalars['String']['output']>;
 };
 
+/** Block of type Image (image_block) */
+type ImageBlockRecord = RecordInterface & {
+  __typename?: 'ImageBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image: FileField;
+};
+
+
+/** Block of type Image (image_block) */
+type ImageBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type ImgixParams = {
   /**
    * Aspect Ratio
@@ -3238,7 +3264,7 @@ type SovStopAndThinkRecord_seoMetaTagsArgs = {
 
 type SovStopAndThinkToolModelContentField = {
   __typename?: 'SovStopAndThinkToolModelContentField';
-  blocks: Array<Scalars['String']['output']>;
+  blocks: Array<ImageBlockRecord>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3987,12 +4013,21 @@ type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typ
 type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, blocks: Array<string>, links: Array<string> } | null }> };
+type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null }> };
+
+type StopAndThinkToolQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ItemId']['input']>;
+}>;
+
+
+type StopAndThinkToolQuery = { __typename?: 'Query', sovStopAndThinkTool?: { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null } | null };
 
 type EmotionalDiaryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type EmotionalDiaryQuery = { __typename?: 'Query', sovEmotionalDiary?: { __typename?: 'SovEmotionalDiaryRecord', id: any, inputs: Array<{ __typename: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
+
+type StopAndThinkToolFragment = { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } }> } | null };
 
 type TextInputFragment = { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string };
 

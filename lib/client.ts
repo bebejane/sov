@@ -32,7 +32,7 @@ export function useQuery<T>(query: any, options?: any): [data: T, error: Error |
   useEffect(() => {
     setLoading(true)
     execute()
-  }, [query, options])
+  }, [query])
 
   return [
     data,

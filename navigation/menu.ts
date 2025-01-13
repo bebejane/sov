@@ -59,16 +59,15 @@ const menu: Menu = [
   {
     name: "stop-and-think/index",
     options: {
-      title: "Stop & Tänk stegen",
+      title: "Stop & Tänk Stegen",
     },
   },
   {
-    name: "stop-and-think/modal",
+    name: "stop-and-think/modal/[step]/index",
     options: {
-      title: "Stop & Tänk",
+      title: "Välj verktyg",
       presentation: 'transparentModal',
       animation: 'fade',
-      headerShown: false,
       drawerItemStyle: { display: "none" },
     },
   },

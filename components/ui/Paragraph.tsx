@@ -1,9 +1,18 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Markdown from "react-native-markdown-display";
 import Theme from "@/styles/theme";
 
-export const Paragraph = ({ children }: { children: any }) => {
-	return <Markdown style={s}>{children}</Markdown>;
+export type Props = {
+	children: React.ReactNode | React.ReactNode[];
+	markdown?: boolean;
+};
+
+export const Paragraph = ({ children, markdown = true }: Props) => {
+	return markdown ? (
+		<Markdown style={s}>{children}</Markdown>
+	) : (
+		<Text style={s.body}>{children}</Text>
+	);
 };
 
 // Kolla här för att styla olika element
@@ -13,6 +22,6 @@ const s = StyleSheet.create({
 	body: {
 		fontSize: Theme.fontSize.default,
 		marginBottom: Theme.margin / 2,
-		lineHeight: 20
+		lineHeight: 20,
 	},
 });
