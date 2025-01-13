@@ -1,6 +1,7 @@
 import Slider from "@react-native-community/slider";
 import { Text } from "./Text";
 import { useEffect, useRef, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import useStore from "../../lib/store";
 
@@ -28,13 +29,16 @@ export const SliderInput = ({
 	}, [value]);
 
 	return (
-		<React.Fragment key={id}>
+		<View
+			key={id}
+			style={s.container}
+		>
 			<Text>
 				{label} ({value ?? "0"})
 			</Text>
 			<Slider
 				key={id}
-				style={{ width: "100%", height: 40 }}
+				style={s.slider}
 				value={value}
 				minimumValue={min}
 				maximumValue={max}
@@ -43,6 +47,13 @@ export const SliderInput = ({
 				maximumTrackTintColor='#FFFFFF'
 				onValueChange={handleOnChange}
 			/>
-		</React.Fragment>
+		</View>
 	);
 };
+
+const s = StyleSheet.create({
+	container: {
+		width: "100%",
+	},
+	slider: { width: "100%", height: 40 },
+});
