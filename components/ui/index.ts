@@ -7,3 +7,4 @@ export { Loader } from "./Loader";
 export { PageView } from "./PageView";
 export { SliderInput } from "./SliderInput";
 export { DatePicker } from "./DatePicker";
+export { Spacer } from "./Spacer" 

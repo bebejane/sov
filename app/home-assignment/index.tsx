@@ -1,4 +1,12 @@
-import { PageView, Loader, TextInput, Button, DatePicker, Paragraph } from "@/components/ui";
+import {
+	PageView,
+	Loader,
+	TextInput,
+	Button,
+	DatePicker,
+	Paragraph,
+	Spacer,
+} from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import { useState } from "react";
