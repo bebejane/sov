@@ -1,4 +1,4 @@
-import { Paragraph, ScrollView, Loader, TextInput, Header } from "@/components/ui";
+import { Paragraph, PageScrollView, Loader, TextInput, Header } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SoundExerciseDocument } from "@/graphql";
 import React from "react";
@@ -22,7 +22,7 @@ export default function SoundExercises() {
 	const { sovSoundExercise } = data;
 
 	return (
-		<ScrollView>
+		<PageScrollView>
 			<Paragraph>{sovSoundExercise?.intro}</Paragraph>
 			{sovSoundExercise?.exercises.map(({ title, file, youtube }, i) => (
 				<View
@@ -34,6 +34,6 @@ export default function SoundExercises() {
 					{youtube && <YoutubePlayer src={youtube.url} />}
 				</View>
 			))}
-		</ScrollView>
+		</PageScrollView>
 	);
 }

@@ -1,4 +1,4 @@
-import { ScrollView, Loader, TextInput, Button, DatePicker, Paragraph } from "@/components/ui";
+import { PageScrollView, Loader, TextInput, Button, DatePicker, Paragraph } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import { useState } from "react";
@@ -20,7 +20,7 @@ export default function HomeAssignment() {
 	const { sovHomeAssignment } = data;
 
 	return (
-		<ScrollView>
+		<PageScrollView>
 			<Paragraph>{sovHomeAssignment?.intro}</Paragraph>
 			{sovHomeAssignment?.inputs.map((item) =>
 				item.__typename === "SovInputTextRecord" ? (
@@ -41,6 +41,6 @@ export default function HomeAssignment() {
 			<Button onPress={() => resetKeys(sovHomeAssignment?.inputs.map((item) => item.slug))}>
 				Rensa
 			</Button>
-		</ScrollView>
+		</PageScrollView>
 	);
 }

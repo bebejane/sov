@@ -1,6 +1,6 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
-import { View, Button, TextInput, Header, Text, Loader, SliderInput } from "@/components/ui";
+import { PageView, Button, TextInput, Header, Text, Loader, SliderInput } from "@/components/ui";
 import { FlatList } from "react-native";
 import { format } from "date-fns";
 import React from "react";
@@ -69,7 +69,7 @@ export default function EmotionalDiary() {
 
 	const { sovEmotionalDiary } = data;
 	return (
-		<View>
+		<PageView>
 			{sovEmotionalDiary?.inputs.map((item) =>
 				item.__typename === "SovInputTextRecord" ? (
 					<TextInput
@@ -138,6 +138,6 @@ export default function EmotionalDiary() {
 					)}
 				/>
 			)}
-		</View>
+		</PageView>
 	);
 }

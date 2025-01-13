@@ -1,7 +1,7 @@
 import { StyleSheet, ScrollView as ScrollViewElement } from "react-native";
 import Theme from "@/styles/theme";
 
-export const ScrollView = ({ children, style }: { children?: any; style?: any }) => {
+export const PageScrollView = ({ children, style }: { children?: any; style?: any }) => {
 	return <ScrollViewElement style={[s.view, style]}>{children}</ScrollViewElement>;
 };
 

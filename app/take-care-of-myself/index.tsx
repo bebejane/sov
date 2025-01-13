@@ -1,4 +1,4 @@
-import { Paragraph, ScrollView, Loader, TextInput } from "@/components/ui";
+import { Paragraph, PageScrollView, Loader, TextInput } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { TakeCareOfYourselfDocument } from "@/graphql";
 import Theme from "@/styles/theme";
@@ -21,7 +21,7 @@ export default function TekeCareOfMyself() {
 	const { sovTakeCareOfMyself } = data;
 
 	return (
-		<ScrollView>
+		<PageScrollView>
 			<Paragraph>{sovTakeCareOfMyself?.intro}</Paragraph>
 			{sovTakeCareOfMyself?.inputs.map(({ id, label, slug }) => (
 				<TextInput
@@ -30,6 +30,6 @@ export default function TekeCareOfMyself() {
 					label={label}
 				/>
 			))}
-		</ScrollView>
+		</PageScrollView>
 	);
 }
