@@ -35,7 +35,7 @@ const s = StyleSheet.create({
 	text: {
 		color: Theme.color.greyDark,
 		fontSize: Theme.fontSize.default,
-		marginBottom: Theme.margin / ,
+		marginBottom: Theme.margin / 2,
 	},
 	input: {
 		height: Theme.fontSize.default * 5,
