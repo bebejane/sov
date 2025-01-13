@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import useStore from "../../lib/store";
+import Theme from "@/styles/theme";
 
 export const SliderInput = ({
 	id,
@@ -43,8 +44,8 @@ export const SliderInput = ({
 				minimumValue={min}
 				maximumValue={max}
 				step={1}
-				minimumTrackTintColor='#000000'
-				maximumTrackTintColor='#FFFFFF'
+				minimumTrackTintColor={Theme.color.green}
+				maximumTrackTintColor={Theme.color.grey}
 				onValueChange={handleOnChange}
 			/>
 		</View>
@@ -54,6 +55,7 @@ export const SliderInput = ({
 const s = StyleSheet.create({
 	container: {
 		width: "100%",
+		paddingBottom: Theme.margin / 2,
 	},
 	slider: { width: "100%", height: 40 },
 });
