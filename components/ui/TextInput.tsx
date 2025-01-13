@@ -26,7 +26,9 @@ export const TextInput = ({
 		<>
 			<Text style={s.text}>{label}</Text>
 			<TextInputElement
-				style={[s.input, isFocused && { backgroundColor: Theme.color.white }]}
+				style={[s.input,
+				isFocused && { backgroundColor: Theme.color.white },
+				haveText && { backgroundColor: Theme.color.white }]}
 				multiline={true}
 				placeholder={placeholder}
 				onChangeText={handleChangeText}
