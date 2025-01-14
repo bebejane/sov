@@ -63,7 +63,7 @@ const s = StyleSheet.create({
 		width: "100%",
 	},
 	disabled: {
-		opacity: 0.5,
+		opacity: 0.1,
 	},
 	text: {
 		color: Theme.color.white,

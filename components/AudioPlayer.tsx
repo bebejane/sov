@@ -142,28 +142,27 @@ const s = StyleSheet.create({
 		flex: 1,
 		flexDirection: "row",
 		alignItems: "center",
-		marginTop: Theme.margin,
 		width: "100%",
-		height: 60,
+		height: 70,
 		backgroundColor: Theme.color.lightGreen,
 		borderRadius: Theme.borderRadius
 	},
 	icon: {
 		flexGrow: 1,
 		flexShrink: 1,
-		marginLeft: 10,
+		marginLeft: 20,
 	},
 	slider: {
 		flexGrow: 6,
 		flexShrink: 6,
 		height: 30,
-		marginLeft: 10,
-		marginRight: 10,
+		marginLeft: 15,
+		marginRight: 20,
 	},
 	duration: {
 		color: Theme.color.green,
 		flexGrow: 1,
 		flexShrink: 1,
-		marginRight: 10,
+		marginRight: 20,
 	},
 });

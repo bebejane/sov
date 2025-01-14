@@ -20,8 +20,9 @@ export const Image = ({ src, style }: Props) => {
 
 const s = StyleSheet.create({
 	image: {
-		width: Theme.screenWidth - Theme.padding * 2,
-		marginTop: Theme.margin,
+		//width: Theme.screenWidth - Theme.padding * 2,
 		objectFit: "contain",
+		marginLeft: -3,
+		marginRight: -3
 	},
 });

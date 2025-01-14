@@ -4,7 +4,7 @@ const { width, height, scale } = Dimensions.get('screen');
 
 const themeVars = {
   color: {
-    black: '#000000',
+    black: '#141414',
     white: '#FFFFFF',
     grey: '#ededed',
     greyDark: '#333333',
@@ -14,9 +14,9 @@ const themeVars = {
   },
   fontSize: {
     default: 15,
-    small: 12,
-    medium: 13,
-    large: 20,
+    small: 14,
+    medium: 17,
+    large: 21,
   },
   lineHeight: {
     default: 21,

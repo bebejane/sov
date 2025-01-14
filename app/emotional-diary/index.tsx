@@ -1,6 +1,6 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
-import { Button, TextInput, Header, Text, Loader, SliderInput, PageView } from "@/components/ui";
+import { Button, TextInput, Header, Text, Loader, SliderInput, PageView, Spacer } from "@/components/ui";
 import { FlatList } from "react-native";
 import { format } from "date-fns";
 import React from "react";
@@ -96,6 +96,8 @@ export default function EmotionalDiary() {
 				Spara
 			</Button>
 
+			<Spacer></Spacer>
+
 			<Header size='large'>Dagbokslogg</Header>
 			{items.length === 0 ? (
 				<Text>Det finns inga dagboksinlägg...</Text>
@@ -121,7 +123,7 @@ export default function EmotionalDiary() {
 									{sovEmotionalDiary?.inputs.map((input) => (
 										<React.Fragment key={input.id}>
 											<Header
-												size='small'
+												size='small' margin="small"
 												key={item.id}
 											>
 												{input.label}
@@ -129,6 +131,7 @@ export default function EmotionalDiary() {
 											<Text>
 												{storeData.diary.find((i: any) => i.slug === item.slug)?.[input.slug]}
 											</Text>
+											<Spacer></Spacer>
 										</React.Fragment>
 									))}
 									<Button onPress={() => remove(item)}>Ta bort</Button>

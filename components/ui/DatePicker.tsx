@@ -51,7 +51,8 @@ export const DatePicker = ({
 const s = StyleSheet.create({
 	text: {
 		color: Theme.color.green,
-		fontSize: Theme.fontSize.default,
+		fontSize: Theme.fontSize.small,
+		fontWeight: 600,
 		marginBottom: Theme.margin / 2,
 	},
 	picker: {

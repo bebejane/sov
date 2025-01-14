@@ -26,7 +26,7 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.default,
 	},
 	smallMargin: {
-		marginBottom: Theme.margin / 2,
+		marginBottom: Theme.margin / 4,
 	},
 	mediumMargin: {
 		marginBottom: Theme.margin,

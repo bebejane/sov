@@ -1,4 +1,4 @@
-import { Paragraph, PageView, Loader, TextInput, Header } from "@/components/ui";
+import { Paragraph, PageView, Loader, TextInput, Header, Spacer } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SoundExerciseDocument } from "@/graphql";
 import React from "react";
@@ -29,7 +29,8 @@ export default function SoundExercises() {
 					key={i}
 					style={{ marginBottom: Theme.margin }}
 				>
-					<Header size='small'>{title}</Header>
+					<Spacer size="line"></Spacer>
+					<Header size='medium' margin="medium">{title}</Header>
 					{file && <AudioPlayer src={file.url} />}
 					{youtube && <YoutubePlayer src={youtube.url} />}
 				</View>

@@ -64,6 +64,9 @@ const s = StyleSheet.create({
 	},
 	title: {
 		flex: 1,
+		color: Theme.color.green,
+		fontSize: Theme.fontSize.small,
+		fontWeight: 600,
 	},
 	value: {
 		fontWeight: "bold",

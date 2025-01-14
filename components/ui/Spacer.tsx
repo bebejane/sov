@@ -22,6 +22,7 @@ const s = StyleSheet.create({
 	line: {
 		width: "100%",
 		height: Theme.borderWidth,
-		backgroundColor: Theme.color.greyDark,
+		backgroundColor: Theme.color.lightGreen,
+		marginBottom: Theme.margin,
 	},
 });

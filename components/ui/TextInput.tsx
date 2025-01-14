@@ -30,7 +30,7 @@ export const TextInput = ({
 			{title && (
 				<Header
 					size='medium'
-					margin='medium'
+					margin='small'
 				>
 					{title}
 				</Header>
@@ -56,7 +56,8 @@ export const TextInput = ({
 const s = StyleSheet.create({
 	text: {
 		color: Theme.color.green,
-		fontSize: Theme.fontSize.default,
+		fontSize: Theme.fontSize.small,
+		fontWeight: 600,
 		marginBottom: Theme.margin / 2,
 		lineHeight: 20,
 	},

@@ -10,6 +10,7 @@ const s = StyleSheet.create({
 		flex: 1,
 		flexDirection: "column",
 		padding: Theme.padding,
+		marginBottom: Theme.padding * 2,
 		backgroundColor: Theme.color.white,
 		width: Theme.screenWidth,
 		height: Theme.screenHeight,
