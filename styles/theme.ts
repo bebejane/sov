@@ -19,7 +19,7 @@ const themeVars = {
     large: 20,
   },
   lineHeight: {
-    default: 30,
+    default: 21,
   },
   padding: 20,
   margin: 25,

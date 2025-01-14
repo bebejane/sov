@@ -58,5 +58,7 @@ const s = StyleSheet.create({
 		borderRadius: Theme.borderRadius,
 		borderWidth: 1,
 		fontSize: Theme.fontSize.default,
+		lineHeight: Theme.lineHeight.default
+
 	},
 });

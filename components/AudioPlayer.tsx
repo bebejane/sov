@@ -118,7 +118,7 @@ export const AudioPlayerView = ({
 				disabled={loading}
 				name={!isPlaying ? "play" : "pause"}
 				size={28}
-				color={Theme.color.black}
+				color={Theme.color.green}
 				onPress={(e) => handleIconClick(e)}
 			/>
 			<Slider
@@ -127,8 +127,8 @@ export const AudioPlayerView = ({
 				minimumValue={0}
 				maximumValue={totalDuration == 0 ? 100 : totalDuration}
 				step={1}
-				minimumTrackTintColor='#000000'
-				maximumTrackTintColor='#FFFFFF'
+				minimumTrackTintColor={Theme.color.green}
+				maximumTrackTintColor={Theme.color.white}
 				accessibilityLabel='Audio Player'
 				onValueChange={(step: number) => seekAudio(step)}
 			/>
@@ -144,8 +144,9 @@ const s = StyleSheet.create({
 		alignItems: "center",
 		marginTop: Theme.margin,
 		width: "100%",
-		height: 50,
-		backgroundColor: Theme.color.grey,
+		height: 60,
+		backgroundColor: Theme.color.lightGreen,
+		borderRadius: Theme.borderRadius
 	},
 	icon: {
 		flexGrow: 1,
@@ -160,7 +161,7 @@ const s = StyleSheet.create({
 		marginRight: 10,
 	},
 	duration: {
-		color: Theme.color.black,
+		color: Theme.color.green,
 		flexGrow: 1,
 		flexShrink: 1,
 		marginRight: 10,

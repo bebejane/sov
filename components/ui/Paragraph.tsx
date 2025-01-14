@@ -22,6 +22,6 @@ const s = StyleSheet.create({
 	body: {
 		fontSize: Theme.fontSize.default,
 		marginBottom: Theme.margin / 2,
-		lineHeight: 20,
+		lineHeight: Theme.lineHeight.default
 	},
 });
