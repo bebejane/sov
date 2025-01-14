@@ -1,10 +1,9 @@
 import { Button, Loader, Text } from "@/components/ui";
-import { View, StyleSheet, TouchableOpacity, Modal } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
-import { useState } from "react";
 import Theme from "@/styles/theme";
-import { Link, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import useStore from "../../lib/store";
 
 export const NUM_STEPS = 6;
@@ -28,23 +27,46 @@ export default function StopAndThink() {
 			/>
 		);
 
-	const { sovStopAndThink, allSovStopAndThinkTools: tools } = data;
-	//console.log(storeData.steps, steps);
+	const { allSovStopAndThinkTools: tools } = data;
+
 	return (
-		<View style={s.container}>
-			{steps.map((s, i) => {
-				const tool = tools.find((t) => t.id === s);
-				return (
-					<Step
-						key={i}
-						toolId={tool?.id}
-						step={i}
-						label={tool?.title}
+		<>
+			<View style={s.container}>
+				{steps.map((s, i) => {
+					const tool = tools.find((t) => t.id === s);
+					return (
+						<Step
+							key={i}
+							toolId={tool?.id}
+							step={i}
+							label={tool?.title}
+						/>
+					);
+				})}
+				<Button onPress={() => updateData({ steps: [] })}>Rensa</Button>
+			</View>
+			<Stack
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: "#f4511e",
+					},
+					headerTintColor: "#fff",
+					headerTitleStyle: {
+						fontWeight: "bold",
+					},
+				}}
+			>
+				{tools?.map(({ id, title, description }, i) => (
+					<Stack.Screen
+						key={id}
+						name={`/stop-and-think/${id}/index`}
+						options={{
+							title,
+						}}
 					/>
-				);
-			})}
-			<Button onPress={() => updateData({ steps: [] })}>Rensa</Button>
-		</View>
+				))}
+			</Stack>
+		</>
 	);
 }
 

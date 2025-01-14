@@ -1,5 +1,6 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
+import { Stack } from "expo-router";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { View } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
@@ -18,24 +19,26 @@ import { menu, groups } from "./menu";
 
 export default function Navigation() {
 	return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
-			<Drawer
-				drawerContent={CustomDrawerContent}
-				screenOptions={{
-					headerTintColor: Theme.color.green,
-				}}
-			>
-				{menu.map(({ name, options }) => (
-					<Drawer.Screen
-						key={name}
-						name={name}
-						options={{
-							...options,
-						}}
-					/>
-				))}
-			</Drawer>
-		</GestureHandlerRootView>
+		<>
+			<GestureHandlerRootView style={{ flex: 1 }}>
+				<Drawer
+					drawerContent={CustomDrawerContent}
+					screenOptions={{
+						headerTintColor: Theme.color.green,
+					}}
+				>
+					{menu.map(({ name, options }) => (
+						<Drawer.Screen
+							key={name}
+							name={name}
+							options={{
+								...options,
+							}}
+						/>
+					))}
+				</Drawer>
+			</GestureHandlerRootView>
+		</>
 	);
 }
 
