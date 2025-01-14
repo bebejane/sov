@@ -24,8 +24,8 @@ export default function Sork() {
 			{sovSork?.inputs.map((item) =>
 				item.__typename === "SovInputTextRecord" ? (
 					<React.Fragment key={item.id}>
-						<Header size='large'>{item.label}</Header>
 						<TextInput
+							title={item.label}
 							label={item.text}
 							slug={item.slug}
 						/>
