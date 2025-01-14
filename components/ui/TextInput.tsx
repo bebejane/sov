@@ -41,16 +41,15 @@ export const TextInput = ({
 					s.input,
 					haveText && {
 						backgroundColor: Theme.color.white,
-						borderColor: Theme.color.grey
+						borderColor: Theme.color.grey,
 					},
 					isFocused && {
 						backgroundColor: Theme.color.white,
 					},
-					isFocused && haveText && {
-						borderColor: Theme.color.green
-					}
-
-
+					isFocused &&
+						haveText && {
+							borderColor: Theme.color.green,
+						},
 				]}
 				multiline={true}
 				placeholder={placeholder}

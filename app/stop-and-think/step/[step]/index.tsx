@@ -92,9 +92,7 @@ const s = StyleSheet.create({
 		flex: 1,
 		display: "flex",
 		padding: 20,
-		//justifyContent: "center",
 		backgroundColor: "transparent",
-		opacity: 0.5,
 		height: "100%",
 	},
 	box: {

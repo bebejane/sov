@@ -36,8 +36,8 @@ export default function StopAndThink() {
 	const { allSovStopAndThinkTools: tools } = data;
 
 	return (
-		<>
-			<View style={s.container}>
+		<View style={s.container}>
+			<View style={s.steps}>
 				{steps.map((s, i) => {
 					const tool = tools.find((t) => t.id === s);
 					return (
@@ -49,9 +49,13 @@ export default function StopAndThink() {
 						/>
 					);
 				})}
-				<Button onPress={() => updateData({ steps: [] })}>Rensa</Button>
+				{/* <Button onPress={() => updateData({ steps: [] })}>Rensa</Button> */}
 			</View>
-		</>
+			<View style={s.back}>
+				<View style={[s.bar, s.left]} />
+				<View style={[s.bar, s.right]} />
+			</View>
+		</View>
 	);
 }
 
@@ -67,6 +71,7 @@ const Step = ({ toolId, step, label }: StepProps) => {
 	return (
 		<TouchableOpacity
 			style={[s.step, label ? s.enabled : undefined]}
+			activeOpacity={0.8}
 			onPress={() =>
 				router.navigate(toolId ? `/stop-and-think/tool/${toolId}` : `/stop-and-think/step/${step}`)
 			}
@@ -78,29 +83,37 @@ const Step = ({ toolId, step, label }: StepProps) => {
 
 const s = StyleSheet.create({
 	container: {
+		position: "relative",
+		flex: 1,
+		alignItems: "flex-start",
+	},
+	steps: {
+		position: "absolute",
+		left: 0,
+		top: 0,
+		width: "100%",
+		height: "100%",
 		display: "flex",
 		flex: 1,
 		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
 		padding: Theme.padding,
 		marginBottom: Theme.padding * 2,
 		marginTop: Theme.padding * 2,
+		zIndex: 2,
 	},
 	step: {
 		display: "flex",
-		flexBasis: "15%",
-		flexDirection: "column",
+		flexBasis: `${80 / defaultSteps.length}%`,
+		width: "100%",
 		borderRadius: Theme.borderRadius,
 		backgroundColor: Theme.color.lightGreen,
 		borderWidth: Theme.borderWidth,
 		borderColor: Theme.color.green,
-		alignItems: "center",
-		justifyContent: "center",
 		padding: Theme.padding / 1.5,
 		marginBottom: 10,
-		width: "100%",
+
 		fontSize: Theme.fontSize.large,
+		zIndex: 4,
 	},
 	enabled: {
 		backgroundColor: Theme.color.green,
@@ -109,5 +122,30 @@ const s = StyleSheet.create({
 	},
 	stepText: {
 		color: Theme.color.white,
+	},
+	back: {
+		position: "absolute",
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		zIndex: 0,
+	},
+	bar: {
+		top: 0,
+		left: 0,
+		width: 20,
+		height: "100%",
+		backgroundColor: Theme.color.green,
+		zIndex: 0,
+	},
+	left: {
+		marginLeft: Theme.margin * 2,
+	},
+	right: {
+		marginRight: Theme.margin * 2,
 	},
 });
