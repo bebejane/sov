@@ -6,7 +6,8 @@ export const DATOCMS_API_TOKEN = '105634a3c32a70215441bd31ad5ead'
 export async function executeQuery<T>(query: any, options?: any): Promise<T> {
   return _executeQuery(query, {
     ...options,
-    token: DATOCMS_API_TOKEN
+    token: DATOCMS_API_TOKEN,
+    timeout: 5000,
   });
 }
 

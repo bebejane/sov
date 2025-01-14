@@ -62,6 +62,7 @@ const menu: Menu = [
       title: "Stop & Tänk Stegen",
     },
   },
+  /*
   {
     name: "stop-and-think/modal/[step]/index",
     options: {
@@ -71,6 +72,7 @@ const menu: Menu = [
       drawerItemStyle: { display: "none" },
     },
   },
+  */
 ].map((screen) => ({
   ...screen,
   options: {

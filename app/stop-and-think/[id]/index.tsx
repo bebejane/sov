@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
@@ -7,6 +7,7 @@ import StructuredContent from "@/components/StructuredContent";
 import { StopAndThinkToolDocument } from "@/graphql";
 import useStore from "@/lib/store";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect } from "react";
 
 export type Props = {
 	params: {
@@ -14,13 +15,17 @@ export type Props = {
 	};
 };
 
-export default function Modal() {
-	const router = useRouter();
+export default function StopAndThinkTool() {
+	const navigation = useNavigation();
 	const id = useLocalSearchParams().id as string;
 	const { updateData, data: storeData } = useStore();
 	const [data, error, loading, retry] = useQuery<StopAndThinkToolQuery>(StopAndThinkToolDocument, {
 		variables: { id },
 	});
+
+	useEffect(() => {
+		navigation.setOptions({ title: data.sovStopAndThinkTool?.title });
+	}, [data]);
 
 	if (loading || error)
 		return (
@@ -36,10 +41,6 @@ export default function Modal() {
 	return (
 		<PageView>
 			<StructuredContent content={sovStopAndThinkTool?.content} />
-			<Spacer />
-			<Button onPress={retry}>Refresh</Button>
-			<Spacer />
-			<Button onPress={() => router.push("/stop-and-think")}>Back</Button>
 		</PageView>
 	);
 }

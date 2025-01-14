@@ -124,6 +124,7 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 				{items.map(({ name, options }) => (
 					<DrawerItem
 						key={name}
+						route={name}
 						label={options.drawerLabel}
 						style={s.item}
 						activeTintColor={Theme.color.green}

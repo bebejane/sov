@@ -3,8 +3,9 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import Theme from "@/styles/theme";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useNavigation, useRouter } from "expo-router";
 import useStore from "../../lib/store";
+import { useEffect } from "react";
 
 export const NUM_STEPS = 6;
 export const defaultSteps = new Array(NUM_STEPS).fill(null);
@@ -14,9 +15,14 @@ type Step = {
 };
 
 export default function StopAndThink() {
+	const navigation = useNavigation();
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const { updateData, data: storeData } = useStore();
 	const steps = defaultSteps.map((s, i) => storeData?.steps?.[i] ?? defaultSteps[i]);
+
+	useEffect(() => {
+		navigation.setOptions({ headerShown: false });
+	}, [data]);
 
 	if (loading || error)
 		return (
@@ -45,27 +51,6 @@ export default function StopAndThink() {
 				})}
 				<Button onPress={() => updateData({ steps: [] })}>Rensa</Button>
 			</View>
-			<Stack
-				screenOptions={{
-					headerStyle: {
-						backgroundColor: "#f4511e",
-					},
-					headerTintColor: "#fff",
-					headerTitleStyle: {
-						fontWeight: "bold",
-					},
-				}}
-			>
-				{tools?.map(({ id, title, description }, i) => (
-					<Stack.Screen
-						key={id}
-						name={`/stop-and-think/${id}/index`}
-						options={{
-							title,
-						}}
-					/>
-				))}
-			</Stack>
 		</>
 	);
 }
@@ -78,11 +63,12 @@ type StepProps = {
 
 const Step = ({ toolId, step, label }: StepProps) => {
 	const router = useRouter();
+
 	return (
 		<TouchableOpacity
 			style={[s.step, label ? s.enabled : undefined]}
 			onPress={() =>
-				router.push(toolId ? `/stop-and-think/${toolId}` : `/stop-and-think/modal/${step}`)
+				router.push(toolId ? `/stop-and-think/${toolId}` : `/stop-and-think/step/${step}`)
 			}
 		>
 			<Text style={s.stepText}>{label ?? "+"}</Text>

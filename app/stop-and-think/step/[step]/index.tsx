@@ -15,7 +15,7 @@ export type Props = {
 	};
 };
 
-export default function Modal() {
+export default function StopAndthinkStep() {
 	const router = useRouter();
 	const { updateData, data: storeData } = useStore();
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
@@ -34,7 +34,7 @@ export default function Modal() {
 	function handlePress(toolId: string) {
 		steps[step] = toolId;
 		updateData({ steps });
-		router.push("/stop-and-think");
+		router.back();
 	}
 
 	const { sovStopAndThink, allSovStopAndThinkTools: tools } = data;
@@ -42,45 +42,35 @@ export default function Modal() {
 	const availableTools = tools.filter(({ id }) => !steps.find((s) => s === id));
 
 	return (
-		<Animated.View
-			entering={FadeIn}
-			style={s.container}
-		>
+		<View style={s.container}>
 			<Link
 				href='/stop-and-think'
 				asChild
 			>
 				<Pressable style={StyleSheet.absoluteFill} />
 			</Link>
-			<Animated.View
-				entering={SlideInDown}
-				style={s.box}
-			>
-				<View style={s.tools}>
-					{tools.map((tool) => {
-						const disabled = availableTools.find(({ id }) => id === tool.id) === undefined;
-						const selected = selectedTool?.id === tool.id;
-						return (
-							<TouchableOpacity
-								key={tool.id}
-								disabled={disabled && !selected}
-								onPress={() => handlePress(tool.id)}
-							>
-								<Text
-									style={[s.toolItem, selected ? s.selected : disabled ? s.disabled : undefined]}
-								>
-									{tool.title}
-								</Text>
-							</TouchableOpacity>
-						);
-					})}
-				</View>
-				<Spacer />
-				<Link href='/stop-and-think'>
-					<Text>Stäng</Text>
-				</Link>
-			</Animated.View>
-		</Animated.View>
+			<View style={s.tools}>
+				{tools.map((tool) => {
+					const disabled = availableTools.find(({ id }) => id === tool.id) === undefined;
+					const selected = selectedTool?.id === tool.id;
+					return (
+						<TouchableOpacity
+							key={tool.id}
+							disabled={disabled && !selected}
+							onPress={() => handlePress(tool.id)}
+						>
+							<Text style={[s.toolItem, selected ? s.selected : disabled ? s.disabled : undefined]}>
+								{tool.title}
+							</Text>
+						</TouchableOpacity>
+					);
+				})}
+			</View>
+			<Spacer />
+			<Link href='/stop-and-think'>
+				<Text>Stäng</Text>
+			</Link>
+		</View>
 	);
 }
 
@@ -89,7 +79,7 @@ const s = StyleSheet.create({
 		flex: 1,
 		display: "flex",
 		padding: 20,
-		justifyContent: "center",
+		//justifyContent: "center",
 		backgroundColor: "transparent",
 		opacity: 0.5,
 		height: "100%",
