@@ -97,8 +97,9 @@ const s = StyleSheet.create({
 		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
-
 		padding: Theme.padding,
+		marginBottom: Theme.padding * 2,
+		marginTop: Theme.padding * 2,
 	},
 	step: {
 		display: "flex",
@@ -110,9 +111,10 @@ const s = StyleSheet.create({
 		borderColor: Theme.color.green,
 		alignItems: "center",
 		justifyContent: "center",
-		padding: Theme.padding,
+		padding: Theme.padding / 1.5,
 		marginBottom: 10,
 		width: "100%",
+		fontSize: Theme.fontSize.large
 	},
 	enabled: {
 		backgroundColor: Theme.color.green,

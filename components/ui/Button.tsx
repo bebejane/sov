@@ -69,5 +69,6 @@ const s = StyleSheet.create({
 		color: Theme.color.white,
 		textTransform: "uppercase",
 		letterSpacing: 2,
+		fontWeight: 500,
 	},
 });
