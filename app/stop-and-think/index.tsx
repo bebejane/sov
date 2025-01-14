@@ -1,14 +1,16 @@
-import { Button, Loader, Text } from "@/components/ui";
+import { Loader, Text } from "@/components/ui";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import Theme from "@/styles/theme";
-import { Stack, useNavigation, useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import useStore from "../../lib/store";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { SwipeListView } from "react-native-swipe-list-view";
+import { Ionicons } from "@expo/vector-icons";
 
 export const NUM_STEPS = 6;
-export const defaultSteps = new Array(NUM_STEPS).fill(null);
+export const defaultSteps = new Array(NUM_STEPS).fill({});
 
 type Step = {
 	tool: StopAndThinkStepsQuery["allSovStopAndThinkTools"][0];
@@ -19,6 +21,17 @@ export default function StopAndThink() {
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const { updateData, data: storeData } = useStore();
 	const steps = defaultSteps.map((s, i) => storeData?.steps?.[i] ?? defaultSteps[i]);
+
+	const openRowRef = useRef<any | null>(null);
+	const onRowDidOpen = (rowKey: any, rowMap: any) => {
+		openRowRef.current = rowMap[rowKey];
+	};
+	const closeOpenRow = () => {
+		console.log("closeOpenRow");
+		console.log(openRowRef.current);
+		openRowRef.current?.closeRow?.();
+		openRowRef.current = null;
+	};
 
 	useEffect(() => {
 		navigation.setOptions({ headerShown: false });
@@ -37,20 +50,47 @@ export default function StopAndThink() {
 
 	return (
 		<View style={s.container}>
-			<View style={s.steps}>
-				{steps.map((s, i) => {
-					const tool = tools.find((t) => t.id === s);
+			<SwipeListView
+				style={s.steps}
+				data={steps}
+				onRowOpen={onRowDidOpen}
+				recalculateHiddenLayout={true}
+				disableRightSwipe={true}
+				closeOnRowOpen
+				closeOnRowBeginSwipe
+				rightOpenValue={-1 * (s.removeButton.width as number)}
+				renderItem={({ item, index }) => {
+					const tool = tools.find((t) => t.id === item);
 					return (
 						<Step
-							key={i}
+							key={index}
 							toolId={tool?.id}
-							step={i}
+							step={index}
 							label={tool?.title}
 						/>
 					);
-				})}
-				{/* <Button onPress={() => updateData({ steps: [] })}>Rensa</Button> */}
-			</View>
+				}}
+				renderHiddenItem={(data: any, rowMap: any) => (
+					<View style={[s.step, s.remove]}>
+						<TouchableOpacity
+							style={s.removeButton}
+							onPress={(e) => {
+								closeOpenRow();
+								updateData({ steps: steps.map((s) => (s !== data?.item ? s : {})) });
+							}}
+						>
+							<Ionicons
+								style={s.removeIcon}
+								disabled={false}
+								name={"close-circle-outline"}
+								size={28}
+								color={Theme.color.black}
+							/>
+						</TouchableOpacity>
+					</View>
+				)}
+			/>
+
 			<View style={s.back}>
 				<View style={[s.bar, s.left]} />
 				<View style={[s.bar, s.right]} />
@@ -103,7 +143,7 @@ const s = StyleSheet.create({
 	},
 	step: {
 		display: "flex",
-		flexBasis: `${80 / defaultSteps.length}%`,
+		flexBasis: `${100 / defaultSteps.length}%`,
 		width: "100%",
 		borderRadius: Theme.borderRadius,
 		backgroundColor: Theme.color.lightGreen,
@@ -111,7 +151,6 @@ const s = StyleSheet.create({
 		borderColor: Theme.color.green,
 		padding: Theme.padding / 1.5,
 		marginBottom: 10,
-
 		fontSize: Theme.fontSize.large,
 		zIndex: 4,
 	},
@@ -123,6 +162,28 @@ const s = StyleSheet.create({
 	stepText: {
 		color: Theme.color.white,
 	},
+	remove: {
+		flex: 1,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "flex-end",
+		width: "100%",
+		padding: 0,
+		borderColor: Theme.color.lightGreen,
+	},
+	removeButton: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: Theme.color.white,
+		padding: 0,
+		width: 50,
+	},
+	removeText: {
+		color: Theme.color.black,
+	},
+	removeIcon: {},
 	back: {
 		position: "absolute",
 		display: "flex",

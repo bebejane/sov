@@ -1,6 +1,5 @@
 import { Link, useNavigation } from "expo-router";
 import { Pressable, StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
-import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
 import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
 import { Loader, Spacer, Button } from "@/components/ui";
@@ -78,11 +77,7 @@ export default function StopAndthinkStep() {
 					);
 				}}
 			/>
-
 			<Spacer />
-			<Link href='/stop-and-think'>
-				<Text>Stäng</Text>
-			</Link>
 		</View>
 	);
 }
