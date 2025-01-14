@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import Theme from "@/styles/theme";
 
 type Props = {
-	size?: "small" | "medium" | "large";
+	size?: "small" | "medium" | "large" | "line";
 };
 
 export function Spacer({ size = "medium" }: Props) {
@@ -18,5 +18,10 @@ const s = StyleSheet.create({
 	},
 	large: {
 		height: Theme.margin,
+	},
+	line: {
+		width: "100%",
+		height: Theme.borderWidth,
+		backgroundColor: Theme.color.greyDark,
 	},
 });
