@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 //import DatePickerElement from "react-native-date-picker";
 import DatePickerElement from "react-native-ui-datepicker";
 
-import { Text, Button } from "./";
+import { Text, Button, Spacer } from "./";
 import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
 import { useState } from "react";
@@ -40,9 +40,9 @@ export const DatePicker = ({
 					date={date}
 					onChange={handleOnChange}
 					selectedRangeBackgroundColor={Theme.color.green}
-
 				/>
 			)}
+			<Spacer />
 		</>
 	);
 };

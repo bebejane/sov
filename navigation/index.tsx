@@ -11,7 +11,6 @@ import Animated, {
 	withTiming,
 	useAnimatedStyle,
 	Easing,
-	withSpring,
 } from "react-native-reanimated";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -41,17 +40,22 @@ export default function Navigation() {
 }
 
 export function CustomDrawerContent(props: any) {
-	const [open, setOpen] = useState<any>({
-		"my-change": true,
-		diary: true,
-		other: false,
-	});
+	const home = menu.find((m) => m.name === "index");
 
 	return (
 		<DrawerContentScrollView
 			{...props}
 			scrollEnabled={false}
 		>
+			<DrawerItem
+				key={"home"}
+				label={home?.options.drawerLabel}
+				style={s.item}
+				activeTintColor={Theme.color.green}
+				labelStyle={s.label}
+				focused={props.state.routeNames[props.state.index] === "index"}
+				onPress={() => props.navigation.navigate(home?.name)}
+			/>
 			{groups.map((g, i) => (
 				<DrawerGroup
 					key={i}
@@ -117,7 +121,7 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 				{items.map(({ name, options }) => (
 					<DrawerItem
 						key={name}
-						label={options.title}
+						label={options.drawerLabel}
 						style={s.item}
 						activeTintColor={Theme.color.green}
 						labelStyle={s.label}
@@ -149,7 +153,7 @@ const s = StyleSheet.create({
 	label: {
 		fontSize: 16,
 		margin: 0,
-		lineHeight: 20
+		lineHeight: 20,
 	},
 	items: {
 		overflow: "hidden",

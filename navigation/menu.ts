@@ -4,8 +4,8 @@ const menu: Menu = [
   {
     name: "index",
     options: {
+      drawerLabel: "Hem",
       title: "Samtal om Våld",
-      drawerItemStyle: { display: "none" },
     },
   },
   {
@@ -75,7 +75,7 @@ const menu: Menu = [
   ...screen,
   options: {
     ...screen.options,
-    drawerLabel: screen.options.title,
+    drawerLabel: screen.options.drawerLabel ?? screen.options.title,
   },
 })) as { name: string; options: any }[];
 

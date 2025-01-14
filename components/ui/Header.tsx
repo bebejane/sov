@@ -4,22 +4,34 @@ import Theme from "@/styles/theme";
 
 export const Header = ({
 	children,
-	style,
-	size,
+	size = "medium",
+	margin = "medium",
 }: {
 	children: any;
-	style?: any;
-	size: "small" | "medium" | "large";
+	size: "small" | "medium";
+	margin: "small" | "medium" | "large";
 }) => {
-	const marginBottom = size === "small" ? 0 : Theme.margin / 2;
-
-	return <Text style={[s.text, { marginBottom, ...style }]}>{children}</Text>;
+	return <Text style={[s.text, s[size], s[`${margin}Margin`]]}>{children}</Text>;
 };
 
 const s = StyleSheet.create({
 	text: {
 		fontSize: Theme.fontSize.default,
 		fontWeight: "bold",
-		paddingBottom: Theme.margin / 2,
+	},
+	small: {
+		fontSize: Theme.fontSize.small,
+	},
+	medium: {
+		fontSize: Theme.fontSize.medium,
+	},
+	smallMargin: {
+		marginBottom: Theme.margin,
+	},
+	mediumMargin: {
+		marginBottom: Theme.margin * 2,
+	},
+	largeMargin: {
+		marginBottom: Theme.margin * 3,
 	},
 });
