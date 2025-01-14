@@ -1,12 +1,11 @@
-import { Link, useNavigation } from "expo-router";
-import { StyleSheet, Text } from "react-native";
+import { useNavigation } from "expo-router";
+import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
-import { Button, Loader, PageView, Spacer } from "@/components/ui";
+import { Loader, PageView } from "@/components/ui";
 import StructuredContent from "@/components/StructuredContent";
 import { StopAndThinkToolDocument } from "@/graphql";
-import useStore from "@/lib/store";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 
 export type Props = {
@@ -18,7 +17,6 @@ export type Props = {
 export default function StopAndThinkTool() {
 	const navigation = useNavigation();
 	const id = useLocalSearchParams().id as string;
-	const { updateData, data: storeData } = useStore();
 	const [data, error, loading, retry] = useQuery<StopAndThinkToolQuery>(StopAndThinkToolDocument, {
 		variables: { id },
 	});

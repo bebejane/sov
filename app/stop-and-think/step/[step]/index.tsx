@@ -1,13 +1,14 @@
-import { Link } from "expo-router";
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Link, useNavigation } from "expo-router";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
 import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
 import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
-import { Loader, Spacer } from "@/components/ui";
+import { Loader, Spacer, Button } from "@/components/ui";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import useStore from "@/lib/store";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { defaultSteps } from "../../index";
+import { useEffect } from "react";
 
 export type Props = {
 	params: {
@@ -17,10 +18,15 @@ export type Props = {
 
 export default function StopAndthinkStep() {
 	const router = useRouter();
+	const navigation = useNavigation();
 	const { updateData, data: storeData } = useStore();
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const step = parseInt(useLocalSearchParams().step as string) ?? 0;
 	const steps = defaultSteps.map((s, i) => storeData?.steps?.[i] ?? defaultSteps[i]);
+
+	useEffect(() => {
+		navigation.setOptions({ title: "Välj verktyg" });
+	}, []);
 
 	if (loading || error)
 		return (
@@ -37,7 +43,7 @@ export default function StopAndthinkStep() {
 		router.back();
 	}
 
-	const { sovStopAndThink, allSovStopAndThinkTools: tools } = data;
+	const { allSovStopAndThinkTools: tools } = data;
 	const selectedTool = tools.find(({ id }) => id === steps[step]);
 	const availableTools = tools.filter(({ id }) => !steps.find((s) => s === id));
 
@@ -49,23 +55,30 @@ export default function StopAndthinkStep() {
 			>
 				<Pressable style={StyleSheet.absoluteFill} />
 			</Link>
-			<View style={s.tools}>
-				{tools.map((tool) => {
-					const disabled = availableTools.find(({ id }) => id === tool.id) === undefined;
-					const selected = selectedTool?.id === tool.id;
+			<FlatList
+				style={s.tools}
+				data={tools.map(({ id, title }) => ({ id, title }))}
+				renderItem={({ item }) => {
+					const disabled = availableTools.find(({ id }) => id === item.id) === undefined;
+					const selected = selectedTool?.id === item.id;
 					return (
 						<TouchableOpacity
-							key={tool.id}
+							key={item.id}
 							disabled={disabled && !selected}
-							onPress={() => handlePress(tool.id)}
 						>
-							<Text style={[s.toolItem, selected ? s.selected : disabled ? s.disabled : undefined]}>
-								{tool.title}
-							</Text>
+							<Button
+								disabled={disabled && !selected}
+								buttonStyles={s.toolItem}
+								textStyles={[selected ? s.selected : undefined]}
+								onPress={() => handlePress(item.id)}
+							>
+								{item.title}
+							</Button>
 						</TouchableOpacity>
 					);
-				})}
-			</View>
+				}}
+			/>
+
 			<Spacer />
 			<Link href='/stop-and-think'>
 				<Text>Stäng</Text>
@@ -95,6 +108,7 @@ const s = StyleSheet.create({
 	toolItem: {
 		display: "flex",
 		flexDirection: "row",
+		marginBottom: 2,
 	},
 	disabled: {
 		opacity: 0.5,

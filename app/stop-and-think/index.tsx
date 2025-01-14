@@ -68,7 +68,7 @@ const Step = ({ toolId, step, label }: StepProps) => {
 		<TouchableOpacity
 			style={[s.step, label ? s.enabled : undefined]}
 			onPress={() =>
-				router.push(toolId ? `/stop-and-think/${toolId}` : `/stop-and-think/step/${step}`)
+				router.navigate(toolId ? `/stop-and-think/tool/${toolId}` : `/stop-and-think/step/${step}`)
 			}
 		>
 			<Text style={s.stepText}>{label ?? "+"}</Text>
@@ -100,7 +100,7 @@ const s = StyleSheet.create({
 		padding: Theme.padding / 1.5,
 		marginBottom: 10,
 		width: "100%",
-		fontSize: Theme.fontSize.large
+		fontSize: Theme.fontSize.large,
 	},
 	enabled: {
 		backgroundColor: Theme.color.green,

@@ -48,7 +48,7 @@ const s = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: Theme.color.green,
-		borderColor: Theme.color.greeen,
+		borderColor: Theme.color.green,
 		borderRadius: Theme.borderRadius,
 		borderWidth: 0,
 		padding: 15,
@@ -63,7 +63,7 @@ const s = StyleSheet.create({
 		width: "100%",
 	},
 	disabled: {
-		opacity: 0.1,
+		opacity: 0.3,
 	},
 	text: {
 		color: Theme.color.white,

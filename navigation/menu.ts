@@ -57,22 +57,11 @@ const menu: Menu = [
     },
   },
   {
-    name: "stop-and-think/index",
+    name: "stop-and-think",
     options: {
       title: "Stop & Tänk Stegen",
     },
   },
-  /*
-  {
-    name: "stop-and-think/modal/[step]/index",
-    options: {
-      title: "Välj verktyg",
-      presentation: 'transparentModal',
-      animation: 'fade',
-      drawerItemStyle: { display: "none" },
-    },
-  },
-  */
 ].map((screen) => ({
   ...screen,
   options: {

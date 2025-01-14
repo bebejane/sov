@@ -1,7 +1,7 @@
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
-import { RelativePathString, useRouter } from "expo-router";
+import { RelativePathString, useNavigation, useRouter } from "expo-router";
 import { Header } from "../components/ui";
 
 const shortcuts: { name: string; route: string }[] = [
@@ -13,6 +13,7 @@ const shortcuts: { name: string; route: string }[] = [
 
 export default function Home() {
 	const router = useRouter();
+	const navigation = useNavigation();
 
 	return (
 		<View style={s.container}>

@@ -8,8 +8,8 @@ export const Header = ({
 	margin = "medium",
 }: {
 	children: any;
-	size: "small" | "medium";
-	margin: "small" | "medium" | "large";
+	size?: "small" | "medium";
+	margin?: "small" | "medium" | "large";
 }) => {
 	return <Text style={[s.text, s[size], s[`${margin}Margin`]]}>{children}</Text>;
 };

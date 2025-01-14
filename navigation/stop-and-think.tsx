@@ -31,13 +31,11 @@ export default function StopAndthinkNavigation() {
 			{tools?.map(({ id, title, description }, i) => (
 				<Stack.Screen
 					key={id}
-					name={`stop-and-think/${id}/index`}
+					name={`stop-and-think/${id}`}
 					initialParams={{ id, title }}
 					options={{
 						title,
 						headerTitle: title,
-						animationTypeForReplace: "push",
-						animation: "slide_from_right",
 					}}
 				/>
 			))}
