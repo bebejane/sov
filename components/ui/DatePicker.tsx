@@ -1,10 +1,5 @@
 import { StyleSheet } from "react-native";
-//import DatePickerElement, { DatePickerEvent } from "@react-native-community/datetimepicker";
-//import DatePickerElement from "react-native-date-picker";
 import DatePickerElement from "react-native-ui-datepicker";
-import { Spacer } from "@/components/ui";
-
-
 import { Text, Button, Spacer } from "./";
 import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
@@ -38,7 +33,7 @@ export const DatePicker = ({
 			</Button>
 			{show && (
 				<>
-					<Spacer size="small"></Spacer>
+					<Spacer size='small'></Spacer>
 					<DatePickerElement
 						mode={"single"}
 						date={date}
@@ -47,8 +42,7 @@ export const DatePicker = ({
 					/>
 				</>
 			)}
-			<Spacer size="medium"></Spacer>
-
+			<Spacer size='medium'></Spacer>
 		</>
 	);
 };
