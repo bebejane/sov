@@ -18,7 +18,6 @@ export default function AssessViolence() {
 	return (
 		<PageView>
 			<Spacer size="small"></Spacer>
-
 			<Header size='medium'>Skatta våld sedan senaste samtalet</Header>
 			{sovAssessViolence?.sinceLastSession.map(({ id, label, slug, min, max }) => (
 				<SliderInput

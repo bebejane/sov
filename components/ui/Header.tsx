@@ -23,13 +23,13 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.small,
 	},
 	medium: {
-		fontSize: Theme.fontSize.medium,
+		fontSize: Theme.fontSize.default,
 	},
 	smallMargin: {
-		marginBottom: Theme.margin,
+		marginBottom: Theme.margin / 2,
 	},
 	mediumMargin: {
-		marginBottom: Theme.margin * 2,
+		marginBottom: Theme.margin,
 	},
 	largeMargin: {
 		marginBottom: Theme.margin * 3,
