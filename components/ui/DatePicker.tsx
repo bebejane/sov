@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 //import DatePickerElement, { DatePickerEvent } from "@react-native-community/datetimepicker";
 //import DatePickerElement from "react-native-date-picker";
 import DatePickerElement from "react-native-ui-datepicker";
+import { Spacer } from "@/components/ui";
+
 
 import { Text, Button, Spacer } from "./";
 import Theme from "@/styles/theme";
@@ -35,22 +37,26 @@ export const DatePicker = ({
 				{date ? format(date, "yyyy-MM-dd") : "Välj datum"}
 			</Button>
 			{show && (
-				<DatePickerElement
-					mode={"single"}
-					date={date}
-					onChange={handleOnChange}
-					selectedRangeBackgroundColor={Theme.color.green}
-				/>
+				<>
+					<Spacer size="small"></Spacer>
+					<DatePickerElement
+						mode={"single"}
+						date={date}
+						onChange={handleOnChange}
+						selectedItemColor={Theme.color.green}
+					/>
+				</>
 			)}
-			<Spacer />
+			<Spacer size="medium"></Spacer>
+
 		</>
 	);
 };
 
 const s = StyleSheet.create({
 	text: {
-		color: Theme.color.greyDark,
-		fontSize: Theme.fontSize.small,
+		color: Theme.color.green,
+		fontSize: Theme.fontSize.default,
 		marginBottom: Theme.margin / 2,
 	},
 	picker: {

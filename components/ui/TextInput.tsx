@@ -52,6 +52,8 @@ const s = StyleSheet.create({
 	input: {
 		height: Theme.fontSize.default * 5,
 		padding: 10,
+		paddingLeft: 15,
+		paddingRight: 15,
 		marginBottom: Theme.margin,
 		backgroundColor: Theme.color.lightGreen,
 		borderColor: Theme.color.green,

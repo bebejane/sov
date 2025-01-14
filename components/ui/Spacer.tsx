@@ -11,13 +11,13 @@ export function Spacer({ size = "medium" }: Props) {
 
 const s = StyleSheet.create({
 	small: {
-		height: Theme.margin,
+		height: Theme.margin / 2,
 	},
 	medium: {
 		height: Theme.margin,
 	},
 	large: {
-		height: Theme.margin,
+		height: Theme.margin * 1.5,
 	},
 	line: {
 		width: "100%",

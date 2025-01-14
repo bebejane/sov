@@ -29,7 +29,6 @@ export default function HomeAssignment() {
 
 	return (
 		<PageView>
-			<Paragraph>{sovHomeAssignment?.intro}</Paragraph>
 			{sovHomeAssignment?.inputs.map((item) =>
 				item.__typename === "SovInputTextRecord" ? (
 					<TextInput
