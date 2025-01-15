@@ -1,31 +1,16 @@
-import { Stack, useRouter } from "expo-router";
-import { HeaderBackButton } from "@react-navigation/elements";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Stack } from "expo-router";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import { useQuery } from "@/lib/client";
-import { Loader } from "../components/ui";
+import { BackButton } from ".";
 
 export default function StopAndthinkNavigation() {
-	const router = useRouter();
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const { allSovStopAndThinkTools: tools } = data;
 
 	return (
 		<Stack
 			screenOptions={{
-				headerLeft: (props) => {
-					return (
-						<>
-							<HeaderBackButton
-								{...props}
-								label={"Back"}
-								onPress={() => {
-									router.back();
-								}}
-							/>
-						</>
-					);
-				},
+				headerLeft: (props) => <BackButton {...props} />,
 			}}
 		>
 			{tools?.map(({ id, title, description }, i) => (

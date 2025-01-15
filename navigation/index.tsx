@@ -14,7 +14,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { menu, groups } from "./menu";
+import { menu, groups } from "./drawer";
 
 export default function Navigation() {
 	return (

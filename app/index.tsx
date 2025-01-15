@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 import { RelativePathString, useNavigation, useRouter } from "expo-router";
 import { Header } from "../components/ui";
+import useStore from "@/lib/store";
+import { formatDate } from "../lib/utils";
 
 const shortcuts: { name: string; route: string }[] = [
 	{ name: "Värderad riktning med mål", route: "/valued-direction" },
@@ -13,7 +15,11 @@ const shortcuts: { name: string; route: string }[] = [
 
 export default function Home() {
 	const router = useRouter();
-	const navigation = useNavigation();
+	const {
+		data: { diary },
+	} = useStore();
+
+	const haveDiary = diary && diary.length > 0;
 
 	return (
 		<View style={s.container}>
@@ -31,8 +37,19 @@ export default function Home() {
 					</TouchableOpacity>
 				))}
 			</View>
-			<View style={s.shortcuts}>
+
+			<View style={s.diary}>
 				<Header size='medium'>Dagbok</Header>
+				{!haveDiary && <Text>Du finns inga dagboks inlägg ännu...</Text>}
+				{diary?.map((item, i) => (
+					<TouchableOpacity
+						activeOpacity={0.8}
+						key={i}
+						onPress={() => router.navigate(`/emotional-diary/${item.id}`)}
+					>
+						<Text style={s.diaryItem}>{formatDate(item.date)}</Text>
+					</TouchableOpacity>
+				))}
 			</View>
 		</View>
 	);
@@ -66,4 +83,9 @@ const s = StyleSheet.create({
 		color: Theme.color.white,
 		fontWeight: 600,
 	},
+	diary: {
+		display: "flex",
+		flexDirection: "column",
+	},
+	diaryItem: {},
 });

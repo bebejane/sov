@@ -39,7 +39,7 @@ const menu: Menu = [
     },
   },
   {
-    name: "emotional-diary/index",
+    name: "emotional-diary",
     options: {
       title: "Enkel känslodagbok",
     },

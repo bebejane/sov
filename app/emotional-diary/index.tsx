@@ -1,17 +1,33 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
-import { Button, TextInput, Header, Text, Loader, SliderInput, PageView, Spacer } from "@/components/ui";
-import { FlatList } from "react-native";
-import { format } from "date-fns";
-import React from "react";
+import {
+	Button,
+	TextInput,
+	Header,
+	Text,
+	Loader,
+	SliderInput,
+	PageView,
+	Spacer,
+} from "@/components/ui";
+import { FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
 import { useQuery } from "../../lib/client";
 import { EmotionalDiaryDocument } from "../../graphql";
 import useStore from "../../lib/store";
+import { Link, useNavigation } from "expo-router";
+import { formatDate } from "@/lib/utils";
+import Theme from "@/styles/theme";
 
 export default function EmotionalDiary() {
+	const navigation = useNavigation();
 	const [data, error, loading, retry] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
 	const { updateData, data: storeData, resetKeys } = useStore();
 	const items = storeData.diary ?? [];
+
+	useEffect(() => {
+		navigation.setOptions({ headerShown: false });
+	}, [data]);
 
 	const isValidItem = () => {
 		const currentItem: { [key: string]: string | number } = {};
@@ -42,8 +58,10 @@ export default function EmotionalDiary() {
 			currentItem[item.slug] = storeData[item.slug];
 		});
 
-		const data: { [key: string]: string | number | (string | number)[] } = {
-			diary: [...items, currentItem],
+		const data = {
+			diary: [...items, currentItem].sort((a, b) =>
+				new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
+			),
 		};
 
 		const resetFields = sovEmotionalDiary?.inputs.map((item) => item.slug);
@@ -52,7 +70,7 @@ export default function EmotionalDiary() {
 	};
 
 	const remove = (item: any) => {
-		const data: { [key: string]: string | number | (string | number)[] } = {
+		const data = {
 			diary: items.filter((i: any) => i.id !== item.id),
 		};
 		updateData(data);
@@ -95,52 +113,42 @@ export default function EmotionalDiary() {
 			>
 				Spara
 			</Button>
-
-			<Spacer></Spacer>
-
-			<Header size='large'>Dagbokslogg</Header>
+			<Spacer />
+			<Header size='medium'>Dagbokslogg</Header>
 			{items.length === 0 ? (
 				<Text>Det finns inga dagboksinlägg...</Text>
 			) : (
 				<FlatList
+					contentContainerStyle={s.list}
 					data={items}
-					style={{ width: "100%" }}
 					renderItem={({ item, separators }) => (
-						<>
-							<Text
-								onPress={() =>
-									updateData({
-										diary: items.map((i: any) =>
-											i.id === item.id ? { ...i, _open: !i._open } : i
-										),
-									})
-								}
-							>
-								{format(new Date(item.date), "yyyy-MM-dd HH:mm:ss")}
-							</Text>
-							{item._open && (
-								<>
-									{sovEmotionalDiary?.inputs.map((input) => (
-										<React.Fragment key={input.id}>
-											<Header
-												size='small' margin="small"
-												key={item.id}
-											>
-												{input.label}
-											</Header>
-											<Text>
-												{storeData.diary.find((i: any) => i.slug === item.slug)?.[input.slug]}
-											</Text>
-											<Spacer></Spacer>
-										</React.Fragment>
-									))}
-									<Button onPress={() => remove(item)}>Ta bort</Button>
-								</>
-							)}
-						</>
+						<TouchableOpacity style={s.item}>
+							<Link href={`/emotional-diary/${item.id}`}>
+								<Text style={s.itemText}>{formatDate(item.date)}</Text>
+							</Link>
+						</TouchableOpacity>
 					)}
 				/>
 			)}
 		</PageView>
 	);
 }
+
+const s = StyleSheet.create({
+	list: {
+		display: "flex",
+		flexDirection: "column",
+		borderTopColor: Theme.color.green,
+		borderTopWidth: 1,
+	},
+	item: {
+		width: "100%",
+		paddingTop: Theme.padding,
+		paddingBottom: Theme.padding,
+		borderBottomColor: Theme.color.green,
+		borderBottomWidth: 1,
+	},
+	itemText: {
+		fontSize: Theme.fontSize.large,
+	},
+});

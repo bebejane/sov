@@ -4,8 +4,20 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 import file from '../file.json'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+export type Diary = {
+  id: string,
+  date: string,
+  [key: string]: any
+}[]
+
+export type Steps = string[]
+
 export interface StoreState {
-  data: any,
+  data: {
+    [key: string]: any
+    diary?: Diary
+    steps?: Steps
+  },
   theme: 'light' | 'dark',
   setTheme: (theme: 'light' | 'dark') => void,
   updateData: (data: any, section?: string) => void,
