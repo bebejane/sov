@@ -46,7 +46,7 @@ export default function HomeAssignment() {
 				)
 			)}
 			<Button onPress={() => resetKeys(sovHomeAssignment?.inputs.map((item) => item.slug))}>
-				Spara
+				Rensa
 			</Button>
 		</PageView>
 	);

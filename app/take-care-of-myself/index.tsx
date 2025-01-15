@@ -1,13 +1,15 @@
-import { Paragraph, PageView, Loader, TextInput } from "@/components/ui";
+import { Paragraph, PageView, Loader, TextInput, Button } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { TakeCareOfYourselfDocument } from "@/graphql";
 import Theme from "@/styles/theme";
 import { useState } from "react";
+import useStore from "../../lib/store";
 
 export default function TekeCareOfMyself() {
 	const [data, error, loading, retry] = useQuery<TakeCareOfYourselfQuery>(
 		TakeCareOfYourselfDocument
 	);
+	const { resetKeys } = useStore();
 
 	if (loading || error)
 		return (
@@ -30,6 +32,9 @@ export default function TekeCareOfMyself() {
 					label={label}
 				/>
 			))}
+			<Button onPress={() => resetKeys(sovTakeCareOfMyself?.inputs.map(({ slug }) => slug))}>
+				Rensa
+			</Button>
 		</PageView>
 	);
 }

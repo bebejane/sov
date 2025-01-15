@@ -1,16 +1,16 @@
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
-import { RelativePathString, useNavigation, useRouter } from "expo-router";
-import { Header } from "../components/ui";
+import { RelativePathString, useRouter } from "expo-router";
+import { Header } from "@/components/ui";
 import useStore from "@/lib/store";
 import { formatDate } from "../lib/utils";
 
 const shortcuts: { name: string; route: string }[] = [
-	{ name: "Värderad riktning med mål", route: "/valued-direction" },
-	{ name: "Ta hand om mig", route: "/take-care-of-myself" },
-	{ name: "Hemmauppgift", route: "/home-assignment" },
-	{ name: "Stop & Tänk", route: "/stop-and-think" },
+	{ name: "Ljudövningar", route: "/sound-exercises" },
+	{ name: "Sork", route: "/sork" },
+	{ name: "Stop & Tänk stegen", route: "/stop-and-think" },
+	{ name: "Enkel känslodagbok", route: "/emotional-diary" },
 ];
 
 export default function Home() {
