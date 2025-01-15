@@ -31,7 +31,7 @@ export default function StopAndthinkNavigation() {
 			{tools?.map(({ id, title, description }, i) => (
 				<Stack.Screen
 					key={id}
-					name={`stop-and-think/${id}`}
+					name={`stop-and-think/tool/${id}`}
 					initialParams={{ id, title }}
 					options={{
 						title,

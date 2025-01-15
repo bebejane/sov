@@ -10,7 +10,7 @@ const themeVars = {
     greyDark: '#333333',
     error: '#8a0a01',
     green: '#015154',
-    lightGreen: '#f7ffff',
+    lightGreen: '#d3e6e3',
   },
   fontSize: {
     default: 15,

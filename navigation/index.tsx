@@ -1,6 +1,5 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { Stack, useNavigation, useRouter } from "expo-router";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { View } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
@@ -44,8 +43,7 @@ export default function Navigation() {
 
 export function CustomDrawerContent(props: any) {
 	const home = menu.find((m) => m.name === "index");
-	const router = useRouter();
-	console.log(props.state.routeNames);
+
 	return (
 		<DrawerContentScrollView
 			{...props}

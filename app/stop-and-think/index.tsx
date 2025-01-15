@@ -10,7 +10,7 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import { Ionicons } from "@expo/vector-icons";
 
 export const NUM_STEPS = 6;
-export const defaultSteps = new Array(NUM_STEPS).fill({});
+export const defaultSteps = new Array(NUM_STEPS).fill(null);
 
 type Step = {
 	tool: StopAndThinkStepsQuery["allSovStopAndThinkTools"][0];
@@ -23,18 +23,12 @@ export default function StopAndThink() {
 	const steps = defaultSteps.map((s, i) => storeData?.steps?.[i] ?? defaultSteps[i]);
 
 	const openRowRef = useRef<any | null>(null);
-	const onRowDidOpen = (rowKey: any, rowMap: any) => {
-		openRowRef.current = rowMap[rowKey];
-	};
-	const closeOpenRow = () => {
-		console.log("closeOpenRow");
-		console.log(openRowRef.current);
-		openRowRef.current?.closeRow?.();
-		openRowRef.current = null;
-	};
+	const onRowDidOpen = (rowKey: any, rowMap: any) => (openRowRef.current = rowMap[rowKey]);
+	const closeOpenRow = () => openRowRef.current?.closeRow?.();
 
 	useEffect(() => {
 		navigation.setOptions({ headerShown: false });
+		//updateData({ steps: [] });
 	}, [data]);
 
 	if (loading || error)
@@ -52,7 +46,8 @@ export default function StopAndThink() {
 		<View style={s.container}>
 			<SwipeListView
 				style={s.steps}
-				data={steps}
+				contentContainerStyle={s.stepsContent}
+				data={steps.map((s, i) => ({ id: s, key: `k${i}` }))}
 				onRowOpen={onRowDidOpen}
 				recalculateHiddenLayout={true}
 				disableRightSwipe={true}
@@ -60,7 +55,7 @@ export default function StopAndThink() {
 				closeOnRowBeginSwipe
 				rightOpenValue={-1 * (s.removeButton.width as number)}
 				renderItem={({ item, index }) => {
-					const tool = tools.find((t) => t.id === item);
+					const tool = tools.find((t) => t.id === item.id);
 					return (
 						<Step
 							key={index}
@@ -70,25 +65,21 @@ export default function StopAndThink() {
 						/>
 					);
 				}}
-				renderHiddenItem={(data: any, rowMap: any) => (
-					<View style={[s.step, s.remove]}>
+				renderHiddenItem={(data: any, rowMap: any) => {
+					return (
 						<TouchableOpacity
-							style={s.removeButton}
+							style={[s.step, s.remove]}
 							onPress={(e) => {
+								updateData({ steps: steps.map((s) => (s === data.item.id ? null : s)) });
 								closeOpenRow();
-								updateData({ steps: steps.map((s) => (s !== data?.item ? s : {})) });
 							}}
 						>
-							<Ionicons
-								style={s.removeIcon}
-								disabled={false}
-								name={"close-circle-outline"}
-								size={28}
-								color={Theme.color.black}
-							/>
+							<View style={s.removeButton}>
+								<Text style={s.removeText}>Ta bort</Text>
+							</View>
 						</TouchableOpacity>
-					</View>
-				)}
+					);
+				}}
 			/>
 
 			<View style={s.back}>
@@ -107,16 +98,16 @@ type StepProps = {
 
 const Step = ({ toolId, step, label }: StepProps) => {
 	const router = useRouter();
-
+	const enabled = toolId && label;
 	return (
 		<TouchableOpacity
-			style={[s.step, label ? s.enabled : undefined]}
-			activeOpacity={0.8}
+			style={[s.step, enabled ? s.enabled : undefined]}
+			activeOpacity={0.9}
 			onPress={() =>
 				router.navigate(toolId ? `/stop-and-think/tool/${toolId}` : `/stop-and-think/step/${step}`)
 			}
 		>
-			<Text style={s.stepText}>{label ?? "+"}</Text>
+			<Text style={[s.stepText, enabled && s.stepTextEnabled]}>{label ?? "+"}</Text>
 		</TouchableOpacity>
 	);
 };
@@ -124,8 +115,10 @@ const Step = ({ toolId, step, label }: StepProps) => {
 const s = StyleSheet.create({
 	container: {
 		position: "relative",
+		display: "flex",
 		flex: 1,
 		alignItems: "flex-start",
+		height: "100%",
 	},
 	steps: {
 		position: "absolute",
@@ -141,10 +134,17 @@ const s = StyleSheet.create({
 		marginTop: Theme.padding * 2,
 		zIndex: 2,
 	},
+	stepsContent: {
+		height: "100%",
+	},
 	step: {
 		display: "flex",
-		flexBasis: `${100 / defaultSteps.length}%`,
+		flex: 1,
+		flexBasis: `${80 / defaultSteps.length}%`,
+		alignItems: "center",
+		justifyContent: "center",
 		width: "100%",
+		color: Theme.color.white,
 		borderRadius: Theme.borderRadius,
 		backgroundColor: Theme.color.lightGreen,
 		borderWidth: Theme.borderWidth,
@@ -160,6 +160,9 @@ const s = StyleSheet.create({
 		justifyContent: "flex-start",
 	},
 	stepText: {
+		color: Theme.color.green,
+	},
+	stepTextEnabled: {
 		color: Theme.color.white,
 	},
 	remove: {
@@ -169,21 +172,23 @@ const s = StyleSheet.create({
 		justifyContent: "flex-end",
 		width: "100%",
 		padding: 0,
-		borderColor: Theme.color.lightGreen,
+		borderColor: Theme.color.green,
 	},
 	removeButton: {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: Theme.color.white,
+		backgroundColor: Theme.color.lightGreen,
 		padding: 0,
-		width: 50,
+		width: 100,
 	},
 	removeText: {
+		color: Theme.color.green,
+	},
+	removeIcon: {
 		color: Theme.color.black,
 	},
-	removeIcon: {},
 	back: {
 		position: "absolute",
 		display: "flex",

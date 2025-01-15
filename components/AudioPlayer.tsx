@@ -145,7 +145,7 @@ const s = StyleSheet.create({
 		width: "100%",
 		height: 70,
 		backgroundColor: Theme.color.lightGreen,
-		borderRadius: Theme.borderRadius
+		borderRadius: Theme.borderRadius,
 	},
 	icon: {
 		flexGrow: 1,
