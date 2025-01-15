@@ -10,3 +10,4 @@ export { DatePicker } from "./DatePicker";
 export { Spacer } from "./Spacer"
 export { Image } from "./Image";
 export { Table } from './Table'
+export { List } from './List'

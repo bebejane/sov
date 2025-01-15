@@ -21,7 +21,7 @@ const menu: Menu = [
     },
   },
   {
-    name: "home-assignment/index",
+    name: "home-assignment",
     options: {
       title: "Hemmauppgift",
     },

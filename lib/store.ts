@@ -10,6 +10,12 @@ export type Diary = {
   [key: string]: any
 }[]
 
+export type Assignments = {
+  id: string,
+  date: string,
+  [key: string]: any
+}[]
+
 export type Steps = string[]
 
 export interface StoreState {
@@ -17,6 +23,7 @@ export interface StoreState {
     [key: string]: any
     diary?: Diary
     steps?: Steps
+    assignments?: Assignments
   },
   theme: 'light' | 'dark',
   setTheme: (theme: 'light' | 'dark') => void,
@@ -29,8 +36,9 @@ const getData = async () => {
   const fileData = await AsyncStorage.getItem('file')
   if (fileData) {
     const data = JSON.parse(fileData as string)
-    await AsyncStorage.removeItem('file')
-    return data
+    console.log(data)
+    //await AsyncStorage.removeItem('file')
+    //return data
   }
   return {}
 }

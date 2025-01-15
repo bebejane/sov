@@ -9,18 +9,20 @@ import {
 	SliderInput,
 	PageView,
 	Spacer,
+	List,
 } from "@/components/ui";
 import { FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { useQuery } from "../../lib/client";
 import { EmotionalDiaryDocument } from "../../graphql";
 import useStore from "../../lib/store";
-import { Link, useNavigation } from "expo-router";
+import { Link, useNavigation, useRouter } from "expo-router";
 import { formatDate } from "@/lib/utils";
 import Theme from "@/styles/theme";
 
 export default function EmotionalDiary() {
 	const navigation = useNavigation();
+	const router = useRouter();
 	const [data, error, loading, retry] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
 	const { updateData, data: storeData, resetKeys } = useStore();
 	const items = storeData.diary ?? [];
@@ -69,13 +71,6 @@ export default function EmotionalDiary() {
 		resetKeys(resetFields);
 	};
 
-	const remove = (item: any) => {
-		const data = {
-			diary: items.filter((i: any) => i.id !== item.id),
-		};
-		updateData(data);
-	};
-
 	if (loading || error)
 		return (
 			<Loader
@@ -114,22 +109,12 @@ export default function EmotionalDiary() {
 				Spara
 			</Button>
 			<Spacer />
-			<Header size='medium'>Dagbokslogg</Header>
-			{items.length === 0 ? (
-				<Text>Det finns inga dagboksinlägg...</Text>
-			) : (
-				<FlatList
-					contentContainerStyle={s.list}
-					data={items}
-					renderItem={({ item, separators }) => (
-						<TouchableOpacity style={s.item}>
-							<Link href={`/emotional-diary/${item.id}`}>
-								<Text style={s.itemText}>{formatDate(item.date)}</Text>
-							</Link>
-						</TouchableOpacity>
-					)}
-				/>
-			)}
+			<List
+				onPress={(id) => router.navigate(`/emotional-diary/${id}`)}
+				title='Dagbokslogg'
+				emptyText='Det finns inga dagboksinlägg...'
+				items={items?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
+			/>
 		</PageView>
 	);
 }
