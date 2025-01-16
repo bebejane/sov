@@ -2,7 +2,7 @@ import useStore from "@/lib/store";
 import { formatDate } from "@/lib/utils";
 import Theme from "@/styles/theme";
 import { Stack } from "expo-router";
-import { BackButton } from "@/components/BackButton";
+import { StackHeaderBackButton } from "@/components/StackHeaderBackButton";
 
 export default function Layout() {
 	const { data } = useStore();
@@ -11,7 +11,7 @@ export default function Layout() {
 	return (
 		<Stack
 			screenOptions={{
-				headerLeft: (props) => <BackButton {...props} />,
+				headerLeft: (props) => <StackHeaderBackButton {...props} />,
 			}}
 		>
 			{assignments?.map(({ id, date }, i) => (

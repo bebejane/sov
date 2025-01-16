@@ -4,7 +4,7 @@ import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "expo-router";
 import { StyleSheet } from "react-native";
 
-export function BackButton(props: any) {
+export function StackHeaderBackButton(props: any) {
 	const navigation = useNavigation();
 
 	return (
