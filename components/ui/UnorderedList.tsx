@@ -17,7 +17,7 @@ export const UnorderedList = ({
 					style={s.row}
 				>
 					<View style={s.item}>
-						<Text style={s.bullet}>• </Text>
+						<Text style={s.bullet}>•</Text>
 						<Text style={s.text}>{item.label}</Text>
 					</View>
 				</View>
@@ -42,7 +42,7 @@ const s = StyleSheet.create({
 		alignItems: "flex-start",
 	},
 	bullet: {
-		//fontSize: 20,
+		paddingRight: 0,
 	},
 	text: {
 		flex: 1,

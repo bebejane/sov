@@ -10,6 +10,7 @@ import { useQuery } from "../../../lib/client";
 import { EmotionalDiaryDocument } from "@/graphql";
 import Theme from "@/styles/theme";
 import React from "react";
+import { useFocusEffect } from "expo-router";
 
 export type Props = {
 	params: {
@@ -24,10 +25,10 @@ export default function EmotionalDiaryItem() {
 	const { data: storeData, updateData } = useStore();
 	const diary = storeData.diary?.find((item: any) => id === item.id);
 
-	useEffect(() => {
+	useFocusEffect(() => {
 		if (!diary) return;
 		navigation.setOptions({ title: formatDate(diary.date) });
-	}, [diary]);
+	});
 
 	if (loading || error)
 		return (

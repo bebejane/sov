@@ -21,9 +21,7 @@ export function StackHeaderBackButton(props: any) {
 				/>
 			)}
 			onPress={() => {
-				navigation.goBack();
-				//if (router.canDismiss()) router.dismiss();
-				//router.back();
+				router.back();
 			}}
 		/>
 	);
