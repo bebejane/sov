@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@datocms/cda-client": "0.2.5",
 		"@expo/vector-icons": "^14.0.4",
+		"@mux/mux-player-react": "^3.2.4",
 		"@react-native-async-storage/async-storage": "1.23.1",
 		"@react-native-community/slider": "4.5.5",
 		"@react-navigation/drawer": "^7.1.1",
@@ -29,6 +30,7 @@
 		"expo-audio": "~0.3.3",
 		"expo-av": "~15.0.2",
 		"expo-font": "~13.0.3",
+		"expo-linear-gradient": "~14.0.2",
 		"expo-linking": "~7.0.4",
 		"expo-router": "~4.0.16",
 		"expo-splash-screen": "~0.29.20",

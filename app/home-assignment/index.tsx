@@ -4,13 +4,19 @@ import { PageView, Loader, TextInput, Button, DatePicker, Spacer, List } from "@
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import useStore from "@/lib/store";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
+import { useEffect } from "react";
 
 export default function HomeAssignment() {
 	const router = useRouter();
+	const navigation = useNavigation();
 	const [data, error, loading, retry] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
 	const { updateData, data: storeData, resetKeys } = useStore();
 	const assignments = storeData.assignments ?? [];
+
+	useEffect(() => {
+		navigation.setOptions({ headerShown: false });
+	}, [data]);
 
 	if (loading || error)
 		return (

@@ -1,9 +1,10 @@
 {
   "files.exclude": {
-    ".expo": true,
-    ".tmp": true,
-    ".vscode": true,
-    "node_modules": true,
-    "android": true
-  }
+    ".expo": false,
+    ".tmp": false,
+    ".vscode": false,
+    "node_modules": false,
+    "android": false
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }

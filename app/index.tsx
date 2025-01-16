@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 import { RelativePathString, useRouter } from "expo-router";
 import { Header, List, Spacer } from "@/components/ui";
+import { StatusBar } from "expo-status-bar";
 import useStore from "@/lib/store";
-import { formatDate } from "../lib/utils";
 
 const shortcuts: { name: string; route: string }[] = [
 	{ name: "Ljudövningar", route: "/sound-exercises" },
@@ -18,45 +18,51 @@ export default function Home() {
 	const {
 		data: { diary, assignments },
 	} = useStore();
-	console.log(assignments);
-	return (
-		<View style={s.container}>
-			<Header size='medium'>Genvägar</Header>
-			<View style={s.shortcuts}>
-				{shortcuts.map(({ name, route }) => (
-					<TouchableOpacity
-						style={s.button}
-						activeOpacity={0.5}
-						key={name}
-						onPress={() => router.navigate(route as RelativePathString)}
-					>
-						<Text style={s.label}>{name}</Text>
-					</TouchableOpacity>
-				))}
-			</View>
 
-			<View style={s.list}>
-				<List
-					title='Hemmauppgifter'
-					onPress={(id) =>
-						router.navigate(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
-					}
-					items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
-					emptyText='Du finns hemmauppgifter sparade...'
-				/>
+	return (
+		<>
+			<View style={s.container}>
+				<Header size='medium'>Genvägar</Header>
+				<View style={s.shortcuts}>
+					{shortcuts.map(({ name, route }) => (
+						<TouchableOpacity
+							style={s.button}
+							activeOpacity={0.5}
+							key={name}
+							onPress={() => router.navigate(route as RelativePathString)}
+						>
+							<Text style={s.label}>{name}</Text>
+						</TouchableOpacity>
+					))}
+				</View>
+
+				<View style={s.list}>
+					<List
+						title='Hemmauppgifter'
+						onPress={(id) =>
+							router.navigate(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
+						}
+						items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
+						emptyText='Du finns hemmauppgifter sparade...'
+					/>
+				</View>
+				<Spacer />
+				<View style={s.list}>
+					<List
+						title='Dagbok'
+						onPress={(id) =>
+							router.navigate(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
+						}
+						items={diary?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
+						emptyText='Du finns inga dagboks inlägg...'
+					/>
+				</View>
 			</View>
-			<Spacer />
-			<View style={s.list}>
-				<List
-					title='Dagbok'
-					onPress={(id) =>
-						router.navigate(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
-					}
-					items={diary?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
-					emptyText='Du finns inga dagboks inlägg...'
-				/>
-			</View>
-		</View>
+			<StatusBar
+				backgroundColor={Theme.color.green}
+				style='auto'
+			/>
+		</>
 	);
 }
 

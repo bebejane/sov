@@ -1,14 +1,12 @@
-import { Stack, useRouter } from "expo-router";
-import { HeaderBackButton } from "@react-navigation/elements";
-import { formatDate } from "@/lib/utils";
 import useStore from "@/lib/store";
-import Theme from "../../styles/theme";
-import { Ionicons } from "@expo/vector-icons";
+import { formatDate } from "@/lib/utils";
+import Theme from "@/styles/theme";
+import { Stack } from "expo-router";
 import { StyleSheet } from "react-native";
+
 import { BackButton } from "./";
 
 export default function HomeAssignmentNavigation() {
-	const router = useRouter();
 	const { data } = useStore();
 	const assignments: any[] = data.assignments ?? [];
 

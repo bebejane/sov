@@ -15,10 +15,12 @@ import Animated, {
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { menu, groups } from "./drawer";
+import StatusBar from "../components/StatusBar";
 
 export default function Navigation() {
 	return (
 		<>
+			<StatusBar />
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<Drawer
 					drawerContent={CustomDrawerContent}

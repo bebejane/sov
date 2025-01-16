@@ -7,7 +7,7 @@ import { useNavigation, useRouter } from "expo-router";
 import useStore from "../../lib/store";
 import { useEffect, useRef } from "react";
 import { SwipeListView } from "react-native-swipe-list-view";
-import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const NUM_STEPS = 6;
 export const defaultSteps = new Array(NUM_STEPS).fill(null);
@@ -28,7 +28,6 @@ export default function StopAndThink() {
 
 	useEffect(() => {
 		navigation.setOptions({ headerShown: false });
-		//updateData({ steps: [] });
 	}, [data]);
 
 	if (loading || error)
@@ -83,8 +82,16 @@ export default function StopAndThink() {
 			/>
 
 			<View style={s.back}>
-				<View style={[s.bar, s.left]} />
-				<View style={[s.bar, s.right]} />
+				<LinearGradient
+					colors={[Theme.color.lightGreen, Theme.color.green]}
+					end={{ x: 0, y: 0.4 }}
+					style={[s.bar, s.left]}
+				/>
+				<LinearGradient
+					colors={[Theme.color.lightGreen, Theme.color.green]}
+					end={{ x: 0, y: 0.4 }}
+					style={[s.bar, s.right]}
+				/>
 			</View>
 		</View>
 	);
@@ -205,6 +212,7 @@ const s = StyleSheet.create({
 		left: 0,
 		width: 20,
 		height: "100%",
+		//background: `linear-gradient(0deg, ${Theme.color.green} 50%, ${Theme.color.lightGreen} 100%)`,
 		backgroundColor: Theme.color.green,
 		zIndex: 0,
 	},

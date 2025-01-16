@@ -4,6 +4,7 @@ import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
 import { Loader, PageView } from "@/components/ui";
 import StructuredContent from "@/components/StructuredContent";
+//import StructuredContent from "@/components/StructuredT";
 import { StopAndThinkToolDocument } from "@/graphql";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";

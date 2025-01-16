@@ -1,12 +1,12 @@
-import { HeaderBackButton } from "@react-navigation/elements";
-import Theme from "../../styles/theme";
+import Theme from "@/styles/theme";
 import { Ionicons } from "@expo/vector-icons";
+import { HeaderBackButton } from "@react-navigation/elements";
+import { useNavigation } from "expo-router";
 import { StyleSheet } from "react-native";
-import { useNavigation, useRouter } from "expo-router";
 
 export function BackButton(props: any) {
 	const navigation = useNavigation();
-	const router = useRouter();
+
 	return (
 		<HeaderBackButton
 			{...props}
@@ -19,7 +19,9 @@ export function BackButton(props: any) {
 					size={24}
 				/>
 			)}
-			onPress={() => router.back()}
+			onPress={() => {
+				navigation.goBack();
+			}}
 		/>
 	);
 }
