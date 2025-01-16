@@ -17,7 +17,7 @@ export const UnorderedList = ({
 					style={s.row}
 				>
 					<View style={s.item}>
-						<Text style={s.bullet}>- </Text>
+						<Text style={s.bullet}>• </Text>
 						<Text style={s.text}>{item.label}</Text>
 					</View>
 				</View>
@@ -41,7 +41,9 @@ const s = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "flex-start",
 	},
-	bullet: {},
+	bullet: {
+		//fontSize: 20,
+	},
 	text: {
 		flex: 1,
 		fontSize: Theme.fontSize.default,

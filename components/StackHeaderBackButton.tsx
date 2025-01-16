@@ -1,11 +1,12 @@
 import Theme from "@/styles/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderBackButton } from "@react-navigation/elements";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export function StackHeaderBackButton(props: any) {
 	const navigation = useNavigation();
+	const router = useRouter();
 
 	return (
 		<HeaderBackButton
@@ -21,6 +22,8 @@ export function StackHeaderBackButton(props: any) {
 			)}
 			onPress={() => {
 				navigation.goBack();
+				//if (router.canDismiss()) router.dismiss();
+				//router.back();
 			}}
 		/>
 	);

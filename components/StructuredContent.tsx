@@ -57,7 +57,12 @@ export default function StructuredContent({ content }: { content: any }) {
 							id: `${i}`,
 							label: item.children?.[0]?.children?.[0]?.data ?? "",
 						}));
-						return <UnorderedList items={items} />;
+						return (
+							<UnorderedList
+								key={index}
+								items={items}
+							/>
+						);
 					case "h1":
 					case "h2":
 					case "h3":

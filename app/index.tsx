@@ -29,7 +29,7 @@ export default function Home() {
 							style={s.button}
 							activeOpacity={0.5}
 							key={name}
-							onPress={() => router.navigate(route as RelativePathString)}
+							onPress={() => router.push(route as RelativePathString)}
 						>
 							<Text style={s.label}>{name}</Text>
 						</TouchableOpacity>
@@ -40,7 +40,7 @@ export default function Home() {
 					<List
 						title='Hemmauppgifter'
 						onPress={(id) =>
-							router.navigate(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
+							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
 						}
 						items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
 						emptyText='Du finns hemmauppgifter sparade...'
@@ -51,7 +51,7 @@ export default function Home() {
 					<List
 						title='Dagbok'
 						onPress={(id) =>
-							router.navigate(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
+							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
 						items={diary?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
 						emptyText='Du finns inga dagboks inlägg...'
