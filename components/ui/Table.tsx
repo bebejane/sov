@@ -17,12 +17,13 @@ export const Table = ({ data }: TableProps) => {
 		>
 			<Row
 				data={data.columns}
-				textStyle={s.header}
-				style={{ backgroundColor: Theme.color.grey }}
+				textStyle={[s.column, s.headerText]}
+				style={[s.header]}
 			/>
 			{data.data.map((cols: any, i: number) => (
 				<Row
 					key={i}
+					textStyle={s.column}
 					data={Object.keys(cols).map((key: string) => cols[key])}
 				/>
 			))}
@@ -32,13 +33,21 @@ export const Table = ({ data }: TableProps) => {
 
 const s = StyleSheet.create({
 	table: {
-		padding: 4,
+		padding: 0,
+	},
+	column: {
+		display: "flex",
+		alignItems: "flex-start",
+		padding: Theme.padding / 2,
 	},
 	border: {
 		borderWidth: Theme.borderWidth,
-		borderColor: Theme.color.grey,
+		borderColor: Theme.color.lightGreen,
 	},
 	header: {
+		backgroundColor: Theme.color.grey,
+	},
+	headerText: {
 		fontWeight: "bold",
 	},
 });

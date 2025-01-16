@@ -11,3 +11,4 @@ export { Spacer } from "./Spacer"
 export { Image } from "./Image";
 export { Table } from './Table'
 export { List } from './List'
+export { UnorderedList } from './UnorderedList'

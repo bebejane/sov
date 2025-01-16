@@ -4,7 +4,7 @@ import Slider from "@react-native-community/slider";
 import React, { useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Theme from "../styles/theme";
+import Theme from "@/styles/theme";
 
 export default function AudioPlayer({ src }: { src: string }) {
 	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
@@ -146,6 +146,7 @@ const s = StyleSheet.create({
 		height: 70,
 		backgroundColor: Theme.color.lightGreen,
 		borderRadius: Theme.borderRadius,
+		marginBottom: Theme.margin / 2,
 	},
 	icon: {
 		flexGrow: 1,

@@ -2,9 +2,8 @@ import { useNavigation } from "expo-router";
 import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 import { useQuery } from "@/lib/client";
-import { Loader, PageView } from "@/components/ui";
+import { Button, Loader, PageView } from "@/components/ui";
 import StructuredContent from "@/components/StructuredContent";
-//import StructuredContent from "@/components/StructuredT";
 import { StopAndThinkToolDocument } from "@/graphql";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
@@ -40,6 +39,7 @@ export default function StopAndThinkTool() {
 	return (
 		<PageView>
 			<StructuredContent content={sovStopAndThinkTool?.content} />
+			{/*<Button onPress={retry}>Reload</Button>*/}
 		</PageView>
 	);
 }

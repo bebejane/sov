@@ -2,7 +2,7 @@ import { Paragraph, PageView, Loader, TextInput, Header, Spacer } from "@/compon
 import { useQuery } from "@/lib/client";
 import { SoundExerciseDocument } from "@/graphql";
 import React from "react";
-import AudioPlayer from "@/components/AudioPlayer";
+import AudioPlayer from "@/components/ui/AudioPlayer";
 import YoutubePlayer from "@/components/YoutubePlayer";
 import Theme from "../../styles/theme";
 import { View } from "react-native";
@@ -29,8 +29,13 @@ export default function SoundExercises() {
 					key={i}
 					style={{ marginBottom: Theme.margin }}
 				>
-					<Spacer size="line"></Spacer>
-					<Header size='medium' margin="medium">{title}</Header>
+					<Spacer size='line'></Spacer>
+					<Header
+						size='medium'
+						margin='medium'
+					>
+						{title}
+					</Header>
 					{file && <AudioPlayer src={file.url} />}
 					{youtube && <YoutubePlayer src={youtube.url} />}
 				</View>

@@ -1,8 +1,8 @@
 import HTMLView from "react-native-htmlview";
 import { render } from "datocms-structured-text-to-html-string";
-import { Paragraph, Image, TextInput, Table } from "./ui";
+import { Paragraph, Image, TextInput, Table, UnorderedList, Header } from "./ui";
 import unescape from "lodash-es/unescape";
-import AudioPlayer from "./AudioPlayer";
+import AudioPlayer from "./ui/AudioPlayer";
 
 export default function StructuredContent({ content }: { content: any }) {
 	const html = render(content, {
@@ -28,7 +28,7 @@ export default function StructuredContent({ content }: { content: any }) {
 	return (
 		<HTMLView
 			value={html}
-			renderNode={(node: any, index: number, children: any) => {
+			renderNode={(node, index, children) => {
 				switch (node.name) {
 					case "img":
 						return (
@@ -47,9 +47,35 @@ export default function StructuredContent({ content }: { content: any }) {
 					case "input":
 						return (
 							<TextInput
-								ey={index}
+								key={index}
+								slug={node.attribs.slug}
 								{...node.attribs}
 							/>
+						);
+					case "ul":
+						const items = node.children.map((item, i) => ({
+							id: `${i}`,
+							label: item.children?.[0]?.children?.[0]?.data ?? "",
+						}));
+						return <UnorderedList items={items} />;
+					case "h1":
+					case "h2":
+					case "h3":
+					case "h4":
+					case "h5":
+					case "h6":
+						const h = parseInt(node.name.charAt(1));
+						const size = h <= 2 ? "medium" : "small";
+						const margin = h === 1 ? "large" : h === 2 ? "medium" : "small";
+
+						return (
+							<Header
+								key={index}
+								size={size}
+								margin={margin}
+							>
+								{node.children?.[0]?.data}
+							</Header>
 						);
 					case "p":
 						if (!node.children?.[0]?.data) {

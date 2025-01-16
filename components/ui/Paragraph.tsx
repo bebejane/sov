@@ -9,11 +9,8 @@ export type Props = {
 };
 
 export const Paragraph = ({ children, markdown = true }: Props) => {
-	return markdown ? (
-		<Markdown style={s}>{children}</Markdown>
-	) : (
-		<Text style={s.body}>{children}</Text>
-	);
+	if (markdown) return <Markdown style={s}>{children}</Markdown>;
+	else return <Text style={s.body}>{children}</Text>;
 };
 
 // Kolla här för att styla olika element
