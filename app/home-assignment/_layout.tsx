@@ -1,5 +1,30 @@
-import HomeAssignmentNavigation from "@/navigation/stack/home-assignment";
+import useStore from "@/lib/store";
+import { formatDate } from "@/lib/utils";
+import Theme from "@/styles/theme";
+import { Stack } from "expo-router";
+import { BackButton } from "@/components/BackButton";
 
 export default function Layout() {
-	return <HomeAssignmentNavigation />;
+	const { data } = useStore();
+	const assignments: any[] = data.assignments ?? [];
+
+	return (
+		<Stack
+			screenOptions={{
+				headerLeft: (props) => <BackButton {...props} />,
+			}}
+		>
+			{assignments?.map(({ id, date }, i) => (
+				<Stack.Screen
+					key={id}
+					name={`home-assignments/${id}`}
+					initialParams={{ id, date }}
+					options={{
+						title: formatDate(date),
+						headerTitle: formatDate(date),
+					}}
+				/>
+			))}
+		</Stack>
+	);
 }

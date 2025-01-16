@@ -1,5 +1,29 @@
-import EmotionalDiaryNavigation from "@/navigation/stack/emotional-diary";
+import useStore from "@/lib/store";
+import { Stack } from "expo-router";
+import { formatDate } from "@/lib/utils";
+import { BackButton } from "@/components/BackButton";
 
 export default function Layout() {
-	return <EmotionalDiaryNavigation />;
+	const { data } = useStore();
+	const diary: any[] = data.diary ?? [];
+
+	return (
+		<Stack
+			screenOptions={{
+				headerLeft: (props) => <BackButton {...props} />,
+			}}
+		>
+			{diary?.map(({ id, date }, i) => (
+				<Stack.Screen
+					key={id}
+					name={`emotional-diary/${id}`}
+					initialParams={{ id, date }}
+					options={{
+						title: formatDate(date),
+						headerTitle: formatDate(date),
+					}}
+				/>
+			))}
+		</Stack>
+	);
 }
