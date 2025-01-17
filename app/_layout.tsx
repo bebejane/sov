@@ -95,8 +95,8 @@ export const menu: Menu = [
 	...screen,
 	options: {
 		...screen.options,
-		headerTitle: screen.options.drawerLabel ?? screen.options.title,
 		drawerLabel: screen.options.drawerLabel ?? screen.options.title,
+		popToTopOnBlur: true,
 	},
 }));
 
