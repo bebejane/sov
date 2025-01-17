@@ -44,7 +44,7 @@ export const menu: Menu = [
 	},
 	{
 		href: "/home-assignment",
-		name: "home-assignment/index",
+		name: "home-assignment",
 		options: {
 			title: "Hemmauppgift",
 		},
@@ -58,14 +58,14 @@ export const menu: Menu = [
 	},
 	{
 		href: "/sork",
-		name: "sork",
+		name: "sork/index",
 		options: {
 			title: "Sork",
 		},
 	},
 	{
 		href: "/emotional-diary",
-		name: "emotional-diary/index",
+		name: "emotional-diary",
 		options: {
 			title: "Enkel känslodagbok",
 		},
@@ -86,7 +86,7 @@ export const menu: Menu = [
 	},
 	{
 		href: "/stop-and-think",
-		name: "stop-and-think/index",
+		name: "stop-and-think",
 		options: {
 			title: "Stop & Tänk Stegen",
 		},
@@ -95,6 +95,7 @@ export const menu: Menu = [
 	...screen,
 	options: {
 		...screen.options,
+		headerTitle: screen.options.drawerLabel ?? screen.options.title,
 		drawerLabel: screen.options.drawerLabel ?? screen.options.title,
 	},
 }));
@@ -134,7 +135,7 @@ export default function Navigation() {
 					{menu.map(({ href, name, options }) => (
 						<Drawer.Screen
 							key={href}
-							name={options.title}
+							name={name}
 							options={{
 								...options,
 							}}

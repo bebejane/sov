@@ -17,7 +17,7 @@ export const UnorderedList = ({
 					style={s.row}
 				>
 					<View style={s.item}>
-						<Text style={s.bullet}>•</Text>
+						<Text style={s.bullet}>• </Text>
 						<Text style={s.text}>{item.label}</Text>
 					</View>
 				</View>
