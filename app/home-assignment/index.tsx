@@ -63,7 +63,7 @@ export default function HomeAssignment() {
 				new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
 			),
 		};
-
+		console.log(currentItem);
 		const resetFields = sovHomeAssignment?.inputs.map((item) => item.slug);
 		updateData(data);
 		resetKeys(resetFields);

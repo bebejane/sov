@@ -3,6 +3,7 @@ import { useQuery } from "@/lib/client";
 import { SorkDocument } from "@/graphql";
 import React from "react";
 import useStore from "../../lib/store";
+import useDrawerTitle from "@/lib/hooks/useDrawerTitle";
 
 export default function Sork() {
 	const [data, error, loading, retry] = useQuery<SorkQuery>(SorkDocument);

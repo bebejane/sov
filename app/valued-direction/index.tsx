@@ -1,7 +1,6 @@
 import { Paragraph, Loader, TextInput, PageView, Image } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { ValuedDirectionDocument } from "@/graphql";
-import Theme from "@/styles/theme";
 
 export default function ValuedDirectionWithGoal() {
 	const [data, error, loading] = useQuery<ValuedDirectionQuery>(ValuedDirectionDocument);

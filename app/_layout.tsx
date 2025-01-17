@@ -19,39 +19,39 @@ import { RelativePathString, useRouter } from "expo-router";
 
 export type Menu = { name: string; href: string; options: any }[];
 
-const menu: Menu = [
+export const menu: Menu = [
 	{
 		href: "/",
 		name: "index",
 		options: {
-			drawerLabel: "Hem",
 			title: "Samtal om Våld",
+			drawerLabel: "Hem",
 		},
 	},
 	{
 		href: "/valued-direction",
-		name: "valued-direction",
+		name: "valued-direction/index",
 		options: {
 			title: "Värderad riktning med mål",
 		},
 	},
 	{
 		href: "/take-care-of-myself",
-		name: "take-care-of-myself",
+		name: "take-care-of-myself/index",
 		options: {
 			title: "Ta hand om mig",
 		},
 	},
 	{
 		href: "/home-assignment",
-		name: "home-assignment",
+		name: "home-assignment/index",
 		options: {
 			title: "Hemmauppgift",
 		},
 	},
 	{
 		href: "/assess-violence",
-		name: "assess-violence",
+		name: "assess-violence/index",
 		options: {
 			title: "Skatta våld",
 		},
@@ -65,28 +65,28 @@ const menu: Menu = [
 	},
 	{
 		href: "/emotional-diary",
-		name: "emotional-diary",
+		name: "emotional-diary/index",
 		options: {
 			title: "Enkel känslodagbok",
 		},
 	},
 	{
 		href: "/sound-exercises",
-		name: "sound-exercises",
+		name: "sound-exercises/index",
 		options: {
 			title: "Ljudövningar",
 		},
 	},
 	{
 		href: "/maintenance-plan",
-		name: "maintenance-plan",
+		name: "maintenance-plan/index",
 		options: {
 			title: "Vidmakthållandeplan",
 		},
 	},
 	{
 		href: "/stop-and-think",
-		name: "stop-and-think",
+		name: "stop-and-think/index",
 		options: {
 			title: "Stop & Tänk Stegen",
 		},
@@ -131,10 +131,10 @@ export default function Navigation() {
 						headerTintColor: Theme.color.green,
 					}}
 				>
-					{menu.map(({ href, options }) => (
+					{menu.map(({ href, name, options }) => (
 						<Drawer.Screen
 							key={href}
-							name={href}
+							name={options.title}
 							options={{
 								...options,
 							}}
@@ -237,7 +237,7 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 						activeTintColor={Theme.color.green}
 						labelStyle={s.label}
 						focused={name === active}
-						onPress={() => onPress(name)}
+						onPress={() => onPress(href)}
 					/>
 				))}
 			</Animated.View>

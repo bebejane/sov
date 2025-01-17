@@ -6,6 +6,7 @@ import AudioPlayer from "@/components/ui/AudioPlayer";
 import YoutubePlayer from "@/components/YoutubePlayer";
 import Theme from "../../styles/theme";
 import { View } from "react-native";
+import useDrawerTitle from "@/lib/hooks/useDrawerTitle";
 
 export default function SoundExercises() {
 	const [data, error, loading, retry] = useQuery<SoundExerciseQuery>(SoundExerciseDocument);

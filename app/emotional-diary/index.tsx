@@ -11,13 +11,12 @@ import {
 	Spacer,
 	List,
 } from "@/components/ui";
-import { FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { useQuery } from "../../lib/client";
 import { EmotionalDiaryDocument } from "../../graphql";
 import useStore from "../../lib/store";
-import { Link, useNavigation, useRouter } from "expo-router";
-import { formatDate } from "@/lib/utils";
+import { useNavigation, useRouter } from "expo-router";
 import Theme from "@/styles/theme";
 
 export default function EmotionalDiary() {

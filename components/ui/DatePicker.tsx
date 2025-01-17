@@ -20,7 +20,7 @@ export const DatePicker = ({
 	const [show, setShow] = useState(false);
 
 	const handleOnChange = (e: any) => {
-		slug && updateData({ [slug]: e.date });
+		slug && updateData({ [slug]: new Date(e.date).toString() });
 		setShow(false);
 	};
 

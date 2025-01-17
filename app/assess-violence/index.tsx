@@ -4,6 +4,7 @@ import { AssessViolenceDocument } from "@/graphql";
 
 export default function AssessViolence() {
 	const [data, error, loading, retry] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
+
 	if (loading || error)
 		return (
 			<Loader
@@ -17,7 +18,7 @@ export default function AssessViolence() {
 
 	return (
 		<PageView>
-			<Spacer size="small"></Spacer>
+			<Spacer size='small'></Spacer>
 			<Header size='medium'>Skatta våld sedan senaste samtalet</Header>
 			{sovAssessViolence?.sinceLastSession.map(({ id, label, slug, min, max }) => (
 				<SliderInput
@@ -29,7 +30,7 @@ export default function AssessViolence() {
 					max={max}
 				/>
 			))}
-			<Spacer size="medium"></Spacer>
+			<Spacer size='medium'></Spacer>
 			<Header size='medium'>Andra bekymmer och problem</Header>
 			{sovAssessViolence?.otherProblems.map(({ id, label, slug, min, max }) => (
 				<SliderInput

@@ -1,8 +1,6 @@
 import { Paragraph, PageView, Loader, TextInput, Button } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { TakeCareOfYourselfDocument } from "@/graphql";
-import Theme from "@/styles/theme";
-import { useState } from "react";
 import useStore from "../../lib/store";
 
 export default function TekeCareOfMyself() {
