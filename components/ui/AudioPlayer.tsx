@@ -1,4 +1,4 @@
-import { AVPlaybackStatusSuccess, Audio } from "expo-av";
+import { AVPlaybackStatus, AVPlaybackStatusSuccess, Audio } from "expo-av";
 import { View, Text, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
 import React, { useEffect, useRef } from "react";
@@ -9,36 +9,30 @@ import Theme from "@/styles/theme";
 export default function AudioPlayer({ src }: { src: string }) {
 	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
 	const [error, setError] = React.useState<string | null>(null);
-	const soundRef = useRef<any>(null);
+	const soundRef = useRef<Audio.Sound | null>(null);
 
-	useEffect(() => {
-		const loadAudio = async () => {
-			console.log("loading audio");
-			setError(null);
-			soundRef.current = null;
+	const loadAudio = async () => {
+		console.log("loading sound...");
+		setError(null);
+		soundRef.current = null;
 
-			try {
-				const { sound, status } = await Audio.Sound.createAsync(
-					{ uri: src },
-					{ isLooping: false, shouldPlay: false }
-				);
+		try {
+			const { sound, status } = await Audio.Sound.createAsync(
+				{ uri: src },
+				{ isLooping: false, shouldPlay: false }
+			);
+			soundRef.current = sound;
+		} catch (e) {
+			setError((e as Error).message);
+		}
+		soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
+			setStatus(status as AVPlaybackStatusSuccess);
+		});
+		console.log("done loading sound...");
+	};
 
-				soundRef.current = sound;
-			} catch (e) {
-				setError((e as Error).message);
-			}
-			soundRef.current.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatusSuccess) {
-				setStatus(status);
-			});
-		};
-
-		loadAudio();
-		return () => {
-			soundRef.current?.unloadAsync();
-		};
-	}, []);
-
-	const play = () => {
+	const play = async () => {
+		if (!status?.isLoaded) await loadAudio();
 		soundRef.current?.playAsync();
 	};
 
@@ -115,7 +109,7 @@ export const AudioPlayerView = ({
 			) : null}
 			<Ionicons
 				style={s.icon}
-				disabled={loading}
+				//disabled={loading}
 				name={!isPlaying ? "play" : "pause"}
 				size={28}
 				color={Theme.color.green}

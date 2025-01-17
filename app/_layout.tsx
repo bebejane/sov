@@ -15,11 +15,13 @@ import Animated, {
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import StatusBar from "@/components/StatusBar";
+import { RelativePathString, useRouter } from "expo-router";
 
-export type Menu = { name: string; options: any }[];
+export type Menu = { name: string; href: string; options: any }[];
 
 const menu: Menu = [
 	{
+		href: "/",
 		name: "index",
 		options: {
 			drawerLabel: "Hem",
@@ -27,54 +29,63 @@ const menu: Menu = [
 		},
 	},
 	{
-		name: "valued-direction/index",
+		href: "/valued-direction",
+		name: "valued-direction",
 		options: {
 			title: "Värderad riktning med mål",
 		},
 	},
 	{
-		name: "take-care-of-myself/index",
+		href: "/take-care-of-myself",
+		name: "take-care-of-myself",
 		options: {
 			title: "Ta hand om mig",
 		},
 	},
 	{
+		href: "/home-assignment",
 		name: "home-assignment",
 		options: {
 			title: "Hemmauppgift",
 		},
 	},
 	{
-		name: "assess-violence/index",
+		href: "/assess-violence",
+		name: "assess-violence",
 		options: {
 			title: "Skatta våld",
 		},
 	},
 	{
-		name: "sork/index",
+		href: "/sork",
+		name: "sork",
 		options: {
 			title: "Sork",
 		},
 	},
 	{
+		href: "/emotional-diary",
 		name: "emotional-diary",
 		options: {
 			title: "Enkel känslodagbok",
 		},
 	},
 	{
-		name: "sound-exercises/index",
+		href: "/sound-exercises",
+		name: "sound-exercises",
 		options: {
 			title: "Ljudövningar",
 		},
 	},
 	{
-		name: "maintenance-plan/index",
+		href: "/maintenance-plan",
+		name: "maintenance-plan",
 		options: {
 			title: "Vidmakthållandeplan",
 		},
 	},
 	{
+		href: "/stop-and-think",
 		name: "stop-and-think",
 		options: {
 			title: "Stop & Tänk Stegen",
@@ -86,7 +97,7 @@ const menu: Menu = [
 		...screen.options,
 		drawerLabel: screen.options.drawerLabel ?? screen.options.title,
 	},
-})) as { name: string; options: any }[];
+}));
 
 const groups = [
 	{
@@ -104,7 +115,7 @@ const groups = [
 	{
 		id: "other",
 		title: "Övrigt",
-		items: menu.slice(7, 10),
+		items: menu.slice(7),
 		open: false,
 	},
 ];
@@ -120,10 +131,10 @@ export default function Navigation() {
 						headerTintColor: Theme.color.green,
 					}}
 				>
-					{menu.map(({ name, options }) => (
+					{menu.map(({ href, options }) => (
 						<Drawer.Screen
-							key={name}
-							name={name}
+							key={href}
+							name={href}
 							options={{
 								...options,
 							}}
@@ -136,28 +147,31 @@ export default function Navigation() {
 }
 
 export function CustomDrawerContent(props: any) {
-	const home = menu.find((m) => m.name === "index");
+	const home = menu.find((m) => m.href === "/");
+	const router = useRouter();
 
 	return (
 		<DrawerContentScrollView
 			{...props}
 			scrollEnabled={true}
 		>
-			<DrawerItem
-				key={"home"}
-				label={home?.options.drawerLabel}
-				style={s.item}
-				activeTintColor={Theme.color.green}
-				labelStyle={s.label}
-				focused={props.state.routeNames[props.state.index] === "index"}
-				onPress={() => props.navigation.navigate(home?.name)}
-			/>
+			{home && (
+				<DrawerItem
+					key={"home"}
+					label={home?.options.drawerLabel}
+					style={s.item}
+					activeTintColor={Theme.color.green}
+					labelStyle={s.label}
+					focused={props.state.routeNames[props.state.index] === "index"}
+					onPress={() => router.push("/")}
+				/>
+			)}
 			{groups.map((g, i) => (
 				<DrawerGroup
 					key={i}
 					{...g}
 					active={props.state.routeNames[props.state.index]}
-					onPress={(name: string) => props.navigation.navigate(name)}
+					onPress={(href: RelativePathString) => router.push(href)}
 				/>
 			))}
 		</DrawerContentScrollView>
@@ -168,7 +182,7 @@ type DrawerGroupProps = {
 	title: string;
 	items: any[];
 	active: string;
-	onPress: (name: string) => void;
+	onPress: (name: RelativePathString) => void;
 };
 
 export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps) {
@@ -214,10 +228,10 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 				ref={ref}
 				style={[s.items, height !== null && animatedStyle]}
 			>
-				{items.map(({ name, options }) => (
+				{items.map(({ href, name, options }) => (
 					<DrawerItem
-						key={name}
-						route={name}
+						key={href}
+						route={href}
 						label={options.drawerLabel}
 						style={s.item}
 						activeTintColor={Theme.color.green}

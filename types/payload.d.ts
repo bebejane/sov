@@ -4053,12 +4053,12 @@ type focalPoint = {
   y: Scalars['FloatType']['output'];
 };
 
-type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null };
+type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null };
 
 type ValuedDirectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ValuedDirectionQuery = { __typename?: 'Query', sovValuedDirection?: { __typename?: 'SovValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, input: { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } | null } | null };
+type ValuedDirectionQuery = { __typename?: 'Query', sovValuedDirection?: { __typename?: 'SovValuedDirectionRecord', id: any, intro?: string | null, text?: string | null, input: { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }, image?: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null } | null } | null };
 
 type TakeCareOfYourselfQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4093,21 +4093,21 @@ type MaintanencePlanQuery = { __typename?: 'Query', sovMaintanencePlan?: { __typ
 type StopAndThinkStepsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null }> };
+type StopAndThinkStepsQuery = { __typename?: 'Query', sovStopAndThink?: { __typename?: 'SovStopAndThinkRecord', id: any } | null, allSovStopAndThinkTools: Array<{ __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null }> };
 
 type StopAndThinkToolQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ItemId']['input']>;
 }>;
 
 
-type StopAndThinkToolQuery = { __typename?: 'Query', sovStopAndThinkTool?: { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null } | null };
+type StopAndThinkToolQuery = { __typename?: 'Query', sovStopAndThinkTool?: { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null } | null };
 
 type EmotionalDiaryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type EmotionalDiaryQuery = { __typename?: 'Query', sovEmotionalDiary?: { __typename?: 'SovEmotionalDiaryRecord', id: any, inputs: Array<{ __typename: 'SovInputSliderRecord', id: any, label: string, text?: string | null, slug: string, min: any, max: any } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
-type StopAndThinkToolFragment = { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null };
+type StopAndThinkToolFragment = { __typename?: 'SovStopAndThinkToolRecord', id: any, title: string, description: string, content?: { __typename?: 'SovStopAndThinkToolModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'AudioBlockRecord', id: any, audio: { __typename?: 'FileField', url: string } } | { __typename: 'ImageBlockRecord', id: any, image: { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null } } | { __typename: 'TableBlockRecord', id: any, tableData?: any | null } | { __typename: 'TextInputBlockRecord', id: any, input?: { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string } | null }> } | null };
 
 type TextInputFragment = { __typename?: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string };
 

@@ -4,4 +4,7 @@ fragment MediaFragment on FileField {
 	alt
 	width
 	height
+	video {
+		streamingUrl
+	}
 }
