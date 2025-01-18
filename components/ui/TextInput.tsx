@@ -4,6 +4,7 @@ import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
 import React, { useState } from "react";
 import { Header } from "./Header";
+import { useSegments } from "expo-router";
 
 export const TextInput = ({
 	title,
@@ -16,12 +17,13 @@ export const TextInput = ({
 	slug: string | undefined | null;
 	placeholder?: string;
 }) => {
+	const [section] = useSegments();
 	const { updateData, data } = useStore();
 	const [isFocused, setIsFocused] = useState(false);
-	const [haveText, setHaveText] = useState(data[slug as string]?.length > 0);
+	const [haveText, setHaveText] = useState(data[section]?.[slug as string]?.length > 0);
 
 	const handleChangeText = (t: string) => {
-		slug && updateData({ [slug]: t });
+		slug && updateData({ [slug]: t }, section);
 		setHaveText(t?.length > 0);
 	};
 
@@ -54,7 +56,7 @@ export const TextInput = ({
 				multiline={true}
 				placeholder={placeholder}
 				onChangeText={handleChangeText}
-				defaultValue={slug ? data[slug] : undefined}
+				defaultValue={slug ? data[section]?.[slug] : undefined}
 				onFocus={() => setIsFocused(true)}
 				onBlur={() => setIsFocused(false)}
 			/>

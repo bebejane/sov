@@ -30,7 +30,7 @@ export default function SoundExercises() {
 					key={i}
 					style={{ marginBottom: Theme.margin }}
 				>
-					<Spacer size='line'></Spacer>
+					<Spacer size='line' />
 					<Header
 						size='medium'
 						margin='medium'

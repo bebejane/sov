@@ -1,6 +1,5 @@
 import { useNavigation } from "expo-router";
 import { StyleSheet, Text } from "react-native";
-
 import { Header, Loader, PageView, Spacer, Button } from "@/components/ui";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
@@ -8,7 +7,6 @@ import useStore from "@/lib/store";
 import { formatDate } from "@/lib/utils";
 import { useQuery } from "../../../lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
-import Theme from "@/styles/theme";
 import React from "react";
 
 export type Props = {

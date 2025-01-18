@@ -1,6 +1,7 @@
 import { Paragraph, PageView, Loader, Header, SliderInput, Spacer } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
+import { useEffect } from "react";
 
 export default function AssessViolence() {
 	const [data, error, loading, retry] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
@@ -18,7 +19,7 @@ export default function AssessViolence() {
 
 	return (
 		<PageView>
-			<Spacer size='small'></Spacer>
+			<Spacer size='small' />
 			<Header size='medium'>Skatta våld sedan senaste samtalet</Header>
 			{sovAssessViolence?.sinceLastSession.map(({ id, label, slug, min, max }) => (
 				<SliderInput
@@ -30,7 +31,7 @@ export default function AssessViolence() {
 					max={max}
 				/>
 			))}
-			<Spacer size='medium'></Spacer>
+			<Spacer size='medium' />
 			<Header size='medium'>Andra bekymmer och problem</Header>
 			{sovAssessViolence?.otherProblems.map(({ id, label, slug, min, max }) => (
 				<SliderInput

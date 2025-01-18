@@ -1,7 +1,8 @@
 import Slider from "@react-native-community/slider";
 import { Text } from "./Text";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useSegments } from "expo-router";
 import React from "react";
 import useStore from "../../lib/store";
 import Theme from "@/styles/theme";
@@ -19,14 +20,15 @@ export const SliderInput = ({
 	min: number;
 	max: number;
 }) => {
+	const [section] = useSegments();
 	const { updateData, data } = useStore();
-	const [value, setValue] = useState<number>(slug ? data[slug] : min);
+	const [value, setValue] = useState<number>(slug ? data[section]?.[slug] : min);
 
 	const handleOnChange = (step: number) => {
 		setValue(step);
 	};
 	useEffect(() => {
-		slug && updateData({ [slug]: value ?? min });
+		slug && updateData({ [slug]: value ?? min }, section);
 	}, [value]);
 
 	return (
@@ -70,7 +72,7 @@ const s = StyleSheet.create({
 	},
 	value: {
 		fontWeight: "bold",
-		color: Theme.color.green
+		color: Theme.color.green,
 	},
 	slider: { width: "100%", height: 40 },
 });

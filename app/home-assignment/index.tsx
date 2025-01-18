@@ -4,14 +4,15 @@ import { PageView, Loader, TextInput, Button, DatePicker, Spacer, List } from "@
 import { useQuery } from "@/lib/client";
 import { HomeAssignmentDocument } from "@/graphql";
 import useStore from "@/lib/store";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
 
 export default function HomeAssignment() {
+	const [section] = useSegments();
 	const router = useRouter();
 	const navigation = useNavigation();
 	const [data, error, loading, retry] = useQuery<HomeAssignmentQuery>(HomeAssignmentDocument);
-	const { updateData, data: storeData, resetKeys } = useStore();
+	const { updateData, data: storeData, resetKeys, reset } = useStore();
 	const assignments = storeData.assignments ?? [];
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ export default function HomeAssignment() {
 		const currentItem: { [key: string]: string | number } = {};
 
 		sovHomeAssignment?.inputs.forEach((item) => {
-			currentItem[item.slug] = storeData[item.slug];
+			currentItem[item.slug] = storeData[section]?.[item.slug];
 		});
 
 		let valid = true;
@@ -55,18 +56,16 @@ export default function HomeAssignment() {
 		};
 
 		sovHomeAssignment?.inputs.forEach((item) => {
-			currentItem[item.slug] = storeData[item.slug];
+			currentItem[item.slug] = storeData[section]?.[item.slug];
 		});
 
-		const data = {
-			assignments: [...assignments, currentItem].sort((a, b) =>
-				new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
-			),
-		};
-		console.log(currentItem);
-		const resetFields = sovHomeAssignment?.inputs.map((item) => item.slug);
-		updateData(data);
-		resetKeys(resetFields);
+		const ass = [...assignments, currentItem].sort((a, b) =>
+			new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
+		);
+
+		const resetFields = sovHomeAssignment?.inputs.map((item) => item.slug) as string[];
+		updateData(ass, "assignments");
+		resetKeys(resetFields, section);
 	};
 
 	return (

@@ -1,11 +1,13 @@
 import { PageView, Loader, Button, Header, TextInput, SliderInput } from "@/components/ui";
+import { Text } from "react-native";
 import { useQuery } from "@/lib/client";
 import { SorkDocument } from "@/graphql";
 import React from "react";
 import useStore from "../../lib/store";
-import useDrawerTitle from "@/lib/hooks/useDrawerTitle";
+import { useSegments } from "expo-router";
 
 export default function Sork() {
+	const [section] = useSegments();
 	const [data, error, loading, retry] = useQuery<SorkQuery>(SorkDocument);
 	const { updateData, data: storeData, resetKeys } = useStore();
 
@@ -19,6 +21,8 @@ export default function Sork() {
 		);
 
 	const { sovSork } = data;
+
+	if (!sovSork) return <Text>Det finns ingen data...</Text>;
 
 	return (
 		<PageView>
@@ -42,7 +46,16 @@ export default function Sork() {
 					/>
 				)
 			)}
-			<Button onPress={() => resetKeys(sovSork?.inputs.map((item) => item.slug))}>Rensa</Button>
+			<Button
+				onPress={() =>
+					resetKeys(
+						sovSork.inputs.map((item) => item.slug),
+						section
+					)
+				}
+			>
+				Rensa
+			</Button>
 		</PageView>
 	);
 }

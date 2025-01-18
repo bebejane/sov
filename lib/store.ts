@@ -20,19 +20,19 @@ export type Steps = string[]
 
 export interface StoreState {
   data: {
-    [key: string]: any
     diary?: Diary
     steps?: Steps
     assignments?: Assignments
+    [key: string]: any
   },
   theme: 'light' | 'dark',
   setTheme: (theme: 'light' | 'dark') => void,
   updateData: (data: any, section?: string) => void,
   reset: () => void
-  resetKeys: (keys?: string[]) => void
+  resetKeys: (keys: string[], section?: string) => void
 }
 
-const getData = async () => {
+const getData = async (): Promise<StoreState['data']> => {
   const fileData = await AsyncStorage.getItem('file')
   if (fileData) {
     const data = JSON.parse(fileData as string)
@@ -53,21 +53,22 @@ const useStore = create(persist<StoreState>((set, get) => ({
 
     let d = { ...get().data }
     if (section)
-      d[section] = { ...d[section], ...data }
+      d[section] = Array.isArray(data) ? data : { ...d[section], ...data }
     else
-      d = { ...d, ...data }
+      d = Array.isArray(data) ? data : { ...d, ...data }
 
     set((state) => ({ data: d }))
   },
   reset: () => set((state) => ({ data: {} })),
-  resetKeys: (keys) => {
+  resetKeys: (keys, section) => {
     if (!keys) return
 
     let d = get().data
     if (keys)
-      keys.forEach((key) => delete d[key])
+      keys.forEach((key) => section ? delete d[section][key] : delete d[key])
     else
       d = {}
+
     set((state) => ({ data: d }))
   },
 }), {

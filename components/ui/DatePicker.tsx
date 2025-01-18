@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import DatePickerElement from "react-native-ui-datepicker";
-
 import { Text, Button, Spacer } from "./";
+import DatePickerElement from "react-native-ui-datepicker";
 import Theme from "@/styles/theme";
 import useStore from "../../lib/store";
 import { useState } from "react";
 import { format } from "date-fns";
+import { useSegments } from "expo-router";
 
 export const DatePicker = ({
 	id,
@@ -16,15 +16,16 @@ export const DatePicker = ({
 	label?: string | undefined | null;
 	slug: string | undefined | null;
 }) => {
+	const [section] = useSegments();
 	const { updateData, data } = useStore();
 	const [show, setShow] = useState(false);
 
 	const handleOnChange = (e: any) => {
-		slug && updateData({ [slug]: new Date(e.date).toString() });
+		slug && updateData({ [slug]: new Date(e.date).toString() }, section);
 		setShow(false);
 	};
 
-	const date = slug && data[slug] ? new Date(data[slug]) : null;
+	const date = slug && data[section]?.[slug] ? new Date(data[section][slug]) : null;
 
 	return (
 		<>
@@ -34,7 +35,7 @@ export const DatePicker = ({
 			</Button>
 			{show && (
 				<>
-					<Spacer size='small'></Spacer>
+					<Spacer size='small' />
 					<DatePickerElement
 						mode={"single"}
 						date={date}
@@ -43,7 +44,7 @@ export const DatePicker = ({
 					/>
 				</>
 			)}
-			<Spacer size='medium'></Spacer>
+			<Spacer size='medium' />
 		</>
 	);
 };

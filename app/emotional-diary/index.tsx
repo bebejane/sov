@@ -1,25 +1,16 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
-import {
-	Button,
-	TextInput,
-	Header,
-	Text,
-	Loader,
-	SliderInput,
-	PageView,
-	Spacer,
-	List,
-} from "@/components/ui";
+import { Button, TextInput, Loader, SliderInput, PageView, Spacer, List } from "@/components/ui";
 import { StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { useQuery } from "../../lib/client";
 import { EmotionalDiaryDocument } from "../../graphql";
 import useStore from "../../lib/store";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, useRouter, useSegments } from "expo-router";
 import Theme from "@/styles/theme";
 
 export default function EmotionalDiary() {
+	const [section] = useSegments();
 	const navigation = useNavigation();
 	const router = useRouter();
 	const [data, error, loading, retry] = useQuery<EmotionalDiaryQuery>(EmotionalDiaryDocument);
@@ -34,7 +25,7 @@ export default function EmotionalDiary() {
 		const currentItem: { [key: string]: string | number } = {};
 
 		sovEmotionalDiary?.inputs.forEach((item) => {
-			currentItem[item.slug] = storeData[item.slug];
+			currentItem[item.slug] = storeData[section]?.[item.slug];
 		});
 
 		let valid = true;
@@ -56,18 +47,16 @@ export default function EmotionalDiary() {
 		};
 
 		sovEmotionalDiary?.inputs.forEach((item) => {
-			currentItem[item.slug] = storeData[item.slug];
+			currentItem[item.slug] = storeData[section]?.[item.slug];
 		});
 
-		const data = {
-			diary: [...items, currentItem].sort((a, b) =>
-				new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
-			),
-		};
+		const diary = [...items, currentItem].sort((a, b) =>
+			new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
+		);
 
-		const resetFields = sovEmotionalDiary?.inputs.map((item) => item.slug);
-		updateData(data);
-		resetKeys(resetFields);
+		const resetFields = sovEmotionalDiary?.inputs.map((item: any) => item.slug) as string[];
+		updateData(diary, "diary");
+		resetKeys(resetFields, section);
 	};
 
 	if (loading || error)
@@ -100,7 +89,6 @@ export default function EmotionalDiary() {
 					/>
 				)
 			)}
-
 			<Button
 				onPress={save}
 				disabled={!isValidItem()}
