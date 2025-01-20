@@ -264,14 +264,12 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 
 const s = StyleSheet.create({
 	headerContainer: {
-		display: "flex",
-		alignItems: "center",
 		backgroundColor: Theme.color.black,
 	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
 		color: Theme.color.white,
-		fontWeight: 600
+		fontWeight: 600,
 	},
 	hamburgerContainer: {
 		display: "flex",
