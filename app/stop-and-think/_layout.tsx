@@ -2,6 +2,7 @@ import { useQuery } from "@/lib/client";
 import { StopAndThinkStepsDocument } from "@/graphql";
 import { Stack } from "expo-router";
 import { StackHeaderBackButton } from "@/components/StackHeaderBackButton";
+import { StackHeader } from "../../components/StackHeader";
 
 export default function Layout() {
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
@@ -11,6 +12,7 @@ export default function Layout() {
 		<Stack
 			screenOptions={{
 				headerLeft: (props) => <StackHeaderBackButton {...props} />,
+				headerTitle: (props) => <StackHeader {...props} />,
 			}}
 		>
 			{tools?.map(({ id, title, description }, i) => (

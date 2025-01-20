@@ -2,6 +2,7 @@ import useStore from "@/lib/store";
 import { Stack } from "expo-router";
 import { formatDate } from "@/lib/utils";
 import { StackHeaderBackButton } from "@/components/StackHeaderBackButton";
+import { StackHeader } from "../../components/StackHeader";
 
 export default function Layout() {
 	const { data } = useStore();
@@ -11,6 +12,7 @@ export default function Layout() {
 		<Stack
 			screenOptions={{
 				headerLeft: (props) => <StackHeaderBackButton {...props} />,
+				headerTitle: (props) => <StackHeader {...props} />,
 			}}
 		>
 			{diary?.map(({ id, date }, i) => (
