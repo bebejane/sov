@@ -23,7 +23,7 @@ export default function ValuedDirectionWithGoal() {
 				label={sovValuedDirection?.input.label}
 			/>
 			<Paragraph>{sovValuedDirection?.text}</Paragraph>
-			<Image src={sovValuedDirection?.image?.url} />
+			<Image data={sovValuedDirection?.image as FileField} />
 		</PageView>
 	);
 }

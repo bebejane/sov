@@ -9,8 +9,7 @@ export default function StructuredContent({ content }: { content: any }) {
 		renderBlock({ record, adapter: { renderNode } }) {
 			switch (record?.__typename) {
 				case "ImageBlockRecord":
-					const { url } = record?.image as { url: string };
-					return renderNode("img", { src: url });
+					return renderNode("img", { image: JSON.stringify(record?.image) });
 				case "AudioBlockRecord":
 					const { url: src } = record?.audio as { url: string };
 					return renderNode("audio", { src });
@@ -34,7 +33,7 @@ export default function StructuredContent({ content }: { content: any }) {
 						return (
 							<Image
 								key={index}
-								src={node.attribs.src}
+								data={JSON.parse(unescape(node.attribs.image))}
 							/>
 						);
 					case "audio":
