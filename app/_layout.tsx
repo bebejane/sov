@@ -264,7 +264,7 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 
 const s = StyleSheet.create({
 	headerContainer: {
-		backgroundColor: Theme.color.black,
+		backgroundColor: Theme.color.green,
 	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
