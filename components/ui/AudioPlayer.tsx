@@ -129,6 +129,7 @@ export const AudioPlayerView = ({
 				</View>
 			) : null}
 			<Ionicons
+				style={s.icon}
 				name={!isPlaying ? "play" : "pause"}
 				size={28}
 				color={Theme.color.green}
