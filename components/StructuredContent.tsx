@@ -70,7 +70,7 @@ export default function StructuredContent({ content }: { content: any }) {
 					case "h5":
 					case "h6":
 						const h = parseInt(node.name.charAt(1));
-						const size = h <= 2 ? "medium" : "small";
+						const size = h <= 2 ? "medium" : "medium";
 						const margin = h === 1 ? "large" : h === 2 ? "medium" : "small";
 
 						return (

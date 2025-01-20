@@ -254,7 +254,7 @@ const s = StyleSheet.create({
 	},
 	header: {
 		fontSize: 16,
-		fontWeight: "bold",
+		fontWeight: 600,
 		marginBottom: 10,
 		marginTop: 20,
 		flex: 1,

@@ -43,6 +43,7 @@ const s = StyleSheet.create({
 	},
 	bullet: {
 		paddingRight: 0,
+		color: Theme.color.green,
 	},
 	text: {
 		flex: 1,

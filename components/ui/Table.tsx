@@ -24,6 +24,7 @@ export const Table = ({ data }: TableProps) => {
 				<Row
 					key={i}
 					textStyle={s.column}
+					style={s.text}
 					data={Object.keys(cols).map((key: string) => cols[key])}
 				/>
 			))}
@@ -34,20 +35,29 @@ export const Table = ({ data }: TableProps) => {
 const s = StyleSheet.create({
 	table: {
 		padding: 0,
+		verticalAlign: "top"
 	},
 	column: {
+		padding: Theme.padding / 2,
+	},
+	text: {
 		display: "flex",
 		alignItems: "flex-start",
-		padding: Theme.padding / 2,
+		justifyContent: "flex-start",
 	},
 	border: {
 		borderWidth: Theme.borderWidth,
 		borderColor: Theme.color.lightGreen,
 	},
 	header: {
-		backgroundColor: Theme.color.grey,
+		backgroundColor: Theme.color.lightGreen,
+		display: "flex",
+		alignItems: "flex-start",
+		justifyContent: "flex-start",
+
 	},
 	headerText: {
 		fontWeight: "bold",
-	},
+
+	}
 });
