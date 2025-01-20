@@ -35,7 +35,7 @@ export default function Home() {
 						</TouchableOpacity>
 					))}
 				</View>
-
+				<Spacer size="small"></Spacer>
 				<View style={s.list}>
 					<List
 						title='Hemmauppgifter'

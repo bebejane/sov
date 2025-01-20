@@ -211,16 +211,16 @@ const s = StyleSheet.create({
 	bar: {
 		top: 0,
 		left: 0,
-		width: 20,
+		width: 25,
 		height: "100%",
 		//background: `linear-gradient(0deg, ${Theme.color.green} 50%, ${Theme.color.lightGreen} 100%)`,
 		backgroundColor: Theme.color.green,
 		zIndex: 0,
 	},
 	left: {
-		marginLeft: Theme.margin * 2,
+		marginLeft: Theme.margin * 2.5,
 	},
 	right: {
-		marginRight: Theme.margin * 2,
+		marginRight: Theme.margin * 2.5,
 	},
 });
