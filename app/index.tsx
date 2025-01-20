@@ -48,18 +48,7 @@ export default function Home() {
 						</TouchableOpacity>
 					))}
 				</View>
-				<Spacer size='small'></Spacer>
-				<View style={s.list}>
-					<List
-						title='Hemmauppgifter'
-						onPress={(id) =>
-							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
-						}
-						items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
-						emptyText='Du finns hemmauppgifter sparade...'
-					/>
-				</View>
-				<Spacer />
+				<Spacer size='small' />
 				<View style={s.list}>
 					<List
 						title='Dagbok'
@@ -67,7 +56,18 @@ export default function Home() {
 							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
 						items={diary?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
-						emptyText='Du finns inga dagboks inlägg...'
+						emptyText='Du finns inga dagboks inlägg sparade...'
+					/>
+				</View>
+				<Spacer />
+				<View style={s.list}>
+					<List
+						title='Hemmauppgifter'
+						onPress={(id) =>
+							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
+						}
+						items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
+						emptyText='Du finns inga hemmauppgifter sparade...'
 					/>
 				</View>
 			</View>

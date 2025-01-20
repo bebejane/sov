@@ -1,21 +1,22 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { View } from "react-native";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Theme from "@/styles/theme";
-
+import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
+import {
+	DrawerContentComponentProps,
+	DrawerContentScrollView,
+	DrawerItem,
+} from "@react-navigation/drawer";
 import Animated, {
 	useSharedValue,
 	withTiming,
 	useAnimatedStyle,
 	Easing,
 } from "react-native-reanimated";
-
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import StatusBar from "@/components/StatusBar";
 import { RelativePathString, useRouter } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Theme from "@/styles/theme";
 
 export type Menu = { name: string; href: string; options: any }[];
 
@@ -128,9 +129,25 @@ export default function Navigation() {
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<Drawer
 					drawerContent={CustomDrawerContent}
-					screenOptions={{
+					screenOptions={({ navigation }) => ({
 						headerTintColor: Theme.color.green,
-					}}
+						headerStyle: { backgroundColor: Theme.color.green },
+						headerTitleStyle: { color: Theme.color.white },
+						headerTitle: (props) => <Text style={s.headerTitle}>{props.children}</Text>,
+						headerLeftContainerStyle: s.hamburgerContainer,
+						headerLeft: (props) => (
+							<TouchableOpacity
+								onPress={() => navigation.toggleDrawer()}
+								style={s.hamburger}
+							>
+								<Ionicons
+									name='menu'
+									size={30}
+									color={Theme.color.white}
+								/>
+							</TouchableOpacity>
+						),
+					})}
 				>
 					{menu.map(({ href, name, options }) => (
 						<Drawer.Screen
@@ -147,7 +164,7 @@ export default function Navigation() {
 	);
 }
 
-export function CustomDrawerContent(props: any) {
+export function CustomDrawerContent(props: DrawerContentComponentProps) {
 	const home = menu.find((m) => m.href === "/");
 	const router = useRouter();
 
@@ -247,6 +264,17 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 }
 
 const s = StyleSheet.create({
+	headerTitle: {
+		fontSize: Theme.fontSize.default,
+		color: Theme.color.white,
+	},
+	hamburgerContainer: {
+		margin: 0,
+		padding: 0,
+	},
+	hamburger: {
+		marginLeft: Theme.padding,
+	},
 	dropdown: {
 		flexDirection: "row",
 		alignItems: "center",

@@ -5,7 +5,7 @@ const { width, height, scale } = Dimensions.get('screen');
 const themeVars = {
   color: {
     black: '#141414',
-    white: '#FFFFFF',
+    white: '#ffffff',
     grey: '#ededed',
     greyDark: '#333333',
     error: '#8a0a01',
