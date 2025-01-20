@@ -42,7 +42,7 @@ export default function HomeAssignmentItem() {
 
 	return (
 		<PageView>
-			{sovHomeAssignment?.inputs.map(({ id, label, text, slug }, i) => (
+			{sovHomeAssignment?.inputs.map(({ __typename, id, label, text, slug }, i) => (
 				<React.Fragment key={i}>
 					<Header
 						size='medium'
@@ -50,7 +50,11 @@ export default function HomeAssignmentItem() {
 					>
 						{label}
 					</Header>
-					<Text>{assignment[slug]}</Text>
+					<Text>
+						{__typename === "SovInputDateRecord"
+							? formatDate(assignment[slug], true)
+							: assignment[slug]}
+					</Text>
 					<Spacer />
 				</React.Fragment>
 			))}
