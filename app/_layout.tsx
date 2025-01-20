@@ -131,7 +131,7 @@ export default function Navigation() {
 					drawerContent={CustomDrawerContent}
 					screenOptions={({ navigation }) => ({
 						headerTintColor: Theme.color.green,
-						headerStyle: { backgroundColor: Theme.color.green },
+						headerStyle: { backgroundColor: Theme.color.black },
 						headerTitleStyle: { color: Theme.color.white },
 						headerTitle: (props) => <Text style={s.headerTitle}>{props.children}</Text>,
 						headerLeftContainerStyle: s.hamburgerContainer,
