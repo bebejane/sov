@@ -5,7 +5,6 @@ import { useNavigation, useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export function StackHeaderBackButton(props: any) {
-	const navigation = useNavigation();
 	const router = useRouter();
 
 	return (

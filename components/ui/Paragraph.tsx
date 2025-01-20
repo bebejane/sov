@@ -1,7 +1,6 @@
 import { StyleSheet, Text } from "react-native";
 import Markdown from "react-native-markdown-display";
 import Theme from "@/styles/theme";
-import { hyphenateSwedish } from "../../lib/utils";
 
 export type Props = {
 	children: React.ReactNode | React.ReactNode[];

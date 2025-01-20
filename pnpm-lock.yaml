@@ -65,6 +65,9 @@ importers:
       hyphen:
         specifier: ^1.10.6
         version: 1.10.6
+      hyphenated:
+        specifier: ^1.2.0
+        version: 1.2.0
       hyphenation.sv:
         specifier: ^0.2.1
         version: 0.2.1
@@ -3075,6 +3078,14 @@ packages:
 
   hyphenate-style-name@1.1.0:
     resolution: {integrity: sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==}
+
+  hyphenated-en-us@1.2.0:
+    resolution: {integrity: sha512-Tz9OMog//SSMnIOK18MmRumfI+r0goJZZAAVJ1Itho7r9GSZcGrGiIZNYfScAW1hqvFJLu2yRh7haa0YF+8i/Q==}
+    engines: {node: '>=8'}
+
+  hyphenated@1.2.0:
+    resolution: {integrity: sha512-VxoFV6d2UFvniIBMEaWtVTZYYWJcPE5p8iGdO3GAfHd5q1qootRXTa43YHdW+Q0gdBr3WAwWRIJPkuWardc9wQ==}
+    engines: {node: '>=8'}
 
   hyphenation.sv@0.2.1:
     resolution: {integrity: sha512-FLyEczMzLEj/LU/EbvgG785ZLiQ9kt2L7BFm+m79IqWlVtniPtmBHC4zNeRRyhygtBhMRXu8e9+TukzLQrBeGg==}
@@ -9157,6 +9168,12 @@ snapshots:
 
   hyphenate-style-name@1.1.0:
     optional: true
+
+  hyphenated-en-us@1.2.0: {}
+
+  hyphenated@1.2.0:
+    dependencies:
+      hyphenated-en-us: 1.2.0
 
   hyphenation.sv@0.2.1:
     dependencies:

@@ -4,11 +4,19 @@ import Slider from "@react-native-community/slider";
 import React, { useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Animated, {
+	Easing,
+	useAnimatedStyle,
+	withRepeat,
+	withSequence,
+	withTiming,
+} from "react-native-reanimated";
 import Theme from "@/styles/theme";
 
 export default function AudioPlayer({ src }: { src: string }) {
 	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
 	const [error, setError] = React.useState<string | null>(null);
+	const [loading, setLoading] = React.useState(false);
 	const soundRef = useRef<Audio.Sound | null>(null);
 
 	const loadAudio = async () => {
@@ -32,7 +40,18 @@ export default function AudioPlayer({ src }: { src: string }) {
 	};
 
 	const play = async () => {
-		if (!status?.isLoaded) await loadAudio();
+		if (!status?.isLoaded) {
+			setLoading(true);
+			try {
+				await loadAudio();
+			} catch (e) {
+				setError((e as Error).message);
+				setLoading(false);
+				return;
+			}
+			setLoading(false);
+		}
+
 		soundRef.current?.playAsync();
 	};
 
@@ -44,7 +63,8 @@ export default function AudioPlayer({ src }: { src: string }) {
 		<AudioPlayerView
 			active={true}
 			playable={true}
-			loading={status?.isLoaded ? false : true}
+			loading={loading}
+			isLoaded={status?.isLoaded ? false : true}
 			isPlaying={status?.isPlaying ?? false}
 			playAudio={play}
 			pauseAudio={pause}
@@ -59,6 +79,7 @@ type AudioPlayerViewProps = {
 	active: boolean; // is player active
 	playable: boolean; // whether we can play the specific audio or not.
 	loading: boolean; // is audio loading inside create async
+	isLoaded: boolean; // is audio loaded
 	isPlaying: boolean; // is current audio playing
 	playAudio: () => void; // callback function to play the audio.
 	pauseAudio: () => void; // callback function to pause the audio
@@ -108,8 +129,6 @@ export const AudioPlayerView = ({
 				</View>
 			) : null}
 			<Ionicons
-				style={s.icon}
-				//disabled={loading}
 				name={!isPlaying ? "play" : "pause"}
 				size={28}
 				color={Theme.color.green}
