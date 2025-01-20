@@ -267,6 +267,7 @@ const s = StyleSheet.create({
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
 		color: Theme.color.white,
+		fontWeight: 600
 	},
 	hamburgerContainer: {
 		margin: 0,
