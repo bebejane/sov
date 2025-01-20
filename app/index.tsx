@@ -1,16 +1,23 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
-import Theme from "@/styles/theme";
 import { RelativePathString, useRouter } from "expo-router";
 import { Header, List, Spacer } from "@/components/ui";
 import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
+import Theme from "@/styles/theme";
 import useStore from "@/lib/store";
 
-const shortcuts: { name: string; route: string }[] = [
-	{ name: "Ljudövningar", route: "/sound-exercises" },
-	{ name: "Sork", route: "/sork" },
-	{ name: "Stop & Tänk stegen", route: "/stop-and-think" },
-	{ name: "Enkel känslodagbok", route: "/emotional-diary" },
+export type ShortCut = {
+	name: string;
+	route: string;
+	icon: keyof typeof Ionicons.glyphMap;
+};
+
+const shortcuts: ShortCut[] = [
+	{ name: "Ljudövningar", route: "/sound-exercises", icon: "headset" },
+	{ name: "Sork", route: "/sork", icon: "headset" },
+	{ name: "Stop & Tänk stegen", route: "/stop-and-think", icon: "headset" },
+	{ name: "Enkel känslodagbok", route: "/emotional-diary", icon: "headset" },
 ];
 
 export default function Home() {
@@ -24,7 +31,7 @@ export default function Home() {
 			<View style={s.container}>
 				<Header size='small'>GENVÄGAR</Header>
 				<View style={s.shortcuts}>
-					{shortcuts.map(({ name, route }) => (
+					{shortcuts.map(({ name, route, icon }) => (
 						<TouchableOpacity
 							style={s.button}
 							activeOpacity={0.5}
@@ -32,10 +39,16 @@ export default function Home() {
 							onPress={() => router.push(route as RelativePathString)}
 						>
 							<Text style={s.label}>{name}</Text>
+							<Ionicons
+								style={s.icon}
+								name={icon}
+								size={20}
+								color={Theme.color.black}
+							/>
 						</TouchableOpacity>
 					))}
 				</View>
-				<Spacer size="small"></Spacer>
+				<Spacer size='small'></Spacer>
 				<View style={s.list}>
 					<List
 						title='Hemmauppgifter'
@@ -78,8 +91,16 @@ const s = StyleSheet.create({
 		flexWrap: "wrap",
 		justifyContent: "space-between",
 		gap: Theme.padding / 2,
-		marginTop: - Theme.margin / 2,
+		marginTop: -Theme.margin / 2,
 		marginBottom: Theme.margin,
+	},
+	icon: {
+		position: "absolute",
+		right: 0,
+		bottom: 0,
+		color: Theme.color.white,
+		fontSize: 20,
+		margin: Theme.padding / 2,
 	},
 	button: {
 		flex: 1,
