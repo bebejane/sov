@@ -25,6 +25,7 @@ const s = StyleSheet.create({
 		letterSpacing: 1
 	},
 	medium: {
+		fontWeight: "bold",
 		fontSize: Theme.fontSize.default,
 	},
 	smallMargin: {

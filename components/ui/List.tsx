@@ -73,6 +73,7 @@ const s = StyleSheet.create({
 	text: {
 		flex: 1,
 		color: Theme.color.black,
+		fontWeight: 600
 	},
 	first: {
 		flex: 0,

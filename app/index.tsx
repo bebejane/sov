@@ -14,10 +14,10 @@ export type ShortCut = {
 };
 
 const shortcuts: ShortCut[] = [
-	{ name: "Ljudövningar", route: "/sound-exercises", icon: "headset" },
-	{ name: "Sork", route: "/sork", icon: "headset" },
-	{ name: "Stop & Tänk stegen", route: "/stop-and-think", icon: "headset" },
-	{ name: "Enkel känslodagbok", route: "/emotional-diary", icon: "headset" },
+	{ name: "Ljudövningar", route: "/sound-exercises", icon: "headset-outline" },
+	{ name: "Sork", route: "/sork", icon: "options-outline" },
+	{ name: "Stop & Tänk stegen", route: "/stop-and-think", icon: "hand-left-outline" },
+	{ name: "Enkel känslodagbok", route: "/emotional-diary", icon: "book-outline" },
 ];
 
 export default function Home() {
@@ -90,7 +90,7 @@ const s = StyleSheet.create({
 		flexDirection: "row",
 		flexWrap: "wrap",
 		justifyContent: "space-between",
-		gap: Theme.padding / 2,
+		gap: Theme.padding / 1.5,
 		marginTop: -Theme.margin / 2,
 		marginBottom: Theme.margin,
 	},
@@ -98,9 +98,9 @@ const s = StyleSheet.create({
 		position: "absolute",
 		right: 0,
 		bottom: 0,
-		color: Theme.color.white,
+		color: Theme.color.lightGreen,
 		fontSize: 20,
-		margin: Theme.padding / 2,
+		margin: Theme.padding / 1.5,
 	},
 	button: {
 		flex: 1,
@@ -109,11 +109,13 @@ const s = StyleSheet.create({
 		borderRadius: Theme.borderRadius,
 		flexBasis: "45%",
 		height: 140,
-		padding: Theme.padding / 1.5,
+		padding: Theme.padding / 1.2,
+		paddingTop: Theme.padding / 1.4,
 		backgroundColor: Theme.color.green,
 	},
 	label: {
 		color: Theme.color.white,
+		fontSize: Theme.fontSize.default,
 		fontWeight: 600,
 	},
 	list: {

@@ -89,7 +89,7 @@ export const menu: Menu = [
 		href: "/stop-and-think",
 		name: "stop-and-think",
 		options: {
-			title: "Stop & Tänk Stegen",
+			title: "Stop & Tänk stegen",
 		},
 	},
 ].map((screen) => ({

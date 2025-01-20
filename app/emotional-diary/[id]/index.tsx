@@ -45,7 +45,7 @@ export default function EmotionalDiaryItem() {
 			{sovEmotionalDiary?.inputs.map(({ id, label, text, slug }, i) => (
 				<React.Fragment key={i}>
 					<Header
-						size='small'
+						size='medium'
 						margin='small'
 					>
 						{label}
