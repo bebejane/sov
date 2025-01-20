@@ -168,6 +168,7 @@ const s = StyleSheet.create({
 	},
 	stepText: {
 		color: Theme.color.green,
+		fontWeight: 600,
 	},
 	stepTextEnabled: {
 		color: Theme.color.white,

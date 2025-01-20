@@ -49,6 +49,8 @@ const s = StyleSheet.create({
 	header: {
 		textTransform: "uppercase",
 		marginBottom: Theme.margin / 2,
+		fontSize: Theme.fontSize.smaller,
+		letterSpacing: 1,
 	},
 	empty: {
 		color: Theme.color.greyDark,

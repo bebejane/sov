@@ -22,7 +22,7 @@ export default function Home() {
 	return (
 		<>
 			<View style={s.container}>
-				<Header size='medium'>Genvägar</Header>
+				<Header size='small'>GENVÄGAR</Header>
 				<View style={s.shortcuts}>
 					{shortcuts.map(({ name, route }) => (
 						<TouchableOpacity
@@ -78,6 +78,7 @@ const s = StyleSheet.create({
 		flexWrap: "wrap",
 		justifyContent: "space-between",
 		gap: Theme.padding / 2,
+		marginTop: - Theme.margin / 2,
 		marginBottom: Theme.margin,
 	},
 	button: {

@@ -15,6 +15,7 @@ const themeVars = {
   fontSize: {
     default: 15,
     small: 14,
+    smaller: 13,
     medium: 17,
     large: 21,
   },

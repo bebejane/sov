@@ -20,7 +20,9 @@ const s = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	small: {
-		fontSize: Theme.fontSize.small,
+		fontSize: Theme.fontSize.smaller,
+		fontWeight: "normal",
+		letterSpacing: 1
 	},
 	medium: {
 		fontSize: Theme.fontSize.default,
