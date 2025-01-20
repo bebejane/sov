@@ -131,8 +131,7 @@ export default function Navigation() {
 					drawerContent={CustomDrawerContent}
 					screenOptions={({ navigation }) => ({
 						headerTintColor: Theme.color.green,
-						headerStyle: { backgroundColor: Theme.color.black },
-						headerTitleStyle: { color: Theme.color.white },
+						headerStyle: s.headerContainer,
 						headerTitle: (props) => <Text style={s.headerTitle}>{props.children}</Text>,
 						headerLeftContainerStyle: s.hamburgerContainer,
 						headerLeft: (props) => (
@@ -264,12 +263,19 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 }
 
 const s = StyleSheet.create({
+	headerContainer: {
+		display: "flex",
+		alignItems: "center",
+		backgroundColor: Theme.color.black,
+	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
 		color: Theme.color.white,
 		fontWeight: 600
 	},
 	hamburgerContainer: {
+		display: "flex",
+		alignItems: "center",
 		margin: 0,
 		padding: 0,
 	},
