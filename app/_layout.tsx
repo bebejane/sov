@@ -172,7 +172,6 @@ export function CustomDrawerContent(props: DrawerContentComponentProps) {
 		<DrawerContentScrollView
 			{...props}
 			scrollEnabled={true}
-			contentContainerStyle={{ backgroundColor: "pink", padding: 0, margin: 0 }}
 		>
 			{home && (
 				<DrawerItem
