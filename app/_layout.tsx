@@ -1,6 +1,6 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, View, Platform } from "react-native";
 import {
 	DrawerContentComponentProps,
 	DrawerContentScrollView,
@@ -15,6 +15,7 @@ import Animated, {
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import StatusBar from "@/components/StatusBar";
 import { RelativePathString, useRouter } from "expo-router";
+import Constants from "expo-constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
 
@@ -265,6 +266,7 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 const s = StyleSheet.create({
 	headerContainer: {
 		backgroundColor: Theme.color.green,
+		height: (Platform.OS === "ios" ? Constants.statusBarHeight : 0) + 60,
 	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
