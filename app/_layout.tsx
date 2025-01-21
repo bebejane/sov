@@ -172,6 +172,7 @@ export function CustomDrawerContent(props: DrawerContentComponentProps) {
 		<DrawerContentScrollView
 			{...props}
 			scrollEnabled={true}
+			contentContainerStyle={{ backgroundColor: "pink", padding: 0, margin: 0 }}
 		>
 			{home && (
 				<DrawerItem
@@ -309,6 +310,6 @@ const s = StyleSheet.create({
 		justifyContent: "center",
 		borderRadius: 0,
 		padding: 0,
-		height: 50,
+		margin: 0,
 	},
 });
