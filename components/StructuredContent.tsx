@@ -71,6 +71,7 @@ export default function StructuredContent({ content }: { content: any }) {
 						const h = parseInt(node.name.charAt(1));
 						const size = h <= 2 ? "medium" : "medium";
 						const margin = h === 1 ? "large" : h === 2 ? "medium" : "small";
+						const title = node.children?.find((n) => n.type === "text")?.data;
 
 						return (
 							<Header
@@ -78,13 +79,12 @@ export default function StructuredContent({ content }: { content: any }) {
 								size={size}
 								margin={margin}
 							>
-								{node.children?.[0]?.data}
+								{title}
 							</Header>
 						);
 					case "p":
-						if (!node.children?.[0]?.data) {
-							return undefined;
-						}
+						if (!node.children?.[0]?.data) return undefined;
+
 						return (
 							<Paragraph
 								key={index}
