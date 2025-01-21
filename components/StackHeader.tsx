@@ -4,7 +4,12 @@ import { StyleSheet, View, Text } from "react-native";
 export function StackHeader(props: any) {
 	return (
 		<View style={s.headerContainer}>
-			<Text style={s.headerTitle}>{props.children}</Text>
+			<Text
+				style={s.headerTitle}
+				numberOfLines={1}
+			>
+				{props.children}
+			</Text>
 		</View>
 	);
 }

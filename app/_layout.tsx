@@ -13,8 +13,8 @@ import Animated, {
 	Easing,
 } from "react-native-reanimated";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import StatusBar from "@/components/StatusBar";
 import { RelativePathString, useRouter } from "expo-router";
+import StatusBar from "@/components/StatusBar";
 import Constants from "expo-constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
