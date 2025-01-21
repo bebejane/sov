@@ -1,4 +1,4 @@
-import { Paragraph, PageView, Loader, TextInput, Header, Spacer } from "@/components/ui";
+import { Paragraph, PageView, Loader, Header, Spacer } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { SoundExerciseDocument } from "@/graphql";
 import React from "react";
@@ -6,7 +6,6 @@ import AudioPlayer from "@/components/ui/AudioPlayer";
 import YoutubePlayer from "@/components/YoutubePlayer";
 import Theme from "../../styles/theme";
 import { View } from "react-native";
-import useDrawerTitle from "@/lib/hooks/useDrawerTitle";
 
 export default function SoundExercises() {
 	const [data, error, loading, retry] = useQuery<SoundExerciseQuery>(SoundExerciseDocument);
