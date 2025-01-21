@@ -55,7 +55,7 @@ export default function Home() {
 						onPress={(id) =>
 							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
-						items={diary?.map(({ id, date, situation, label }) => ({ id, date, label: situation }))}
+						items={diary?.map(({ id, date, situation: label }) => ({ id, date, label }))}
 						emptyText='Du finns inga dagboks inlägg sparade...'
 					/>
 				</View>
@@ -66,7 +66,11 @@ export default function Home() {
 						onPress={(id) =>
 							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
 						}
-						items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
+						items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({
+							id,
+							date,
+							label,
+						}))}
 						emptyText='Du finns inga hemmauppgifter sparade...'
 					/>
 				</View>

@@ -97,7 +97,7 @@ export default function HomeAssignment() {
 				onPress={(id) => router.navigate(`/home-assignment/${id}`)}
 				title='Hemuppgifter'
 				emptyText='Det finns inga hemuppgifter sparade...'
-				items={assignments?.map(({ id, date, label }) => ({ id, date, label }))}
+				items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({ id, date, label }))}
 			/>
 		</PageView>
 	);
