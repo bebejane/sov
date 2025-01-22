@@ -1,8 +1,9 @@
 {
 	"expo": {
-		"name": "sov",
+		"name": "S o V",
 		"slug": "sov",
-		"version": "1.0.0",
+		"version": "1.0.1",
+		"owner": "bebedigital",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
 		"scheme": "myapp",
@@ -15,16 +16,14 @@
 		},
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.anonymous.sov",
-			"permissions": ["ios.permission.RECORD_AUDIO", "ios.permission.MODIFY_AUDIO_SETTINGS"]
+			"bundleIdentifier": "org.name.sov"
 		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.anonymous.sov",
-			"permissions": ["android.permission.RECORD_AUDIO", "android.permission.MODIFY_AUDIO_SETTINGS"]
+			"package": "org.name.sov"
 		},
 		"web": {
 			"bundler": "metro",
@@ -42,7 +41,6 @@
 			"eas": {
 				"projectId": "2dcbd8a8-f808-4a19-85fb-eb2b0e3fec5a"
 			}
-		},
-		"owner": "bebedigital"
+		}
 	}
 }
