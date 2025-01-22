@@ -67,7 +67,7 @@ export default function HomeAssignment() {
 		updateData(ass, "assignments");
 		resetKeys(resetFields, section);
 	};
-	console.log(assignments);
+
 	return (
 		<PageView>
 			{sovHomeAssignment?.inputs.map((item) =>

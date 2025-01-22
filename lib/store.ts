@@ -36,7 +36,7 @@ const getData = async (): Promise<StoreState['data']> => {
   const fileData = await AsyncStorage.getItem('file')
   if (fileData) {
     const data = JSON.parse(fileData as string)
-    console.log(data)
+    //console.log(data)
     //await AsyncStorage.removeItem('file')
     //return data
   }

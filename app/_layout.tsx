@@ -1,4 +1,5 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Drawer } from "expo-router/drawer";
 import { Text, TouchableOpacity, StyleSheet, View, Platform } from "react-native";
 import {
@@ -125,7 +126,7 @@ const groups = [
 
 export default function Navigation() {
 	return (
-		<>
+		<SafeAreaProvider>
 			<StatusBar />
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<Drawer
@@ -166,7 +167,7 @@ export default function Navigation() {
 					))}
 				</Drawer>
 			</GestureHandlerRootView>
-		</>
+		</SafeAreaProvider>
 	);
 }
 
@@ -271,8 +272,6 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 
 const s = StyleSheet.create({
 	headerContainer: {
-		flex: 1,
-		alignItems: "center",
 		backgroundColor: Theme.color.green,
 		height: Platform.OS === "ios" ? Constants.statusBarHeight + 60 : 80,
 	},

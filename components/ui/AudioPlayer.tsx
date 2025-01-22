@@ -20,7 +20,6 @@ export default function AudioPlayer({ src }: { src: string }) {
 	const soundRef = useRef<Audio.Sound | null>(null);
 
 	const loadAudio = async () => {
-		console.log("loading sound...");
 		setError(null);
 		soundRef.current = null;
 
@@ -36,7 +35,6 @@ export default function AudioPlayer({ src }: { src: string }) {
 		soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
 			setStatus(status as AVPlaybackStatusSuccess);
 		});
-		console.log("done loading sound...");
 	};
 
 	const play = async () => {
