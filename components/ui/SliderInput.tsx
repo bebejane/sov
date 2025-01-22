@@ -1,6 +1,6 @@
 import Slider from "@react-native-community/slider";
 import { Text } from "./Text";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSegments } from "expo-router";
 import React from "react";
@@ -22,14 +22,18 @@ export const SliderInput = ({
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
-	const [value, setValue] = useState<number>(slug ? data[section]?.[slug] : min);
+	const [defaultValue, setDefaultValue] = useState<number>(slug ? data[section]?.[slug] : min);
+	const ref = React.useRef<any>(null);
+	const value = slug ? data[section]?.[slug] : 0;
 
 	const handleOnChange = (step: number) => {
-		setValue(step);
+		if (!slug) return;
+
+		if (ref.current) clearTimeout(ref.current);
+		ref.current = setTimeout(() => {
+			updateData({ [slug]: step }, section);
+		}, 100);
 	};
-	useEffect(() => {
-		slug && updateData({ [slug]: value ?? min }, section);
-	}, [value]);
 
 	return (
 		<View
@@ -43,7 +47,7 @@ export const SliderInput = ({
 			<Slider
 				key={id}
 				style={s.slider}
-				value={value}
+				value={defaultValue}
 				minimumValue={min}
 				maximumValue={max}
 				step={1}

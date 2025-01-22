@@ -131,9 +131,15 @@ export default function Navigation() {
 				<Drawer
 					drawerContent={CustomDrawerContent}
 					screenOptions={({ navigation }) => ({
+						swipeEdgeWidth: Platform.OS === "android" ? 0 : undefined,
 						headerTintColor: Theme.color.green,
 						headerStyle: s.headerContainer,
-						headerTitle: (props) => <Text style={s.headerTitle}>{props.children}</Text>,
+						headerTitleAlign: "center",
+						headerTitle: (props) => (
+							<View style={s.headerTitleContainer}>
+								<Text style={s.headerTitle}>{props.children}</Text>
+							</View>
+						),
 						headerLeftContainerStyle: s.hamburgerContainer,
 						headerLeft: (props) => (
 							<TouchableOpacity
@@ -265,8 +271,17 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 
 const s = StyleSheet.create({
 	headerContainer: {
+		flex: 1,
+		alignItems: "center",
 		backgroundColor: Theme.color.green,
-		height: (Platform.OS === "ios" ? Constants.statusBarHeight : 0) + 60,
+		height: Platform.OS === "ios" ? Constants.statusBarHeight + 60 : 80,
+	},
+	headerTitleContainer: {
+		flex: 1,
+		width: "100%",
+		height: "100%",
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
