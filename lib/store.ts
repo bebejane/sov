@@ -64,8 +64,9 @@ const useStore = create(persist<StoreState>((set, get) => ({
     if (!keys) return
 
     let d = get().data
+
     if (keys)
-      keys.forEach((key) => section ? delete d[section][key] : delete d[key])
+      keys.forEach((key) => section && d[section]?.[key] ? delete d[section][key] : delete d[key])
     else
       d = {}
 
