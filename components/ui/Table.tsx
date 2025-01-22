@@ -1,4 +1,4 @@
-import { Table as TableElement, Row, Rows } from "react-native-reanimated-table";
+import { Table as TableElement, Row } from "react-native-reanimated-table";
 import { StyleSheet } from "react-native";
 import Theme from "@/styles/theme";
 
@@ -35,9 +35,10 @@ export const Table = ({ data }: TableProps) => {
 const s = StyleSheet.create({
 	table: {
 		padding: 0,
-		verticalAlign: "top"
+		verticalAlign: "top",
 	},
 	column: {
+		flex: 1,
 		padding: Theme.padding / 2,
 	},
 	text: {
@@ -54,10 +55,8 @@ const s = StyleSheet.create({
 		display: "flex",
 		alignItems: "flex-start",
 		justifyContent: "flex-start",
-
 	},
 	headerText: {
 		fontWeight: "bold",
-
-	}
+	},
 });
