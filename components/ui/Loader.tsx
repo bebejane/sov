@@ -1,7 +1,10 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator } from "react-native";
+
 import { Text } from "./Text";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
+import { Button } from "./Button";
 
 type Props = {
 	loading: boolean;
@@ -12,17 +15,22 @@ type Props = {
 export const Loader = ({ loading, error, onRetry }: Props) => {
 	return (
 		<View style={s.view}>
-			{!error && loading && <Text>Loading...</Text>}
+			{!error && loading && (
+				<ActivityIndicator
+					size={50}
+					color={Theme.color.greyDark}
+				/>
+			)}
 			{error && (
 				<View style={s.error}>
-					<Text style={s.errorText}>Ett fel uppstod</Text>
-					<TouchableOpacity onPress={() => onRetry?.()}>
-						<Ionicons
-							name='refresh'
-							size={Theme.fontSize.large}
-							color={Theme.color.black}
-						/>
-					</TouchableOpacity>
+					<Text style={s.errorText}>Ett fel uppstod!</Text>
+					<Button
+						icon={"refresh"}
+						onPress={() => onRetry?.()}
+						size='large'
+					>
+						Försök igen
+					</Button>
 				</View>
 			)}
 		</View>
@@ -47,6 +55,7 @@ const s = StyleSheet.create({
 	},
 	errorText: {
 		color: Theme.color.black,
-		marginBottom: 10,
+		fontSize: Theme.fontSize.large,
+		marginBottom: 20,
 	},
 });

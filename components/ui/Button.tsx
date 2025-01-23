@@ -21,7 +21,6 @@ export function Button({
 	buttonStyles,
 	textStyles,
 	size = "full",
-	icon,
 }: Props) {
 	return (
 		<TouchableOpacity
@@ -30,13 +29,6 @@ export function Button({
 			onPress={onPress}
 			accessibilityLabel={label || "A Button"}
 		>
-			{icon && (
-				<Ionicons
-					name={icon}
-					size={20}
-					color={Theme.color.black}
-				/>
-			)}
 			<Text style={[s.text, textStyles]}>{children ?? label}</Text>
 		</TouchableOpacity>
 	);
@@ -44,9 +36,12 @@ export function Button({
 
 const s = StyleSheet.create({
 	container: {
-		flexDirection: "row",
+		flex: 0,
+		display: "flex",
+		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
+		textAlign: "center",
 		backgroundColor: Theme.color.green,
 		borderColor: Theme.color.green,
 		borderRadius: Theme.borderRadius,
