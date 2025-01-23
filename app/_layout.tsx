@@ -19,6 +19,7 @@ import StatusBar from "@/components/StatusBar";
 import Constants from "expo-constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
+import { SplashScreen } from "expo-router";
 
 export type Menu = { name: string; href: string; options: any }[];
 
