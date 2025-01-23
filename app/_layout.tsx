@@ -50,7 +50,7 @@ export const menu: Menu = [
 		href: "/home-assignment",
 		name: "home-assignment",
 		options: {
-			title: "Hemmauppgift",
+			title: "Hemuppgift",
 		},
 	},
 	{

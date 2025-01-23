@@ -6,6 +6,7 @@ import { HomeAssignmentDocument } from "@/graphql";
 import useStore from "@/lib/store";
 import { useNavigation, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
+import { Header } from "@react-navigation/elements";
 
 export default function HomeAssignment() {
 	const [section] = useSegments();
@@ -69,36 +70,38 @@ export default function HomeAssignment() {
 	};
 
 	return (
-		<PageView>
-			{sovHomeAssignment?.inputs.map((item) =>
-				item.__typename === "SovInputTextRecord" ? (
-					<TextInput
-						key={item.id}
-						slug={item.slug}
-						label={item.label}
-					/>
-				) : (
-					<DatePicker
-						key={item.id}
-						id={item.id}
-						label={item.label}
-						slug={item.slug}
-					/>
-				)
-			)}
-			<Button
-				disabled={!isValidItem()}
-				onPress={save}
-			>
-				Spara
-			</Button>
-			<Spacer />
-			<List
-				onPress={(id) => router.navigate(`/home-assignment/${id}`)}
-				title='Hemuppgifter'
-				emptyText='Det finns inga hemuppgifter sparade...'
-				items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({ id, date, label }))}
-			/>
-		</PageView>
+		<>
+			<PageView>
+				{sovHomeAssignment?.inputs.map((item) =>
+					item.__typename === "SovInputTextRecord" ? (
+						<TextInput
+							key={item.id}
+							slug={item.slug}
+							label={item.label}
+						/>
+					) : (
+						<DatePicker
+							key={item.id}
+							id={item.id}
+							label={item.label}
+							slug={item.slug}
+						/>
+					)
+				)}
+				<Button
+					disabled={!isValidItem()}
+					onPress={save}
+				>
+					Spara
+				</Button>
+				<Spacer />
+				<List
+					onPress={(id) => router.navigate(`/home-assignment/${id}`)}
+					title='Sparade Hemuppgifter'
+					emptyText='Det finns inga hemuppgifter sparade...'
+					items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({ id, date, label }))}
+				/>
+			</PageView>
+		</>
 	);
 }
