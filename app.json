@@ -21,7 +21,7 @@
 		},
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "org.name.sov"
+			"bundleIdentifier": "org.kt.sov"
 		},
 		"android": {
 			"adaptiveIcon": {

@@ -13,6 +13,7 @@ export default function Layout() {
 			screenOptions={{
 				headerLeft: (props) => <StackHeaderBackButton {...props} />,
 				headerTitle: (props) => <StackHeader {...props} />,
+				gestureEnabled: false,
 			}}
 		>
 			{tools?.map(({ id, title, description }, i) => (
