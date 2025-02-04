@@ -6,7 +6,6 @@ import { HomeAssignmentDocument } from "@/graphql";
 import useStore from "@/lib/store";
 import { useNavigation, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
-import { Header } from "@react-navigation/elements";
 
 export default function HomeAssignment() {
 	const [section] = useSegments();
@@ -99,7 +98,11 @@ export default function HomeAssignment() {
 					onPress={(id) => router.navigate(`/home-assignment/${id}`)}
 					title='Sparade Hemuppgifter'
 					emptyText='Det finns inga hemuppgifter sparade...'
-					items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({ id, date, label }))}
+					items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({
+						id,
+						date,
+						label,
+					}))}
 				/>
 			</PageView>
 		</>

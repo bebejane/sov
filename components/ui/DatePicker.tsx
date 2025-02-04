@@ -25,7 +25,7 @@ export const DatePicker = ({
 		setShow(false);
 	};
 
-	const date = slug && data[section]?.[slug] ? new Date(data[section][slug]) : null;
+	const date = slug && data[section]?.[slug] ? new Date(data[section][slug]) : undefined;
 
 	return (
 		<>

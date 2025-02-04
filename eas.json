@@ -1,7 +1,18 @@
 {
 	"build": {
-		"preview": {
+		"development": {
+			"ios": { "image": "latest" },
+			"developmentClient": true,
 			"distribution": "internal"
-		}
+		},
+		"preview": {
+			"ios": { "image": "latest" },
+			"developmentClient": false,
+			"distribution": "internal"
+		},
+		"production": {}
+	},
+	"submit": {
+		"production": {}
 	}
 }
