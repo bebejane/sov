@@ -18,7 +18,9 @@ export function useQuery<T>(query: any, options?: any): [data: T, error: Error |
   const [error, setError] = useState<Error | null>(null)
 
   const execute = () => {
+    setError(null)
     setLoading(true)
+
     executeQuery(query, options)
       .then((res) => {
         updateData(res)

@@ -123,7 +123,7 @@ export const AudioPlayerView = ({
 			{loading ? (
 				<ActivityIndicator
 					style={s.icon}
-					size={40}
+					size={28}
 					color={Theme.color.greyDark}
 				/>
 			) : (

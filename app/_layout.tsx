@@ -20,6 +20,7 @@ import Constants from "expo-constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Theme from "@/styles/theme";
 import { SplashScreen } from "expo-router";
+import useAppReady from "../lib/hooks/useAppReady";
 
 export type Menu = { name: string; href: string; options: any }[];
 
@@ -126,6 +127,8 @@ const groups = [
 ];
 
 export default function Navigation() {
+	const appReady = useAppReady({ delay: 1500 });
+
 	return (
 		<SafeAreaProvider>
 			<StatusBar />
