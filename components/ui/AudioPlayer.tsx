@@ -4,13 +4,7 @@ import Slider from "@react-native-community/slider";
 import React, { useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Animated, {
-	Easing,
-	useAnimatedStyle,
-	withRepeat,
-	withSequence,
-	withTiming,
-} from "react-native-reanimated";
+import { ActivityIndicator } from "react-native";
 import Theme from "@/styles/theme";
 
 export default function AudioPlayer({ src }: { src: string }) {
@@ -126,13 +120,21 @@ export const AudioPlayerView = ({
 					<Text>Not playable...</Text>
 				</View>
 			) : null}
-			<Ionicons
-				style={s.icon}
-				name={!isPlaying ? "play" : "pause"}
-				size={28}
-				color={Theme.color.green}
-				onPress={(e) => handleIconClick(e)}
-			/>
+			{loading ? (
+				<ActivityIndicator
+					style={s.icon}
+					size={40}
+					color={Theme.color.greyDark}
+				/>
+			) : (
+				<Ionicons
+					style={s.icon}
+					name={!isPlaying ? "play" : "pause"}
+					size={28}
+					color={Theme.color.green}
+					onPress={(e) => handleIconClick(e)}
+				/>
+			)}
 			<Slider
 				style={s.slider}
 				value={duration}
