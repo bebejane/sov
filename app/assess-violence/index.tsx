@@ -1,7 +1,6 @@
-import { Paragraph, PageView, Loader, Header, SliderInput, Spacer } from "@/components/ui";
+import { PageView, Loader, Header, SliderInput, Spacer } from "@/components/ui";
 import { useQuery } from "@/lib/client";
 import { AssessViolenceDocument } from "@/graphql";
-import { useEffect } from "react";
 
 export default function AssessViolence() {
 	const [data, error, loading, retry] = useQuery<AssessViolenceQuery>(AssessViolenceDocument);
@@ -10,7 +9,7 @@ export default function AssessViolence() {
 		return (
 			<Loader
 				loading={loading}
-				error={error}
+				error={"sad"}
 				onRetry={retry}
 			/>
 		);

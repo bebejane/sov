@@ -3,13 +3,14 @@ import { useQuery } from "@/lib/client";
 import { ValuedDirectionDocument } from "@/graphql";
 
 export default function ValuedDirectionWithGoal() {
-	const [data, error, loading] = useQuery<ValuedDirectionQuery>(ValuedDirectionDocument);
+	const [data, error, loading, retry] = useQuery<ValuedDirectionQuery>(ValuedDirectionDocument);
 
 	if (loading)
 		return (
 			<Loader
 				loading={loading}
 				error={error}
+				onRetry={retry}
 			/>
 		);
 
