@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "S o V",
 		"slug": "sov",
-		"version": "1.0.2",
+		"version": "1.0.3",
 		"owner": "bebedigital",
 		"orientation": "portrait",
 		"icon": "./assets/icons/icon.png",
