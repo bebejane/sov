@@ -73,6 +73,8 @@ const s = StyleSheet.create({
 		color: Theme.color.green,
 		fontSize: Theme.fontSize.small,
 		fontWeight: 600,
+		paddingBottom: Theme.margin / 2,
+
 	},
 	value: {
 		fontWeight: "bold",

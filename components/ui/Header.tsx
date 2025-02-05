@@ -22,7 +22,8 @@ const s = StyleSheet.create({
 	small: {
 		fontSize: Theme.fontSize.smaller,
 		fontWeight: "normal",
-		letterSpacing: 1
+		letterSpacing: 1,
+		textTransform: "uppercase"
 	},
 	medium: {
 		fontWeight: "bold",

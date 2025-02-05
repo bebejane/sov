@@ -44,20 +44,23 @@ export default function HomeAssignmentItem() {
 		<PageView>
 			{sovHomeAssignment?.inputs.map(({ __typename, id, label, text, slug }, i) => (
 				<React.Fragment key={i}>
+
 					<Header
-						size='medium'
+						size='small'
 						margin='small'
-					>
-						{label}
+					>{label}
 					</Header>
+
 					<Text>
 						{__typename === "SovInputDateRecord"
 							? formatDate(assignment[slug], true)
 							: assignment[slug]}
 					</Text>
-					<Spacer />
+					<Spacer size="medium" />
 				</React.Fragment>
 			))}
+			<Spacer size="medium" />
+
 			<Button
 				onPress={() => {
 					updateData({ assignments: storeData.assignments?.filter((item: any) => item.id !== id) });

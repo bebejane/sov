@@ -53,7 +53,7 @@ const s = StyleSheet.create({
 	text: {
 		color: Theme.color.green,
 		fontSize: Theme.fontSize.small,
-		fontWeight: 600,
+		fontWeight: 500,
 		marginBottom: Theme.margin / 2,
 	},
 	picker: {

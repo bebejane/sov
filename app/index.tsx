@@ -56,7 +56,7 @@ export default function Home() {
 							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
 						items={diary?.map(({ id, date, situation: label }) => ({ id, date, label }))}
-						emptyText='Du finns inga dagboks inlägg sparade...'
+						emptyText='Du finns inga dagboksinlägg sparade...'
 					/>
 				</View>
 				<Spacer />

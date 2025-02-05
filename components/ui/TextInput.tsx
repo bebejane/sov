@@ -49,9 +49,9 @@ export const TextInput = ({
 						backgroundColor: Theme.color.white,
 					},
 					isFocused &&
-						haveText && {
-							borderColor: Theme.color.green,
-						},
+					haveText && {
+						borderColor: Theme.color.green,
+					},
 				]}
 				multiline={true}
 				placeholder={placeholder}
@@ -68,9 +68,9 @@ const s = StyleSheet.create({
 	text: {
 		color: Theme.color.green,
 		fontSize: Theme.fontSize.small,
-		fontWeight: 600,
+		fontWeight: 500,
 		marginBottom: Theme.margin / 2,
-		lineHeight: 20,
+		lineHeight: Theme.lineHeight.default,
 	},
 	input: {
 		height: Theme.fontSize.default * 5,

@@ -13,9 +13,9 @@ const themeVars = {
     lightGreen: '#d3e6e3',
   },
   fontSize: {
-    default: 15,
-    small: 14,
-    smaller: 13,
+    default: 16,
+    small: 16,
+    smaller: 12,
     medium: 17,
     large: 21,
   },
