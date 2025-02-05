@@ -10,6 +10,7 @@
 		"web": "expo start --web",
 		"test": "jest --watchAll",
 		"prebuild": "pnpx expo prebuild --clean",
+		"build:local": "eas build --local --profile production --platform ios",
 		"build": "eas build --auto-submit --profile production --platform ios",
 		"codegen": "graphql-codegen --watch"
 	},
