@@ -32,7 +32,7 @@ export const SliderInput = ({
 		if (ref.current) clearTimeout(ref.current);
 		ref.current = setTimeout(() => {
 			updateData({ [slug]: step }, section);
-		}, 100);
+		}, 50);
 	};
 
 	return (
@@ -53,6 +53,7 @@ export const SliderInput = ({
 				step={1}
 				minimumTrackTintColor={Theme.color.green}
 				maximumTrackTintColor={Theme.color.grey}
+				thumbTintColor={Theme.color.green}
 				onValueChange={handleOnChange}
 			/>
 		</View>
@@ -74,7 +75,6 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.small,
 		fontWeight: 600,
 		paddingBottom: Theme.margin / 2,
-
 	},
 	value: {
 		fontWeight: "bold",

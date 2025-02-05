@@ -1,7 +1,7 @@
-import { StyleSheet, TextInput as TextInputElement } from "react-native";
+import { StyleSheet, TextInput as TextInputElement, Keyboard } from "react-native";
 import { Text } from "./Text";
 import Theme from "@/styles/theme";
-import useStore from "../../lib/store";
+import useStore from "@/lib/store";
 import React, { useState } from "react";
 import { Header } from "./Header";
 import { useSegments } from "expo-router";
@@ -49,9 +49,9 @@ export const TextInput = ({
 						backgroundColor: Theme.color.white,
 					},
 					isFocused &&
-					haveText && {
-						borderColor: Theme.color.green,
-					},
+						haveText && {
+							borderColor: Theme.color.green,
+						},
 				]}
 				multiline={true}
 				placeholder={placeholder}

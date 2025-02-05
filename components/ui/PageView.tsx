@@ -1,9 +1,14 @@
 import { StyleSheet, ScrollView as ScrollViewElement } from "react-native";
 import Theme from "@/styles/theme";
-import StatusBar from "../StatusBar";
+import { Spacer } from "./Spacer";
 
 export const PageView = ({ children, style }: { children?: any; style?: any }) => {
-	return <ScrollViewElement style={[s.view, style]}>{children}</ScrollViewElement>;
+	return (
+		<ScrollViewElement style={[s.view, style]}>
+			{children}
+			<Spacer size='large' />
+		</ScrollViewElement>
+	);
 };
 
 const s = StyleSheet.create({
@@ -11,7 +16,6 @@ const s = StyleSheet.create({
 		flex: 1,
 		flexDirection: "column",
 		padding: Theme.padding,
-		marginBottom: Theme.padding * 2,
 		backgroundColor: Theme.color.white,
 		width: Theme.screenWidth,
 		height: Theme.screenHeight,

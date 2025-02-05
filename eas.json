@@ -2,6 +2,9 @@
 	"build": {
 		"development": {
 			"ios": { "image": "latest" },
+			"android": {
+				"developmentClient": false
+			},
 			"distribution": "internal"
 		},
 		"preview": {

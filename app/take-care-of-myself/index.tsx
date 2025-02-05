@@ -1,4 +1,4 @@
-import { Paragraph, PageView, Loader, TextInput, Button } from "@/components/ui";
+import { Paragraph, PageView, Loader, TextInput, Button, Spacer } from "@/components/ui";
 import { Text } from "react-native";
 import { useQuery } from "@/lib/client";
 import { TakeCareOfYourselfDocument } from "@/graphql";

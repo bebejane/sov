@@ -17,6 +17,11 @@
 				"image": "./assets/icons/splash-icon.png",
 				"resizeMode": "contain",
 				"backgroundColor": "#FFFFFF"
+			},
+			"android": {
+				"image": "./assets/icons/splash-icon.png",
+				"resizeMode": "contain",
+				"backgroundColor": "#FFFFFF"
 			}
 		},
 		"ios": {

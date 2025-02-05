@@ -12,6 +12,7 @@ export default function AudioPlayer({ src }: { src: string }) {
 	const [error, setError] = React.useState<string | null>(null);
 	const [loading, setLoading] = React.useState(false);
 	const soundRef = useRef<Audio.Sound | null>(null);
+	const intervalRef = useRef<any | null>(null);
 
 	const loadAudio = async () => {
 		setError(null);
@@ -24,11 +25,24 @@ export default function AudioPlayer({ src }: { src: string }) {
 			);
 			soundRef.current = sound;
 		} catch (e) {
+			console.log(e);
 			setError((e as Error).message);
 		}
-		soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
-			setStatus(status as AVPlaybackStatusSuccess);
-		});
+		if (Platform.OS === "ios") {
+			soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
+				setStatus(status as AVPlaybackStatusSuccess);
+			});
+		} else if (Platform.OS === "android") {
+			const updatePlaybackStatus = async () => {
+				setStatus((await soundRef.current?.getStatusAsync()) as AVPlaybackStatusSuccess);
+			};
+
+			clearInterval(intervalRef.current);
+			intervalRef.current = setInterval(() => {
+				updatePlaybackStatus();
+			}, 500);
+			updatePlaybackStatus;
+		}
 	};
 
 	const play = async () => {
@@ -57,7 +71,7 @@ export default function AudioPlayer({ src }: { src: string }) {
 			playable={true}
 			loading={loading}
 			isLoaded={status?.isLoaded ? false : true}
-			isPlaying={status?.isPlaying ?? false}
+			isPlaying={status?.isPlaying ? true : false}
 			playAudio={play}
 			pauseAudio={pause}
 			totalDuration={status?.durationMillis ?? 0}

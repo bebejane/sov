@@ -62,20 +62,6 @@ export const menu: Menu = [
 		},
 	},
 	{
-		href: "/sork",
-		name: "sork/index",
-		options: {
-			title: "Sork",
-		},
-	},
-	{
-		href: "/emotional-diary",
-		name: "emotional-diary",
-		options: {
-			title: "Enkel känslodagbok",
-		},
-	},
-	{
 		href: "/sound-exercises",
 		name: "sound-exercises/index",
 		options: {
@@ -96,6 +82,20 @@ export const menu: Menu = [
 			title: "Stop & Tänk stegen",
 		},
 	},
+	{
+		href: "/sork",
+		name: "sork/index",
+		options: {
+			title: "Sork",
+		},
+	},
+	{
+		href: "/emotional-diary",
+		name: "emotional-diary",
+		options: {
+			title: "Enkel känslodagbok",
+		},
+	},
 ].map((screen) => ({
 	...screen,
 	options: {
@@ -109,20 +109,14 @@ const groups = [
 	{
 		id: "my-change",
 		title: "Min förändring",
-		items: menu.slice(1, 5),
+		items: menu.slice(1, 8),
 		open: true,
 	},
 	{
 		id: "diary",
 		title: "Dagbok mellan samtal",
-		items: menu.slice(5, 7),
+		items: menu.slice(8),
 		open: true,
-	},
-	{
-		id: "other",
-		title: "Övrigt",
-		items: menu.slice(7),
-		open: false,
 	},
 ];
 
