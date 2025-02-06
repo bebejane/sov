@@ -4,7 +4,10 @@ import { Spacer } from "./Spacer";
 
 export const PageView = ({ children, style }: { children?: any; style?: any }) => {
 	return (
-		<ScrollViewElement style={[s.view, style]}>
+		<ScrollViewElement
+			style={[s.view, style]}
+			automaticallyAdjustKeyboardInsets={true}
+		>
 			{children}
 			<Spacer size='large' />
 		</ScrollViewElement>
