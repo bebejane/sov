@@ -1,13 +1,13 @@
-import { useNavigation } from "expo-router";
-import { StyleSheet, Text } from "react-native";
-import { Header, Loader, PageView, Spacer, Button } from "@/components/ui";
-import { useLocalSearchParams } from "expo-router";
-import useStore from "@/lib/store";
-import { formatDate } from "@/lib/utils";
-import { useQuery } from "../../../lib/client";
-import { EmotionalDiaryDocument } from "@/graphql";
-import React from "react";
-import { useFocusEffect } from "expo-router";
+import { useNavigation } from 'expo-router';
+import { StyleSheet } from 'react-native';
+import { Header, Loader, PageView, Spacer, Button, Text } from '@/components/ui';
+import { useLocalSearchParams } from 'expo-router';
+import useStore from '@/lib/store';
+import { formatDate } from '@/lib/utils';
+import { useQuery } from '../../../lib/client';
+import { EmotionalDiaryDocument } from '@/graphql';
+import React from 'react';
+import { useFocusEffect } from 'expo-router';
 
 export type Props = {
 	params: {
@@ -27,14 +27,7 @@ export default function EmotionalDiaryItem() {
 		navigation.setOptions({ title: formatDate(diary.date) });
 	});
 
-	if (loading || error)
-		return (
-			<Loader
-				loading={loading}
-				error={error}
-				onRetry={retry}
-			/>
-		);
+	if (loading || error) return <Loader loading={loading} error={error} onRetry={retry} />;
 
 	if (!diary) return <Text>Hittade ej dagboksinlägg med id: {id}</Text>;
 
@@ -44,10 +37,7 @@ export default function EmotionalDiaryItem() {
 		<PageView>
 			{sovEmotionalDiary?.inputs.map(({ id, label, text, slug }, i) => (
 				<React.Fragment key={i}>
-					<Header
-						size='small'
-						margin='small'
-					>
+					<Header size='small' margin='small'>
 						{label}
 					</Header>
 					<Text>{diary[slug]}</Text>
