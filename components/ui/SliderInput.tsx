@@ -1,11 +1,10 @@
-import Slider from "@react-native-community/slider";
-import { Text } from "./Text";
-import { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { useSegments } from "expo-router";
-import React from "react";
-import useStore from "../../lib/store";
-import Theme from "@/styles/theme";
+import Slider from '@react-native-community/slider';
+import { Text } from './Text';
+import { StyleSheet, View } from 'react-native';
+import { useSegments } from 'expo-router';
+import React from 'react';
+import useStore from '@/lib/store';
+import Theme from '@/styles/theme';
 
 export const SliderInput = ({
 	id,
@@ -22,7 +21,7 @@ export const SliderInput = ({
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
-	const [defaultValue, setDefaultValue] = useState<number>(slug ? data[section]?.[slug] : min);
+	const defaultValue = slug ? data[section]?.[slug] : min;
 	const ref = React.useRef<any>(null);
 	const value = slug ? data[section]?.[slug] : 0;
 
@@ -36,13 +35,10 @@ export const SliderInput = ({
 	};
 
 	return (
-		<View
-			key={id}
-			style={s.container}
-		>
+		<View key={id} style={s.container}>
 			<View style={s.label}>
 				<Text style={s.title}>{label}</Text>
-				<Text style={s.value}>{value ?? "0"}</Text>
+				<Text style={s.value}>{value ?? '0'}</Text>
 			</View>
 			<Slider
 				key={id}
@@ -62,12 +58,12 @@ export const SliderInput = ({
 
 const s = StyleSheet.create({
 	container: {
-		width: "100%",
+		width: '100%',
 		paddingBottom: Theme.margin / 2,
 	},
 	label: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	title: {
 		flex: 1,
@@ -77,8 +73,8 @@ const s = StyleSheet.create({
 		paddingBottom: Theme.margin / 2,
 	},
 	value: {
-		fontWeight: "bold",
+		fontWeight: 'bold',
 		color: Theme.color.green,
 	},
-	slider: { width: "100%", height: 40 },
+	slider: { width: '100%', height: 40 },
 });
