@@ -62,7 +62,7 @@ export default function Home() {
 				<Spacer />
 				<View style={s.list}>
 					<List
-						title='Hemmauppgifter'
+						title='Hemuppgifter'
 						onPress={(id) =>
 							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
 						}
@@ -71,7 +71,7 @@ export default function Home() {
 							date,
 							label,
 						}))}
-						emptyText='Du finns inga hemmauppgifter sparade...'
+						emptyText='Du finns inga hemuppgifter sparade...'
 					/>
 				</View>
 			</View>
