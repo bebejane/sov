@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { StyleSheet } from "react-native";
-import { RelativePathString, useRouter } from "expo-router";
-import { Header, List, Spacer } from "@/components/ui";
-import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
-import Theme from "@/styles/theme";
-import useStore from "@/lib/store";
+import { View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { RelativePathString, useRouter } from 'expo-router';
+import { Header, List, Spacer, PageView } from '@/components/ui';
+import { StatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
+import Theme from '@/styles/theme';
+import useStore from '@/lib/store';
 
 export type ShortCut = {
 	name: string;
@@ -14,10 +14,10 @@ export type ShortCut = {
 };
 
 const shortcuts: ShortCut[] = [
-	{ name: "Ljudövningar", route: "/sound-exercises", icon: "headset-outline" },
-	{ name: "Sork", route: "/sork", icon: "options-outline" },
-	{ name: "Stop & Tänk stegen", route: "/stop-and-think", icon: "hand-left-outline" },
-	{ name: "Enkel känslodagbok", route: "/emotional-diary", icon: "book-outline" },
+	{ name: 'Ljudövningar', route: '/sound-exercises', icon: 'headset-outline' },
+	{ name: 'Sork', route: '/sork', icon: 'options-outline' },
+	{ name: 'Stop & Tänk stegen', route: '/stop-and-think', icon: 'hand-left-outline' },
+	{ name: 'Enkel känslodagbok', route: '/emotional-diary', icon: 'book-outline' },
 ];
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
 
 	return (
 		<>
-			<View style={s.container}>
+			<PageView style={s.container}>
 				<Header size='small'>GENVÄGAR</Header>
 				<View style={s.shortcuts}>
 					{shortcuts.map(({ name, route, icon }) => (
@@ -39,12 +39,7 @@ export default function Home() {
 							onPress={() => router.push(route as RelativePathString)}
 						>
 							<Text style={s.label}>{name}</Text>
-							<Ionicons
-								style={s.icon}
-								name={icon}
-								size={20}
-								color={Theme.color.black}
-							/>
+							<Ionicons style={s.icon} name={icon} size={20} color={Theme.color.black} />
 						</TouchableOpacity>
 					))}
 				</View>
@@ -55,7 +50,9 @@ export default function Home() {
 						onPress={(id) =>
 							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
-						items={diary?.map(({ id, date, situation: label }) => ({ id, date, label }))}
+						items={diary
+							?.slice(0, 2)
+							.map(({ id, date, situation: label }) => ({ id, date, label }))}
 						emptyText='Du finns inga dagboksinlägg sparade...'
 					/>
 				</View>
@@ -66,7 +63,7 @@ export default function Home() {
 						onPress={(id) =>
 							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
 						}
-						items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({
+						items={assignments?.slice(0, 2).map(({ id, date, 'vad-ska-jag-gora': label }) => ({
 							id,
 							date,
 							label,
@@ -74,11 +71,8 @@ export default function Home() {
 						emptyText='Du finns inga hemuppgifter sparade...'
 					/>
 				</View>
-			</View>
-			<StatusBar
-				backgroundColor={Theme.color.green}
-				style='auto'
-			/>
+			</PageView>
+			<StatusBar backgroundColor={Theme.color.green} style='auto' />
 		</>
 	);
 }
@@ -89,17 +83,17 @@ const s = StyleSheet.create({
 		padding: Theme.padding,
 	},
 	shortcuts: {
-		display: "flex",
-		width: "100%",
-		flexDirection: "row",
-		flexWrap: "wrap",
-		justifyContent: "space-between",
+		display: 'flex',
+		width: '100%',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
 		gap: Theme.padding / 1.5,
 		marginTop: -Theme.margin / 2,
 		marginBottom: Theme.margin,
 	},
 	icon: {
-		position: "absolute",
+		position: 'absolute',
 		right: 0,
 		bottom: 0,
 		color: Theme.color.lightGreen,
@@ -111,7 +105,7 @@ const s = StyleSheet.create({
 		flexShrink: 1,
 		flexGrow: 1,
 		borderRadius: Theme.borderRadius,
-		flexBasis: "45%",
+		flexBasis: '45%',
 		height: 140,
 		padding: Theme.padding / 1.2,
 		paddingTop: Theme.padding / 1.4,
@@ -123,8 +117,8 @@ const s = StyleSheet.create({
 		fontWeight: 600,
 	},
 	list: {
-		display: "flex",
-		flexDirection: "column",
+		display: 'flex',
+		flexDirection: 'column',
 	},
 	diaryItem: {},
 });
