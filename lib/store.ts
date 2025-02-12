@@ -18,11 +18,18 @@ export type Assignments = {
 
 export type Steps = string[]
 
+export type Sorks = {
+  id: string,
+  date: string,
+  [key: string]: any
+}[]
+
 export interface StoreState {
   data: {
     diary?: Diary
     steps?: Steps
     assignments?: Assignments
+    sorks?: Sorks
     [key: string]: any
   },
   theme: 'light' | 'dark',
@@ -66,7 +73,7 @@ const useStore = create(persist<StoreState>((set, get) => ({
     let d = get().data
 
     if (keys)
-      keys.forEach((key) => section && d[section]?.[key] ? delete d[section][key] : delete d[key])
+      keys.forEach((key) => section && d[section]?.[key] !== undefined ? delete d[section][key] : delete d[key])
     else
       d = {}
 
