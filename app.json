@@ -3,6 +3,7 @@
 		"name": "S o V",
 		"slug": "sov",
 		"version": "1.0.5",
+		"package": "org.kt.sov",
 		"owner": "bebedigital",
 		"orientation": "portrait",
 		"scheme": "myapp",
@@ -29,8 +30,7 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/icons/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
-			},
-			"package": "org.kt.sov"
+			}
 		},
 		"web": {
 			"bundler": "metro",

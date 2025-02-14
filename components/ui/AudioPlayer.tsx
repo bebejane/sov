@@ -1,11 +1,11 @@
-import { AVPlaybackStatus, AVPlaybackStatusSuccess, Audio } from "expo-av";
-import { View, Text, StyleSheet } from "react-native";
-import Slider from "@react-native-community/slider";
-import React, { useEffect, useRef } from "react";
-import { Platform } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { ActivityIndicator } from "react-native";
-import Theme from "@/styles/theme";
+import { AVPlaybackStatus, AVPlaybackStatusSuccess, Audio } from 'expo-av';
+import { View, Text, StyleSheet } from 'react-native';
+import Slider from '@react-native-community/slider';
+import React, { useEffect, useRef } from 'react';
+import { Platform } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { ActivityIndicator } from 'react-native';
+import Theme from '@/styles/theme';
 
 export default function AudioPlayer({ src }: { src: string }) {
 	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
@@ -28,20 +28,23 @@ export default function AudioPlayer({ src }: { src: string }) {
 			console.log(e);
 			setError((e as Error).message);
 		}
-		if (Platform.OS === "ios") {
+		if (Platform.OS === 'ios') {
 			soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
 				setStatus(status as AVPlaybackStatusSuccess);
 			});
-		} else if (Platform.OS === "android") {
+		} else if (Platform.OS === 'android') {
 			const updatePlaybackStatus = async () => {
-				setStatus((await soundRef.current?.getStatusAsync()) as AVPlaybackStatusSuccess);
+				const status = (await soundRef.current?.getStatusAsync()) as AVPlaybackStatusSuccess;
+				console.log(status.isPlaying);
+				setStatus(status);
 			};
 
 			clearInterval(intervalRef.current);
 			intervalRef.current = setInterval(() => {
 				updatePlaybackStatus();
 			}, 500);
-			updatePlaybackStatus;
+
+			updatePlaybackStatus();
 		}
 	};
 
@@ -106,7 +109,7 @@ export const AudioPlayerView = ({
 	duration,
 }: AudioPlayerViewProps) => {
 	const handleIconClick = (e: any) => {
-		if (Platform.OS === "web") {
+		if (Platform.OS === 'web') {
 			e?.preventDefault();
 			e?.stopPropagation();
 		}
@@ -120,11 +123,11 @@ export const AudioPlayerView = ({
 
 	function audioDuration(currentDuration: number) {
 		if (totalDuration == 0) {
-			return "00:00";
+			return '00:00';
 		}
 		const minutes = Math.floor((totalDuration - currentDuration) / 60000);
 		const seconds = parseInt((((totalDuration - currentDuration) % 60000) / 1000).toFixed(0));
-		return `-${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+		return `-${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	}
 
 	return (
@@ -135,15 +138,11 @@ export const AudioPlayerView = ({
 				</View>
 			) : null}
 			{loading ? (
-				<ActivityIndicator
-					style={s.icon}
-					size={28}
-					color={Theme.color.greyDark}
-				/>
+				<ActivityIndicator style={s.icon} size={28} color={Theme.color.greyDark} />
 			) : (
 				<Ionicons
 					style={s.icon}
-					name={!isPlaying ? "play" : "pause"}
+					name={!isPlaying ? 'play' : 'pause'}
 					size={28}
 					color={Theme.color.green}
 					onPress={(e) => handleIconClick(e)}
@@ -168,9 +167,9 @@ export const AudioPlayerView = ({
 const s = StyleSheet.create({
 	view: {
 		flex: 1,
-		flexDirection: "row",
-		alignItems: "center",
-		width: "100%",
+		flexDirection: 'row',
+		alignItems: 'center',
+		width: '100%',
 		height: 70,
 		backgroundColor: Theme.color.lightGreen,
 		borderRadius: Theme.borderRadius,
