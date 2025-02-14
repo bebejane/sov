@@ -2,7 +2,7 @@ import Slider from '@react-native-community/slider';
 import { Text } from './Text';
 import { StyleSheet, View } from 'react-native';
 import { useSegments } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import useStore from '@/lib/store';
 import Theme from '@/styles/theme';
 
@@ -21,17 +21,12 @@ export const SliderInput = ({
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
-	const defaultValue = slug ? data[section]?.[slug] : min;
-	const ref = React.useRef<any>(null);
+	const [defaultValue, seDefaultValue] = useState(slug ? data[section]?.[slug] : 0);
 	const value = slug ? data[section]?.[slug] : 0;
 
 	const handleOnChange = (step: number) => {
 		if (!slug) return;
-
-		if (ref.current) clearTimeout(ref.current);
-		ref.current = setTimeout(() => {
-			updateData({ [slug]: step }, section);
-		}, 50);
+		updateData({ [slug]: step }, section);
 	};
 
 	return (

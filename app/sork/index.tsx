@@ -1,28 +1,24 @@
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
-import {
-	PageView,
-	Loader,
-	Button,
-	Header,
-	TextInput,
-	SliderInput,
-	Spacer,
-	List,
-} from '@/components/ui';
+import { PageView, Loader, Button, TextInput, SliderInput, Spacer, List } from '@/components/ui';
 import { Text } from 'react-native';
 import { useQuery } from '@/lib/client';
 import { SorkDocument } from '@/graphql';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStore from '@/lib/store';
-import { useRouter, useSegments } from 'expo-router';
+import { useNavigation, useRouter, useSegments } from 'expo-router';
 
 export default function Sork() {
 	const [section] = useSegments();
 	const router = useRouter();
+	const navigation = useNavigation();
 	const [data, error, loading, retry] = useQuery<SorkQuery>(SorkDocument);
 	const { updateData, data: storeData, resetKeys } = useStore();
 	const items = storeData.sorks ?? [];
+
+	useEffect(() => {
+		navigation.setOptions({ headerShown: false });
+	}, [data]);
 
 	if (loading || error) return <Loader loading={loading} error={error} onRetry={retry} />;
 
@@ -66,7 +62,6 @@ export default function Sork() {
 		resetKeys(resetFields, section);
 	};
 
-	console.log(items);
 	return (
 		<PageView>
 			{sovSork?.inputs.map((item) =>

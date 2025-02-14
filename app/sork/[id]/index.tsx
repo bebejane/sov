@@ -21,10 +21,12 @@ export default function SorkItem() {
 	const id = useLocalSearchParams().id as string;
 	const { data: storeData, updateData } = useStore();
 	const sork = storeData.sorks?.find((item: any) => id === item.id);
+	const titleKey = Object.keys(sork ?? {}).find((key: string) => key.toLowerCase() === 'situation');
+	const title = titleKey ? sork?.[titleKey] : 'Ingen titel...';
 
 	useFocusEffect(() => {
 		if (!sork) return;
-		navigation.setOptions({ title: formatDate(sork.date) });
+		navigation.setOptions({ title });
 	});
 
 	if (loading || error) return <Loader loading={loading} error={error} onRetry={retry} />;

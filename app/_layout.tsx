@@ -1,98 +1,98 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Drawer } from "expo-router/drawer";
-import { Text, TouchableOpacity, StyleSheet, View, Platform } from "react-native";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Drawer } from 'expo-router/drawer';
+import { Text, TouchableOpacity, StyleSheet, View, Platform } from 'react-native';
 import {
 	DrawerContentComponentProps,
 	DrawerContentScrollView,
 	DrawerItem,
-} from "@react-navigation/drawer";
+} from '@react-navigation/drawer';
 import Animated, {
 	useSharedValue,
 	withTiming,
 	useAnimatedStyle,
 	Easing,
-} from "react-native-reanimated";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { RelativePathString, useRouter } from "expo-router";
-import StatusBar from "@/components/StatusBar";
-import Constants from "expo-constants";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Theme from "@/styles/theme";
-import useAppReady from "../lib/hooks/useAppReady";
+} from 'react-native-reanimated';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { RelativePathString, useRouter } from 'expo-router';
+import StatusBar from '@/components/StatusBar';
+import Constants from 'expo-constants';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Theme from '@/styles/theme';
+import useAppReady from '../lib/hooks/useAppReady';
 
 export type Menu = { name: string; href: string; options: any }[];
 
 export const menu: Menu = [
 	{
-		href: "/",
-		name: "index",
+		href: '/',
+		name: 'index',
 		options: {
-			title: "Samtal om Våld",
-			drawerLabel: "Hem",
+			title: 'Samtal om Våld',
+			drawerLabel: 'Hem',
 		},
 	},
 	{
-		href: "/valued-direction",
-		name: "valued-direction/index",
+		href: '/valued-direction',
+		name: 'valued-direction/index',
 		options: {
-			title: "Värderad riktning med mål",
+			title: 'Värderad riktning med mål',
 		},
 	},
 	{
-		href: "/take-care-of-myself",
-		name: "take-care-of-myself/index",
+		href: '/take-care-of-myself',
+		name: 'take-care-of-myself/index',
 		options: {
-			title: "Ta hand om mig",
+			title: 'Ta hand om mig',
 		},
 	},
 	{
-		href: "/home-assignment",
-		name: "home-assignment",
+		href: '/home-assignment',
+		name: 'home-assignment',
 		options: {
-			title: "Hemuppgift",
+			title: 'Hemuppgift',
 		},
 	},
 	{
-		href: "/assess-violence",
-		name: "assess-violence/index",
+		href: '/assess-violence',
+		name: 'assess-violence/index',
 		options: {
-			title: "Skatta våld",
+			title: 'Skatta våld',
 		},
 	},
 	{
-		href: "/sound-exercises",
-		name: "sound-exercises/index",
+		href: '/sound-exercises',
+		name: 'sound-exercises/index',
 		options: {
-			title: "Ljudövningar",
+			title: 'Ljudövningar',
 		},
 	},
 	{
-		href: "/maintenance-plan",
-		name: "maintenance-plan/index",
+		href: '/maintenance-plan',
+		name: 'maintenance-plan/index',
 		options: {
-			title: "Vidmakthållandeplan",
+			title: 'Vidmakthållandeplan',
 		},
 	},
 	{
-		href: "/stop-and-think",
-		name: "stop-and-think",
+		href: '/stop-and-think',
+		name: 'stop-and-think',
 		options: {
-			title: "Stop & Tänk stegen",
+			title: 'Stop & Tänk stegen',
 		},
 	},
 	{
-		href: "/sork",
-		name: "sork/index",
+		href: '/sork',
+		name: 'sork',
 		options: {
-			title: "Sork",
+			title: 'Sork',
 		},
 	},
 	{
-		href: "/emotional-diary",
-		name: "emotional-diary",
+		href: '/emotional-diary',
+		name: 'emotional-diary',
 		options: {
-			title: "Enkel känslodagbok",
+			title: 'Enkel känslodagbok',
 		},
 	},
 ].map((screen) => ({
@@ -106,14 +106,14 @@ export const menu: Menu = [
 
 const groups = [
 	{
-		id: "my-change",
-		title: "Min förändring",
+		id: 'my-change',
+		title: 'Min förändring',
 		items: menu.slice(1, 8),
 		open: true,
 	},
 	{
-		id: "diary",
-		title: "Dagbok mellan samtal",
+		id: 'diary',
+		title: 'Dagbok mellan samtal',
 		items: menu.slice(8),
 		open: true,
 	},
@@ -129,10 +129,10 @@ export default function Navigation() {
 				<Drawer
 					drawerContent={CustomDrawerContent}
 					screenOptions={({ navigation }) => ({
-						swipeEdgeWidth: Platform.OS === "android" ? 0 : undefined,
+						swipeEdgeWidth: Platform.OS === 'android' ? 0 : undefined,
 						headerTintColor: Theme.color.green,
 						headerStyle: s.headerContainer,
-						headerTitleAlign: "center",
+						headerTitleAlign: 'center',
 						headerTitle: (props) => (
 							<View style={s.headerTitleContainer}>
 								<Text style={s.headerTitle}>{props.children}</Text>
@@ -140,15 +140,8 @@ export default function Navigation() {
 						),
 						headerLeftContainerStyle: s.hamburgerContainer,
 						headerLeft: (props) => (
-							<TouchableOpacity
-								onPress={() => navigation.toggleDrawer()}
-								style={s.hamburger}
-							>
-								<Ionicons
-									name='menu'
-									size={30}
-									color={Theme.color.white}
-								/>
+							<TouchableOpacity onPress={() => navigation.toggleDrawer()} style={s.hamburger}>
+								<Ionicons name='menu' size={30} color={Theme.color.white} />
 							</TouchableOpacity>
 						),
 					})}
@@ -169,23 +162,20 @@ export default function Navigation() {
 }
 
 export function CustomDrawerContent(props: DrawerContentComponentProps) {
-	const home = menu.find((m) => m.href === "/");
+	const home = menu.find((m) => m.href === '/');
 	const router = useRouter();
 
 	return (
-		<DrawerContentScrollView
-			{...props}
-			scrollEnabled={true}
-		>
+		<DrawerContentScrollView {...props} scrollEnabled={true}>
 			{home && (
 				<DrawerItem
-					key={"home"}
+					key={'home'}
 					label={home?.options.drawerLabel}
 					style={s.item}
 					activeTintColor={Theme.color.green}
 					labelStyle={s.label}
-					focused={props.state.routeNames[props.state.index] === "index"}
-					onPress={() => router.push("/")}
+					focused={props.state.routeNames[props.state.index] === 'index'}
+					onPress={() => router.push('/')}
 				/>
 			)}
 			{groups.map((g, i) => (
@@ -232,24 +222,18 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 
 	return (
 		<View key={title}>
-			<TouchableOpacity
-				onPress={() => setOpen(!open)}
-				key={title}
-			>
+			<TouchableOpacity onPress={() => setOpen(!open)} key={title}>
 				<View style={s.dropdown}>
 					<Text style={s.header}>{title}</Text>
 					<Ionicons
 						style={s.arrow}
-						name={open ? "chevron-down" : "chevron-up"}
+						name={open ? 'chevron-down' : 'chevron-up'}
 						size={16}
 						color='black'
 					/>
 				</View>
 			</TouchableOpacity>
-			<Animated.View
-				ref={ref}
-				style={[s.items, height !== null && animatedStyle]}
-			>
+			<Animated.View ref={ref} style={[s.items, height !== null && animatedStyle]}>
 				{items.map(({ href, name, options }) => (
 					<DrawerItem
 						key={href}
@@ -270,14 +254,14 @@ export function DrawerGroup({ title, items, active, onPress }: DrawerGroupProps)
 const s = StyleSheet.create({
 	headerContainer: {
 		backgroundColor: Theme.color.green,
-		height: Platform.OS === "ios" ? Constants.statusBarHeight + 60 : 80,
+		height: Platform.OS === 'ios' ? Constants.statusBarHeight + 60 : 80,
 	},
 	headerTitleContainer: {
 		flex: 1,
-		width: "100%",
-		height: "100%",
-		alignItems: "center",
-		justifyContent: "center",
+		width: '100%',
+		height: '100%',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	headerTitle: {
 		fontSize: Theme.fontSize.default,
@@ -285,8 +269,8 @@ const s = StyleSheet.create({
 		fontWeight: 600,
 	},
 	hamburgerContainer: {
-		display: "flex",
-		alignItems: "center",
+		display: 'flex',
+		alignItems: 'center',
 		margin: 0,
 		padding: 0,
 	},
@@ -294,9 +278,9 @@ const s = StyleSheet.create({
 		marginLeft: Theme.padding,
 	},
 	dropdown: {
-		flexDirection: "row",
-		alignItems: "center",
-		width: "100%",
+		flexDirection: 'row',
+		alignItems: 'center',
+		width: '100%',
 	},
 	header: {
 		fontSize: 16,
@@ -314,10 +298,10 @@ const s = StyleSheet.create({
 		lineHeight: 20,
 	},
 	items: {
-		overflow: "hidden",
+		overflow: 'hidden',
 	},
 	item: {
-		justifyContent: "center",
+		justifyContent: 'center',
 		borderRadius: 0,
 		padding: 0,
 		margin: 0,

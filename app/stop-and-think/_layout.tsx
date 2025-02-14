@@ -1,21 +1,14 @@
-import { useQuery } from "@/lib/client";
-import { StopAndThinkStepsDocument } from "@/graphql";
-import { Stack } from "expo-router";
-import { StackHeaderBackButton } from "@/components/StackHeaderBackButton";
-import { StackHeader } from "../../components/StackHeader";
+import { useQuery } from '@/lib/client';
+import { StopAndThinkStepsDocument } from '@/graphql';
+import { Stack } from 'expo-router';
+import StackHeader from '@/components/StackHeader';
 
 export default function Layout() {
 	const [data, error, loading, retry] = useQuery<StopAndThinkStepsQuery>(StopAndThinkStepsDocument);
 	const { allSovStopAndThinkTools: tools } = data;
 
 	return (
-		<Stack
-			screenOptions={{
-				headerLeft: (props) => <StackHeaderBackButton {...props} />,
-				headerTitle: (props) => <StackHeader {...props} />,
-				gestureEnabled: false,
-			}}
-		>
+		<StackHeader>
 			{tools?.map(({ id, title, description }, i) => (
 				<Stack.Screen
 					key={id}
@@ -27,6 +20,6 @@ export default function Layout() {
 					}}
 				/>
 			))}
-		</Stack>
+		</StackHeader>
 	);
 }
