@@ -11,8 +11,10 @@ export default function AudioPlayer({ src }: { src: string }) {
 	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
 	const [error, setError] = React.useState<string | null>(null);
 	const [loading, setLoading] = React.useState(false);
+	const [playing, setPlaying] = React.useState(false);
 	const soundRef = useRef<Audio.Sound | null>(null);
 	const intervalRef = useRef<any | null>(null);
+	const totalDuration = status?.durationMillis ? status?.durationMillis : 0;
 
 	const loadAudio = async () => {
 		setError(null);
@@ -35,8 +37,8 @@ export default function AudioPlayer({ src }: { src: string }) {
 		} else if (Platform.OS === 'android') {
 			const updatePlaybackStatus = async () => {
 				const status = (await soundRef.current?.getStatusAsync()) as AVPlaybackStatusSuccess;
-				console.log(status.isPlaying);
 				setStatus(status);
+				setPlaying(status.isPlaying);
 			};
 
 			clearInterval(intervalRef.current);
@@ -68,81 +70,42 @@ export default function AudioPlayer({ src }: { src: string }) {
 		soundRef.current?.pauseAsync();
 	};
 
-	return (
-		<AudioPlayerView
-			active={true}
-			playable={true}
-			loading={loading}
-			isLoaded={status?.isLoaded ? false : true}
-			isPlaying={status?.isPlaying ? true : false}
-			playAudio={play}
-			pauseAudio={pause}
-			totalDuration={status?.durationMillis ?? 0}
-			seekAudio={(value: number) => soundRef.current?.setPositionAsync(value)}
-			duration={status?.positionMillis ?? 0}
-		/>
-	);
-}
-
-type AudioPlayerViewProps = {
-	active: boolean; // is player active
-	playable: boolean; // whether we can play the specific audio or not.
-	loading: boolean; // is audio loading inside create async
-	isLoaded: boolean; // is audio loaded
-	isPlaying: boolean; // is current audio playing
-	playAudio: () => void; // callback function to play the audio.
-	pauseAudio: () => void; // callback function to pause the audio
-	totalDuration: number; // total time duration of the playable audio.
-	seekAudio: (value: number) => void; // value to jump on value for the audio (in milliseconds)
-	duration: number; // current playing duration value of audio player.
-};
-
-export const AudioPlayerView = ({
-	active,
-	playable,
-	loading,
-	isPlaying,
-	playAudio,
-	pauseAudio,
-	totalDuration,
-	seekAudio,
-	duration,
-}: AudioPlayerViewProps) => {
 	const handleIconClick = (e: any) => {
 		if (Platform.OS === 'web') {
 			e?.preventDefault();
 			e?.stopPropagation();
 		}
 
-		if (!isPlaying) {
-			playAudio();
+		if (!playing) {
+			play();
 		} else {
-			pauseAudio();
+			pause();
 		}
+		setPlaying(!playing);
 	};
 
-	function audioDuration(currentDuration: number) {
+	const audioDuration = (totalDuration: number, currentDuration: number) => {
 		if (totalDuration == 0) {
 			return '00:00';
 		}
 		const minutes = Math.floor((totalDuration - currentDuration) / 60000);
 		const seconds = parseInt((((totalDuration - currentDuration) % 60000) / 1000).toFixed(0));
 		return `-${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-	}
+	};
 
 	return (
 		<View style={s.view}>
-			{!playable ? (
+			{error && (
 				<View>
 					<Text>Not playable...</Text>
 				</View>
-			) : null}
+			)}
 			{loading ? (
 				<ActivityIndicator style={s.icon} size={28} color={Theme.color.greyDark} />
 			) : (
 				<Ionicons
 					style={s.icon}
-					name={!isPlaying ? 'play' : 'pause'}
+					name={!playing ? 'play' : 'pause'}
 					size={28}
 					color={Theme.color.green}
 					onPress={(e) => handleIconClick(e)}
@@ -150,19 +113,21 @@ export const AudioPlayerView = ({
 			)}
 			<Slider
 				style={s.slider}
-				value={duration}
+				value={status?.positionMillis ?? 0}
 				minimumValue={0}
 				maximumValue={totalDuration == 0 ? 100 : totalDuration}
 				step={1}
 				minimumTrackTintColor={Theme.color.green}
 				maximumTrackTintColor={Theme.color.white}
 				accessibilityLabel='Audio Player'
-				onValueChange={(step: number) => seekAudio(step)}
+				onSlidingComplete={(val: number) => {
+					soundRef.current?.setPositionAsync(val);
+				}}
 			/>
-			<Text style={s.duration}>{audioDuration(duration)}</Text>
+			<Text style={s.duration}>{audioDuration(totalDuration, status?.positionMillis ?? 0)}</Text>
 		</View>
 	);
-};
+}
 
 const s = StyleSheet.create({
 	view: {
