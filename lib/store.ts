@@ -38,18 +38,6 @@ export interface StoreState {
   resetKeys: (keys: string[], section?: string) => void
 }
 
-const getData = async (): Promise<StoreState['data']> => {
-  const fileData = await AsyncStorage.getItem('file')
-  if (fileData) {
-    const data = JSON.parse(fileData as string)
-    //console.log(data)
-    //await AsyncStorage.removeItem('file')
-    //return data
-  }
-  console.log('no file')
-  return defaultState
-}
-
 const defaultState = {
   diary: [],
   steps: [],
@@ -93,19 +81,23 @@ const useStore = create(persist<StoreState>((set, get) => ({
   migrate: async (state: any, version: number) => {
     if (version < 1) {
       console.log('migrating data...')
-      const fileData = await AsyncStorage.getItem('file')
-      if (fileData) {
-        const data = JSON.parse(fileData as string)
-        const diary = (data?.kanslodagbok ?? []).map((d: any) => ({
-          'situation': d.dagbok?.situation,
-          'grundkansla': d.dagbok?.feeling,
-          'kanslotermometer': d.dagbok?.termometer,
-          'kanslan-i-kroppen': d.dagbok?.bodyFeeling,
-          'date': d.date
-        }))
-        state.data.diary = diary
-        await AsyncStorage.setItem('_file', JSON.stringify(fileData))
-        await AsyncStorage.removeItem('file')
+      try {
+        const fileData = await AsyncStorage.getItem('file')
+        if (fileData) {
+          const data = JSON.parse(fileData as string)
+          const diary = (data?.kanslodagbok ?? []).map((d: any) => ({
+            'situation': d.dagbok?.situation,
+            'grundkansla': d.dagbok?.feeling,
+            'kanslotermometer': d.dagbok?.termometer,
+            'kanslan-i-kroppen': d.dagbok?.bodyFeeling,
+            'date': d.date
+          }))
+          state.data.diary = diary
+          await AsyncStorage.setItem('_file', JSON.stringify(fileData))
+          await AsyncStorage.removeItem('file')
+        }
+      } catch (e) {
+        console.log(e)
       }
       return state;
     }

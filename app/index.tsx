@@ -25,7 +25,7 @@ export default function Home() {
 	const {
 		data: { diary, assignments },
 	} = useStore();
-	console.log(diary);
+
 	return (
 		<>
 			<PageView style={s.container}>
