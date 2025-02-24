@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { shallow } from 'zustand/shallow';
 import { persist, createJSONStorage } from 'zustand/middleware'
-import file from '../file.json'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export type Diary = {
@@ -26,10 +25,10 @@ export type Sorks = {
 
 export interface StoreState {
   data: {
-    diary?: Diary
-    steps?: Steps
-    assignments?: Assignments
-    sorks?: Sorks
+    diary: Diary
+    steps: Steps
+    assignments: Assignments
+    sorks: Sorks
     [key: string]: any
   },
   theme: 'light' | 'dark',
@@ -47,12 +46,20 @@ const getData = async (): Promise<StoreState['data']> => {
     //await AsyncStorage.removeItem('file')
     //return data
   }
-  return {}
+  console.log('no file')
+  return defaultState
+}
+
+const defaultState = {
+  diary: [],
+  steps: [],
+  assignments: [],
+  sorks: [],
 }
 
 const useStore = create(persist<StoreState>((set, get) => ({
   theme: 'dark',
-  data: async () => await getData(),
+  data: defaultState,
   setTheme: (theme: 'light' | 'dark') => {
     set((state) => ({ theme }))
   },
@@ -66,7 +73,7 @@ const useStore = create(persist<StoreState>((set, get) => ({
 
     set((state) => ({ data: d }))
   },
-  reset: () => set((state) => ({ data: {} })),
+  reset: () => set((state) => ({ data: defaultState })),
   resetKeys: (keys, section) => {
     if (!keys) return
 
@@ -75,13 +82,34 @@ const useStore = create(persist<StoreState>((set, get) => ({
     if (keys)
       keys.forEach((key) => section && d[section]?.[key] !== undefined ? delete d[section][key] : delete d[key])
     else
-      d = {}
+      d = defaultState
 
     set((state) => ({ data: d }))
   },
 }), {
+  version: 1,
   name: 'sov',
-  storage: createJSONStorage(() => AsyncStorage)
+  storage: createJSONStorage(() => AsyncStorage),
+  migrate: async (state: any, version: number) => {
+    if (version < 1) {
+      console.log('migrating data...')
+      const fileData = await AsyncStorage.getItem('file')
+      if (fileData) {
+        const data = JSON.parse(fileData as string)
+        const diary = (data?.kanslodagbok ?? []).map((d: any) => ({
+          'situation': d.dagbok?.situation,
+          'grundkansla': d.dagbok?.feeling,
+          'kanslotermometer': d.dagbok?.termometer,
+          'kanslan-i-kroppen': d.dagbok?.bodyFeeling,
+          'date': d.date
+        }))
+        state.data.diary = diary
+        await AsyncStorage.setItem('_file', JSON.stringify(fileData))
+        await AsyncStorage.removeItem('file')
+      }
+      return state;
+    }
+  }
 }));
 
 export { shallow, useStore };

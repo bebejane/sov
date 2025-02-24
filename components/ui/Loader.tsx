@@ -1,10 +1,10 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { ActivityIndicator } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
-import { Text } from "./Text";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Theme from "@/styles/theme";
-import { Button } from "./Button";
+import { Text } from './Text';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Theme from '@/styles/theme';
+import { Button } from './Button';
 
 type Props = {
 	loading: boolean;
@@ -15,20 +15,11 @@ type Props = {
 export const Loader = ({ loading, error, onRetry }: Props) => {
 	return (
 		<View style={s.view}>
-			{!error && loading && (
-				<ActivityIndicator
-					size={50}
-					color={Theme.color.greyDark}
-				/>
-			)}
+			{!error && loading && <ActivityIndicator size={50} color={Theme.color.greyDark} />}
 			{error && (
 				<View style={s.error}>
-					<Text style={s.errorText}>Ett fel uppstod!</Text>
-					<Button
-						icon={"refresh"}
-						onPress={() => onRetry?.()}
-						size='large'
-					>
+					<Text style={s.errorText}>Ett nätverks fel uppstod!</Text>
+					<Button icon={'refresh'} onPress={() => onRetry?.()} size='large'>
 						Försök igen
 					</Button>
 				</View>
@@ -40,8 +31,8 @@ export const Loader = ({ loading, error, onRetry }: Props) => {
 const s = StyleSheet.create({
 	view: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 		width: Theme.screenWidth,
 	},
 	loading: {
@@ -49,9 +40,9 @@ const s = StyleSheet.create({
 		fontSize: Theme.fontSize.default,
 	},
 	error: {
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	errorText: {
 		color: Theme.color.black,
