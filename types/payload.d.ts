@@ -2187,6 +2187,24 @@ type PublishedAtFilter = {
 type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
+  _allSofAssessViolenceCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofInputDatesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofInputSlidersMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofInputTextsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofMaintenencePlanQuestionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofSorkCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofSoundExerciseItemsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofStopAndThinkToolsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSovAssessViolenceCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSovInputDatesMeta: CollectionMetadata;
@@ -2209,6 +2227,24 @@ type Query = {
   /** Returns the single instance record */
   _site: Site;
   /** Returns a collection of records */
+  allSofAssessViolenceCategories: Array<SofAssessViolenceCategoryRecord>;
+  /** Returns a collection of records */
+  allSofInputDates: Array<SofInputDateRecord>;
+  /** Returns a collection of records */
+  allSofInputSliders: Array<SofInputSliderRecord>;
+  /** Returns a collection of records */
+  allSofInputTexts: Array<SofInputTextRecord>;
+  /** Returns a collection of records */
+  allSofMaintenencePlanQuestions: Array<SofMaintenencePlanQuestionRecord>;
+  /** Returns a collection of records */
+  allSofSorkCategories: Array<SofSorkCategoryRecord>;
+  /** Returns a collection of records */
+  allSofSoundExerciseItems: Array<SofSoundExerciseItemRecord>;
+  /** Returns a collection of records */
+  allSofStopAndThinkTools: Array<SofStopAndThinkToolRecord>;
+  /** Returns a collection of records */
+  allSofTakeCareOfYourselfCategories: Array<SofTakeCareOfYourselfCategoryRecord>;
+  /** Returns a collection of records */
   allSovAssessViolenceCategories: Array<SovAssessViolenceCategoryRecord>;
   /** Returns a collection of records */
   allSovInputDates: Array<SovInputDateRecord>;
@@ -2228,6 +2264,44 @@ type Query = {
   allSovTakeCareOfYourselfCategories: Array<SovTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
+  /** Returns the single instance record */
+  sofAssessViolence?: Maybe<SofAssessViolenceRecord>;
+  /** Returns a specific record */
+  sofAssessViolenceCategory?: Maybe<SofAssessViolenceCategoryRecord>;
+  /** Returns the single instance record */
+  sofEmotionalDiary?: Maybe<SofEmotionalDiaryRecord>;
+  /** Returns the single instance record */
+  sofHome?: Maybe<SofHomeRecord>;
+  /** Returns the single instance record */
+  sofHomeAssignment?: Maybe<SofHomeAssignmentRecord>;
+  /** Returns a specific record */
+  sofInputDate?: Maybe<SofInputDateRecord>;
+  /** Returns a specific record */
+  sofInputSlider?: Maybe<SofInputSliderRecord>;
+  /** Returns a specific record */
+  sofInputText?: Maybe<SofInputTextRecord>;
+  /** Returns the single instance record */
+  sofMaintanencePlan?: Maybe<SofMaintanencePlanRecord>;
+  /** Returns a specific record */
+  sofMaintenencePlanQuestion?: Maybe<SofMaintenencePlanQuestionRecord>;
+  /** Returns the single instance record */
+  sofSork?: Maybe<SofSorkRecord>;
+  /** Returns a specific record */
+  sofSorkCategory?: Maybe<SofSorkCategoryRecord>;
+  /** Returns the single instance record */
+  sofSoundExercise?: Maybe<SofSoundExerciseRecord>;
+  /** Returns a specific record */
+  sofSoundExerciseItem?: Maybe<SofSoundExerciseItemRecord>;
+  /** Returns the single instance record */
+  sofStopAndThink?: Maybe<SofStopAndThinkRecord>;
+  /** Returns a specific record */
+  sofStopAndThinkTool?: Maybe<SofStopAndThinkToolRecord>;
+  /** Returns the single instance record */
+  sofTakeCareOfMyself?: Maybe<SofTakeCareOfMyselfRecord>;
+  /** Returns a specific record */
+  sofTakeCareOfYourselfCategory?: Maybe<SofTakeCareOfYourselfCategoryRecord>;
+  /** Returns the single instance record */
+  sofValuedDirection?: Maybe<SofValuedDirectionRecord>;
   /** Returns the single instance record */
   sovAssessViolence?: Maybe<SovAssessViolenceRecord>;
   /** Returns a specific record */
@@ -2268,6 +2342,69 @@ type Query = {
   sovValuedDirection?: Maybe<SovValuedDirectionRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofAssessViolenceCategoriesMetaArgs = {
+  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofInputDatesMetaArgs = {
+  filter?: InputMaybe<SofInputDateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofInputSlidersMetaArgs = {
+  filter?: InputMaybe<SofInputSliderModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofInputTextsMetaArgs = {
+  filter?: InputMaybe<SofInputTextModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofMaintenencePlanQuestionsMetaArgs = {
+  filter?: InputMaybe<SofMaintenencePlanQuestionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofSorkCategoriesMetaArgs = {
+  filter?: InputMaybe<SofSorkCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofSoundExerciseItemsMetaArgs = {
+  filter?: InputMaybe<SofSoundExerciseItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofStopAndThinkToolsMetaArgs = {
+  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofTakeCareOfYourselfCategoriesMetaArgs = {
+  filter?: InputMaybe<SofTakeCareOfYourselfCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2345,6 +2482,105 @@ type Query_allUploadsMetaArgs = {
 type Query_siteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofAssessViolenceCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofInputDatesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputDateModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputDateModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofInputSlidersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputSliderModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputSliderModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofInputTextsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputTextModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputTextModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofMaintenencePlanQuestionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofMaintenencePlanQuestionModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofMaintenencePlanQuestionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofSorkCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofSorkCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofSoundExerciseItemsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofSoundExerciseItemModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofSoundExerciseItemModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofStopAndThinkToolsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofTakeCareOfYourselfCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofTakeCareOfYourselfCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofTakeCareOfYourselfCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 
@@ -2455,6 +2691,157 @@ type QueryallUploadsArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QuerysofAssessViolenceArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofAssessViolenceCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofEmotionalDiaryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofHomeArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofHomeAssignmentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofInputDateArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputDateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputDateModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofInputSliderArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputSliderModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputSliderModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofInputTextArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofInputTextModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofInputTextModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofMaintanencePlanArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofMaintenencePlanQuestionArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofMaintenencePlanQuestionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofMaintenencePlanQuestionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofSorkArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofSorkCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofSorkCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofSoundExerciseArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofSoundExerciseItemArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofSoundExerciseItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofSoundExerciseItemModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofStopAndThinkArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofStopAndThinkToolArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofTakeCareOfMyselfArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofTakeCareOfYourselfCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofTakeCareOfYourselfCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofTakeCareOfYourselfCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofValuedDirectionArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2718,6 +3105,958 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+type SofAssessViolenceCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofAssessViolenceCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Skatta våld (kategori) (sof) (sof_assess_violence_category) */
+type SofAssessViolenceCategoryRecord = RecordInterface & {
+  __typename?: 'SofAssessViolenceCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Skatta våld (kategori) (sof) (sof_assess_violence_category) */
+type SofAssessViolenceCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Skatta våld (sof) (sof_assess_violence) */
+type SofAssessViolenceRecord = RecordInterface & {
+  __typename?: 'SofAssessViolenceRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  otherProblems: Array<SofInputSliderRecord>;
+  sinceLastSession: Array<SofInputSliderRecord>;
+};
+
+
+/** Record of type Skatta våld (sof) (sof_assess_violence) */
+type SofAssessViolenceRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Skatta våld (sof) (sof_assess_violence) */
+type SofAssessViolenceRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SofEmotionalDiaryModelInputsField = SofInputSliderRecord | SofInputTextRecord;
+
+/** Record of type Enkel känslodagbok (sof) (sof_emotional_diary) */
+type SofEmotionalDiaryRecord = RecordInterface & {
+  __typename?: 'SofEmotionalDiaryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SofEmotionalDiaryModelInputsField>;
+};
+
+
+/** Record of type Enkel känslodagbok (sof) (sof_emotional_diary) */
+type SofEmotionalDiaryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofHomeAssignmentModelInputsField = SofInputDateRecord | SofInputTextRecord;
+
+/** Record of type Hemmauppgift (sof) (sof_home_assignment) */
+type SofHomeAssignmentRecord = RecordInterface & {
+  __typename?: 'SofHomeAssignmentRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SofHomeAssignmentModelInputsField>;
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Hemmauppgift (sof) (sof_home_assignment) */
+type SofHomeAssignmentRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Hemmauppgift (sof) (sof_home_assignment) */
+type SofHomeAssignmentRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Hem (sof) (sof_home) */
+type SofHomeRecord = RecordInterface & {
+  __typename?: 'SofHomeRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Hem (sof) (sof_home) */
+type SofHomeRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofInputDateModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofInputDateModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofInputDateModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SofInputDateModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Date Input (sof) (sof_input_date) */
+type SofInputDateRecord = RecordInterface & {
+  __typename?: 'SofInputDateRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Date Input (sof) (sof_input_date) */
+type SofInputDateRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofInputSliderModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofInputSliderModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofInputSliderModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  max?: InputMaybe<IntegerFilter>;
+  min?: InputMaybe<IntegerFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SofInputSliderModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  max_ASC = 'max_ASC',
+  max_DESC = 'max_DESC',
+  min_ASC = 'min_ASC',
+  min_DESC = 'min_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Slider Input (sof) (sof_input_slider) */
+type SofInputSliderRecord = RecordInterface & {
+  __typename?: 'SofInputSliderRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  max: Scalars['IntType']['output'];
+  min: Scalars['IntType']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Slider Input (sof) (sof_input_slider) */
+type SofInputSliderRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofInputTextModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofInputTextModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofInputTextModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum SofInputTextModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Text Input (sof) (sof_input_text) */
+type SofInputTextRecord = RecordInterface & {
+  __typename?: 'SofInputTextRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Text Input (sof) (sof_input_text) */
+type SofInputTextRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Vidmakthållandeplan (sof) (sof_maintanence_plan) */
+type SofMaintanencePlanRecord = RecordInterface & {
+  __typename?: 'SofMaintanencePlanRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SofInputTextRecord>;
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Vidmakthållandeplan (sof) (sof_maintanence_plan) */
+type SofMaintanencePlanRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Vidmakthållandeplan (sof) (sof_maintanence_plan) */
+type SofMaintanencePlanRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SofMaintenencePlanQuestionModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofMaintenencePlanQuestionModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofMaintenencePlanQuestionModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofMaintenencePlanQuestionModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Vidmakthållandeplan (fråga) (sof) (sof_maintenence_plan_question) */
+type SofMaintenencePlanQuestionRecord = RecordInterface & {
+  __typename?: 'SofMaintenencePlanQuestionRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Vidmakthållandeplan (fråga) (sof) (sof_maintenence_plan_question) */
+type SofMaintenencePlanQuestionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofSorkCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  text?: InputMaybe<TextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofSorkCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Sork (kategori) (sof) (sof_sork_category) */
+type SofSorkCategoryRecord = RecordInterface & {
+  __typename?: 'SofSorkCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  text: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Sork (kategori) (sof) (sof_sork_category) */
+type SofSorkCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Sork (kategori) (sof) (sof_sork_category) */
+type SofSorkCategoryRecordtextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SofSorkModelInputsField = SofInputSliderRecord | SofInputTextRecord;
+
+/** Record of type Sork (sof) (sof_sork) */
+type SofSorkRecord = RecordInterface & {
+  __typename?: 'SofSorkRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SofSorkModelInputsField>;
+};
+
+
+/** Record of type Sork (sof) (sof_sork) */
+type SofSorkRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofSoundExerciseItemModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofSoundExerciseItemModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofSoundExerciseItemModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  file?: InputMaybe<FileFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+  youtube?: InputMaybe<VideoFilter>;
+};
+
+enum SofSoundExerciseItemModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Ljudövning (sof) (sof_sound_exercise_item) */
+type SofSoundExerciseItemRecord = RecordInterface & {
+  __typename?: 'SofSoundExerciseItemRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  file?: Maybe<FileField>;
+  id: Scalars['ItemId']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  youtube?: Maybe<VideoField>;
+};
+
+
+/** Record of type Ljudövning (sof) (sof_sound_exercise_item) */
+type SofSoundExerciseItemRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Ljudövningar (sof) (sof_sound_exercise) */
+type SofSoundExerciseRecord = RecordInterface & {
+  __typename?: 'SofSoundExerciseRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  exercises: Array<SofSoundExerciseItemRecord>;
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Ljudövningar (sof) (sof_sound_exercise) */
+type SofSoundExerciseRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Ljudövningar (sof) (sof_sound_exercise) */
+type SofSoundExerciseRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Stop & Tänk (sof) (sof_stop_and_think) */
+type SofStopAndThinkRecord = RecordInterface & {
+  __typename?: 'SofStopAndThinkRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  steps: Array<Scalars['String']['output']>;
+};
+
+
+/** Record of type Stop & Tänk (sof) (sof_stop_and_think) */
+type SofStopAndThinkRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofStopAndThinkToolModelContentBlocksField = AudioBlockRecord | ImageBlockRecord | TableBlockRecord | TextInputBlockSofRecord;
+
+type SofStopAndThinkToolModelContentField = {
+  __typename?: 'SofStopAndThinkToolModelContentField';
+  blocks: Array<SofStopAndThinkToolModelContentBlocksField>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+type SofStopAndThinkToolModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  description?: InputMaybe<TextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofStopAndThinkToolModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
+type SofStopAndThinkToolRecord = RecordInterface & {
+  __typename?: 'SofStopAndThinkToolRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  content?: Maybe<SofStopAndThinkToolModelContentField>;
+  description: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
+type SofStopAndThinkToolRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
+type SofStopAndThinkToolRecorddescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Ta hand om mig själv (sof) (sof_take_care_of_myself) */
+type SofTakeCareOfMyselfRecord = RecordInterface & {
+  __typename?: 'SofTakeCareOfMyselfRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputs: Array<SofInputTextRecord>;
+  intro?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Ta hand om mig själv (sof) (sof_take_care_of_myself) */
+type SofTakeCareOfMyselfRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Ta hand om mig själv (sof) (sof_take_care_of_myself) */
+type SofTakeCareOfMyselfRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SofTakeCareOfYourselfCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofTakeCareOfYourselfCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofTakeCareOfYourselfCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofTakeCareOfYourselfCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Ta hand om dig själv (kategori) (sof) (sof_take_care_of_yourself_category) */
+type SofTakeCareOfYourselfCategoryRecord = RecordInterface & {
+  __typename?: 'SofTakeCareOfYourselfCategoryRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Ta hand om dig själv (kategori) (sof) (sof_take_care_of_yourself_category) */
+type SofTakeCareOfYourselfCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
+type SofValuedDirectionRecord = RecordInterface & {
+  __typename?: 'SofValuedDirectionRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  header?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  input: SofInputTextRecord;
+  intro?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
+type SofValuedDirectionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
+type SofValuedDirectionRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
+type SofValuedDirectionRecordtextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 type SovAssessViolenceCategoryModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<SovAssessViolenceCategoryModelFilter>>>;
@@ -2879,7 +4218,7 @@ type SovHomeAssignmentRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Record of type Home (sov_home) */
+/** Record of type Hem (sov_home) */
 type SovHomeRecord = RecordInterface & {
   __typename?: 'SovHomeRecord';
   _createdAt: Scalars['DateTime']['output'];
@@ -2901,7 +4240,7 @@ type SovHomeRecord = RecordInterface & {
 };
 
 
-/** Record of type Home (sov_home) */
+/** Record of type Hem (sov_home) */
 type SovHomeRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3794,6 +5133,32 @@ type TextInputBlockRecord = RecordInterface & {
 
 /** Block of type Text Input (block) (text_input_block) */
 type TextInputBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Text Input (block) (sof) (text_input_block_sof) */
+type TextInputBlockSofRecord = RecordInterface & {
+  __typename?: 'TextInputBlockSofRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  input?: Maybe<SofInputTextRecord>;
+};
+
+
+/** Block of type Text Input (block) (sof) (text_input_block_sof) */
+type TextInputBlockSofRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 

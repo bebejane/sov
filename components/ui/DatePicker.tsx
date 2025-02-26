@@ -1,20 +1,22 @@
-import { StyleSheet } from "react-native";
-import { Text, Button, Spacer } from "./";
-import DatePickerElement from "react-native-ui-datepicker";
-import Theme from "@/styles/theme";
-import useStore from "../../lib/store";
-import { useState } from "react";
-import { format } from "date-fns";
-import { useSegments } from "expo-router";
+import { StyleSheet } from 'react-native';
+import { Text, Button, Spacer } from './';
+import DatePickerElement from 'react-native-ui-datepicker';
+import Theme from '@/styles/theme';
+import useStore from '../../lib/store';
+import { useState } from 'react';
+import { format } from 'date-fns';
+import { useSegments } from 'expo-router';
 
 export const DatePicker = ({
 	id,
 	label,
 	slug,
+	obligatory,
 }: {
 	id: string;
 	label?: string | undefined | null;
 	slug: string | undefined | null;
+	obligatory?: boolean;
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
@@ -31,13 +33,13 @@ export const DatePicker = ({
 		<>
 			<Text style={s.text}>{label}</Text>
 			<Button onPress={() => setShow(!show)}>
-				{date ? format(date, "yyyy-MM-dd") : "Välj datum"}
+				{date ? format(date, 'yyyy-MM-dd') : 'Välj datum'}
 			</Button>
 			{show && (
 				<>
 					<Spacer size='small' />
 					<DatePickerElement
-						mode={"single"}
+						mode={'single'}
 						date={date}
 						onChange={handleOnChange}
 						selectedItemColor={Theme.color.green}

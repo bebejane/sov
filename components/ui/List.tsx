@@ -1,6 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Theme from "@/styles/theme";
-import { formatDate } from "../../lib/utils";
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Theme from '@/styles/theme';
+import { formatDate } from '../../lib/utils';
 
 type Props = {
 	onPress: (id: string) => void;
@@ -26,11 +26,8 @@ export function List({ onPress, items, emptyText, title }: Props) {
 							activeOpacity={0.8}
 						>
 							<Text style={[s.column, s.text, s.first]}>{formatDate(item.date, true)}</Text>
-							<Text
-								style={[s.column, s.text]}
-								numberOfLines={1}
-							>
-								{item.label}
+							<Text style={[s.column, s.text]} numberOfLines={1}>
+								{item.label ?? 'Ingen titel...'}
 							</Text>
 						</TouchableOpacity>
 					))}
@@ -42,12 +39,12 @@ export function List({ onPress, items, emptyText, title }: Props) {
 
 const s = StyleSheet.create({
 	container: {
-		display: "flex",
+		display: 'flex',
 		flex: 0,
-		flexDirection: "column",
+		flexDirection: 'column',
 	},
 	header: {
-		textTransform: "uppercase",
+		textTransform: 'uppercase',
 		marginBottom: Theme.margin / 2,
 		fontSize: Theme.fontSize.smaller,
 		letterSpacing: 1,
@@ -56,10 +53,10 @@ const s = StyleSheet.create({
 		color: Theme.color.greyDark,
 	},
 	item: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
 		padding: Theme.padding / 4,
 		backgroundColor: Theme.color.white,
 		borderColor: Theme.color.green,
@@ -73,7 +70,7 @@ const s = StyleSheet.create({
 	text: {
 		flex: 1,
 		color: Theme.color.black,
-		fontWeight: 600
+		fontWeight: 600,
 	},
 	first: {
 		flex: 0,

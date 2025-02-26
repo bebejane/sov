@@ -1,13 +1,13 @@
-import "react-native-get-random-values";
-import { nanoid } from "nanoid";
-import { Button, TextInput, Loader, SliderInput, PageView, Spacer, List } from "@/components/ui";
-import { StyleSheet } from "react-native";
-import React, { useEffect } from "react";
-import { useQuery } from "../../lib/client";
-import { EmotionalDiaryDocument } from "../../graphql";
-import useStore from "../../lib/store";
-import { useNavigation, useRouter, useSegments } from "expo-router";
-import Theme from "@/styles/theme";
+import 'react-native-get-random-values';
+import { nanoid } from 'nanoid';
+import { Button, TextInput, Loader, SliderInput, PageView, Spacer, List } from '@/components/ui';
+import { StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { useQuery } from '../../lib/client';
+import { EmotionalDiaryDocument } from '../../graphql';
+import useStore from '../../lib/store';
+import { useNavigation, useRouter, useSegments } from 'expo-router';
+import Theme from '@/styles/theme';
 
 export default function EmotionalDiary() {
 	const [section] = useSegments();
@@ -31,7 +31,7 @@ export default function EmotionalDiary() {
 		let valid = true;
 
 		Object.keys(currentItem).forEach((key) => {
-			if (currentItem[key] === undefined || currentItem[key] === null || currentItem[key] === "") {
+			if (currentItem[key] === undefined || currentItem[key] === null || currentItem[key] === '') {
 				valid = false;
 				return;
 			}
@@ -55,29 +55,18 @@ export default function EmotionalDiary() {
 		);
 
 		const resetFields = sovEmotionalDiary?.inputs.map((item: any) => item.slug) as string[];
-		updateData(diary, "diary");
+		updateData(diary, 'diary');
 		resetKeys(resetFields, section);
 	};
 
-	if (loading || error)
-		return (
-			<Loader
-				loading={loading}
-				error={error}
-				onRetry={retry}
-			/>
-		);
+	if (loading || error) return <Loader loading={loading} error={error} onRetry={retry} />;
 
 	const { sovEmotionalDiary } = data;
 	return (
 		<PageView>
 			{sovEmotionalDiary?.inputs.map((item) =>
-				item.__typename === "SovInputTextRecord" ? (
-					<TextInput
-						key={item.id}
-						slug={item.slug}
-						label={item.label}
-					/>
+				item.__typename === 'SovInputTextRecord' ? (
+					<TextInput key={item.id} slug={item.slug} label={item.label} />
 				) : (
 					<SliderInput
 						key={item.id}
@@ -89,12 +78,7 @@ export default function EmotionalDiary() {
 					/>
 				)
 			)}
-			<Button
-				onPress={save}
-				disabled={!isValidItem()}
-			>
-				Spara
-			</Button>
+			<Button onPress={save}>Spara</Button>
 			<Spacer />
 			<List
 				onPress={(id) => router.navigate(`/emotional-diary/${id}`)}
@@ -108,13 +92,13 @@ export default function EmotionalDiary() {
 
 const s = StyleSheet.create({
 	list: {
-		display: "flex",
-		flexDirection: "column",
+		display: 'flex',
+		flexDirection: 'column',
 		borderTopColor: Theme.color.green,
 		borderTopWidth: 1,
 	},
 	item: {
-		width: "100%",
+		width: '100%',
 		paddingTop: Theme.padding,
 		paddingBottom: Theme.padding,
 		borderBottomColor: Theme.color.green,

@@ -1,21 +1,23 @@
-import { StyleSheet, TextInput as TextInputElement, Keyboard } from "react-native";
-import { Text } from "./Text";
-import Theme from "@/styles/theme";
-import useStore from "@/lib/store";
-import React, { useState } from "react";
-import { Header } from "./Header";
-import { useSegments } from "expo-router";
+import { StyleSheet, TextInput as TextInputElement, Keyboard } from 'react-native';
+import { Text } from './Text';
+import Theme from '@/styles/theme';
+import useStore from '@/lib/store';
+import React, { useState } from 'react';
+import { Header } from './Header';
+import { useSegments } from 'expo-router';
 
 export const TextInput = ({
 	title,
 	label,
 	slug,
 	placeholder,
+	obligatory,
 }: {
 	title?: string;
 	label?: string | undefined | null;
 	slug: string | undefined | null;
 	placeholder?: string;
+	obligatory?: boolean;
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
@@ -30,14 +32,15 @@ export const TextInput = ({
 	return (
 		<>
 			{title && (
-				<Header
-					size='medium'
-					margin='small'
-				>
+				<Header size='medium' margin='small'>
 					{title}
 				</Header>
 			)}
-			{label && <Text style={s.text}>{label}</Text>}
+			{label && (
+				<Text style={s.text}>
+					{label} {obligatory ? '*' : ''}
+				</Text>
+			)}
 			<TextInputElement
 				style={[
 					s.input,

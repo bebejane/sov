@@ -46,12 +46,12 @@ export default function Home() {
 				<Spacer size='small' />
 				<View style={s.list}>
 					<List
-						title='Dagbok'
+						title='Senaste dagboksanteckningar'
 						onPress={(id) =>
 							router.push(`/emotional-diary/${diary?.find((item) => item.id === id)?.id}`)
 						}
 						items={diary
-							?.slice(0, 2)
+							?.slice(0, 3)
 							.map(({ id, date, situation: label }) => ({ id, date, label }))}
 						emptyText='Du finns inga dagboksinlägg sparade...'
 					/>
@@ -59,11 +59,11 @@ export default function Home() {
 				<Spacer />
 				<View style={s.list}>
 					<List
-						title='Hemuppgifter'
+						title='Senaste hemuppgifter'
 						onPress={(id) =>
 							router.push(`/home-assignment/${assignments?.find((item) => item.id === id)?.id}`)
 						}
-						items={assignments?.slice(0, 2).map(({ id, date, 'vad-ska-jag-gora': label }) => ({
+						items={assignments?.slice(0, 3).map(({ id, date, 'vad-ska-jag-gora': label }) => ({
 							id,
 							date,
 							label,

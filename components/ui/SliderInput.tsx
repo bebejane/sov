@@ -2,7 +2,7 @@ import Slider from '@react-native-community/slider';
 import { Text } from './Text';
 import { StyleSheet, View } from 'react-native';
 import { useSegments } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStore from '@/lib/store';
 import Theme from '@/styles/theme';
 
@@ -12,40 +12,50 @@ export const SliderInput = ({
 	slug,
 	min,
 	max,
+	obligatory,
 }: {
 	id: string;
 	label?: string | null | undefined;
 	slug: string | undefined | null;
 	min: number;
 	max: number;
+	obligatory?: boolean;
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
-	const [defaultValue, seDefaultValue] = useState(slug ? data[section]?.[slug] : 0);
-	const value = slug ? data[section]?.[slug] : 0;
+	const [value, setValue] = useState(slug ? data[section]?.[slug] ?? 0 : 0);
+	const [valueLabel, setValueLabel] = useState(0);
 
-	const handleOnChange = (step: number) => {
+	const handleOnChangeComplete = (step: number) => {
 		if (!slug) return;
+		setValue(step);
 		updateData({ [slug]: step }, section);
+	};
+
+	const handleOnValueChange = (step: number) => {
+		setValueLabel(step);
 	};
 
 	return (
 		<View key={id} style={s.container}>
 			<View style={s.label}>
-				<Text style={s.title}>{label}</Text>
-				<Text style={s.value}>{value ?? '0'}</Text>
+				<Text style={s.title}>
+					{label} {obligatory ? '*' : ''}
+				</Text>
+				<Text style={s.value}>{valueLabel}</Text>
 			</View>
 			<Slider
 				key={id}
 				style={s.slider}
-				value={defaultValue}
 				minimumValue={min}
 				maximumValue={max}
+				value={value}
 				step={1}
 				minimumTrackTintColor={Theme.color.green}
 				maximumTrackTintColor={Theme.color.grey}
 				thumbTintColor={Theme.color.green}
-				onValueChange={handleOnChange}
+				onValueChange={handleOnValueChange}
+				onSlidingComplete={handleOnChangeComplete}
 			/>
 		</View>
 	);

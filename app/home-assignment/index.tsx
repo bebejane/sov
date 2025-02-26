@@ -1,11 +1,11 @@
-import "react-native-get-random-values";
-import { nanoid } from "nanoid";
-import { PageView, Loader, TextInput, Button, DatePicker, Spacer, List } from "@/components/ui";
-import { useQuery } from "@/lib/client";
-import { HomeAssignmentDocument } from "@/graphql";
-import useStore from "@/lib/store";
-import { useNavigation, useRouter, useSegments } from "expo-router";
-import { useEffect } from "react";
+import 'react-native-get-random-values';
+import { nanoid } from 'nanoid';
+import { PageView, Loader, TextInput, Button, DatePicker, Spacer, List } from '@/components/ui';
+import { useQuery } from '@/lib/client';
+import { HomeAssignmentDocument } from '@/graphql';
+import useStore from '@/lib/store';
+import { useNavigation, useRouter, useSegments } from 'expo-router';
+import { useEffect } from 'react';
 
 export default function HomeAssignment() {
 	const [section] = useSegments();
@@ -19,14 +19,7 @@ export default function HomeAssignment() {
 		navigation.setOptions({ headerShown: false });
 	}, [data]);
 
-	if (loading || error)
-		return (
-			<Loader
-				loading={loading}
-				error={error}
-				onRetry={retry}
-			/>
-		);
+	if (loading || error) return <Loader loading={loading} error={error} onRetry={retry} />;
 
 	const { sovHomeAssignment } = data;
 
@@ -40,7 +33,7 @@ export default function HomeAssignment() {
 		let valid = true;
 
 		Object.keys(currentItem).forEach((key) => {
-			if (currentItem[key] === undefined || currentItem[key] === null || currentItem[key] === "") {
+			if (currentItem[key] === undefined || currentItem[key] === null || currentItem[key] === '') {
 				valid = false;
 				return;
 			}
@@ -64,7 +57,7 @@ export default function HomeAssignment() {
 		);
 
 		const resetFields = sovHomeAssignment?.inputs.map((item) => item.slug) as string[];
-		updateData(ass, "assignments");
+		updateData(ass, 'assignments');
 		resetKeys(resetFields, section);
 	};
 
@@ -72,33 +65,19 @@ export default function HomeAssignment() {
 		<>
 			<PageView>
 				{sovHomeAssignment?.inputs.map((item) =>
-					item.__typename === "SovInputTextRecord" ? (
-						<TextInput
-							key={item.id}
-							slug={item.slug}
-							label={item.label}
-						/>
+					item.__typename === 'SovInputTextRecord' ? (
+						<TextInput key={item.id} slug={item.slug} label={item.label} />
 					) : (
-						<DatePicker
-							key={item.id}
-							id={item.id}
-							label={item.label}
-							slug={item.slug}
-						/>
+						<DatePicker key={item.id} id={item.id} label={item.label} slug={item.slug} />
 					)
 				)}
-				<Button
-					disabled={!isValidItem()}
-					onPress={save}
-				>
-					Spara
-				</Button>
+				<Button onPress={save}>Spara</Button>
 				<Spacer />
 				<List
 					onPress={(id) => router.navigate(`/home-assignment/${id}`)}
 					title='Sparade Hemuppgifter'
 					emptyText='Det finns inga hemuppgifter sparade...'
-					items={assignments?.map(({ id, date, "vad-ska-jag-gora": label }) => ({
+					items={assignments?.map(({ id, date, 'vad-ska-jag-gora': label }) => ({
 						id,
 						date,
 						label,
