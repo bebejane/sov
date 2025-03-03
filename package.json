@@ -13,7 +13,7 @@
 		"prebuild": "pnpx expo prebuild --clean",
 		"build:local": "eas build --local --profile production --platform ios",
 		"build:local:android": "eas build --local --profile preview --platform android",
-		"build": "eas build --auto-submit --profile production --platform ios",
+		"build": "EXPO_APPLE_TEAM_ID=85KU5LMS57 eas build --profile production --platform ios",
 		"codegen": "graphql-codegen --watch"
 	},
 	"jest": {
