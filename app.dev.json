@@ -1,0 +1,70 @@
+{
+	"expo": {
+		"name": "S o V",
+		"slug": "sov",
+		"version": "1.0.7",
+		"owner": "bebedigital",
+		"orientation": "portrait",
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"icon": "./assets/icons/icon.png",
+		"ios": {
+			"icon": {
+				"dark": "./assets/icons/icon.png",
+				"light": "./assets/icons/icon.png",
+				"tinted": "./assets/icons/icon-tinted.png"
+			},
+			"supportsTablet": true,
+			"bundleIdentifier": "org.kt.sov",
+			"infoPlist": {
+				"ITSAppUsesNonExemptEncryption": false
+			}
+		},
+		"android": {
+			"icon": "./assets/icons/icon-android.png",
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/icons/adaptive-icon.png",
+				"backgroundColor": "#015154"
+			},
+			"package": "org.kt.sov"
+		},
+		"web": {
+			"bundler": "metro",
+			"output": "static",
+			"favicon": "./assets/icons/favicon.png"
+		},
+		"plugins": [
+			"expo-router",
+			[
+				"expo-splash-screen",
+				{
+					"imageWidth": 200,
+					"resizeMode": "contain",
+					"ios": {
+						"image": "./assets/icons/splash-icon.png",
+						"resizeMode": "contain",
+						"backgroundColor": "#FFFFFF",
+						"imageWidth": 200
+					},
+					"android": {
+						"image": "./assets/icons/splash-icon-android.png",
+						"backgroundColor": "#FFFFFF",
+						"imageWidth": 200
+					}
+				}
+			]
+		],
+		"experiments": {
+			"typedRoutes": true
+		},
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "2dcbd8a8-f808-4a19-85fb-eb2b0e3fec5a"
+			}
+		}
+	}
+}
