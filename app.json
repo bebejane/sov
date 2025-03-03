@@ -16,7 +16,7 @@
 				"tinted": "./assets/icons/icon-tinted.png"
 			},
 			"supportsTablet": true,
-			"bundleIdentifier": "org.kt.sov",
+			"bundleIdentifier": "org.name.sov",
 			"infoPlist": {
 				"ITSAppUsesNonExemptEncryption": false
 			}
@@ -27,7 +27,7 @@
 				"foregroundImage": "./assets/icons/adaptive-icon.png",
 				"backgroundColor": "#015154"
 			},
-			"package": "org.kt.sov"
+			"package": "org.name.sov"
 		},
 		"web": {
 			"bundler": "metro",
