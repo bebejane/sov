@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "S o V",
 		"slug": "sov",
-		"version": "1.0.7",
+		"version": "1.0.1",
 		"owner": "bebedigital",
 		"orientation": "portrait",
 		"scheme": "myapp",
@@ -63,7 +63,7 @@
 				"origin": false
 			},
 			"eas": {
-				"projectId": "2dcbd8a8-f808-4a19-85fb-eb2b0e3fec5a"
+				"projectId": "1f1b42b5-4afb-4616-a49a-937765d8cf5f"
 			}
 		}
 	}
