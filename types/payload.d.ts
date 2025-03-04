@@ -2187,7 +2187,9 @@ type PublishedAtFilter = {
 type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
-  _allSofAssessViolenceCategoriesMeta: CollectionMetadata;
+  _allSofAssessProgressCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSofCalmingToolingToolsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSofInputDatesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -2200,8 +2202,6 @@ type Query = {
   _allSofSorkCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSofSoundExerciseItemsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allSofStopAndThinkToolsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSofTakeCareOfYourselfCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -2227,7 +2227,9 @@ type Query = {
   /** Returns the single instance record */
   _site: Site;
   /** Returns a collection of records */
-  allSofAssessViolenceCategories: Array<SofAssessViolenceCategoryRecord>;
+  allSofAssessProgressCategories: Array<SofAssessProgressCategoryRecord>;
+  /** Returns a collection of records */
+  allSofCalmingToolingTools: Array<SofCalmingToolingToolRecord>;
   /** Returns a collection of records */
   allSofInputDates: Array<SofInputDateRecord>;
   /** Returns a collection of records */
@@ -2240,8 +2242,6 @@ type Query = {
   allSofSorkCategories: Array<SofSorkCategoryRecord>;
   /** Returns a collection of records */
   allSofSoundExerciseItems: Array<SofSoundExerciseItemRecord>;
-  /** Returns a collection of records */
-  allSofStopAndThinkTools: Array<SofStopAndThinkToolRecord>;
   /** Returns a collection of records */
   allSofTakeCareOfYourselfCategories: Array<SofTakeCareOfYourselfCategoryRecord>;
   /** Returns a collection of records */
@@ -2265,11 +2265,19 @@ type Query = {
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns the single instance record */
-  sofAssessViolence?: Maybe<SofAssessViolenceRecord>;
+  sofAssessProgress?: Maybe<SofAssessProgressRecord>;
   /** Returns a specific record */
-  sofAssessViolenceCategory?: Maybe<SofAssessViolenceCategoryRecord>;
+  sofAssessProgressCategory?: Maybe<SofAssessProgressCategoryRecord>;
+  /** Returns the single instance record */
+  sofCalmingTooling?: Maybe<SofCalmingToolingRecord>;
+  /** Returns a specific record */
+  sofCalmingToolingTool?: Maybe<SofCalmingToolingToolRecord>;
+  /** Returns the single instance record */
+  sofCreateEverydayFlow?: Maybe<SofCreateEverydayFlowRecord>;
   /** Returns the single instance record */
   sofEmotionalDiary?: Maybe<SofEmotionalDiaryRecord>;
+  /** Returns the single instance record */
+  sofExpandLifeSpace?: Maybe<SofExpandLifeSpaceRecord>;
   /** Returns the single instance record */
   sofHome?: Maybe<SofHomeRecord>;
   /** Returns the single instance record */
@@ -2285,6 +2293,8 @@ type Query = {
   /** Returns a specific record */
   sofMaintenencePlanQuestion?: Maybe<SofMaintenencePlanQuestionRecord>;
   /** Returns the single instance record */
+  sofMyGoal?: Maybe<SofMyGoalRecord>;
+  /** Returns the single instance record */
   sofSork?: Maybe<SofSorkRecord>;
   /** Returns a specific record */
   sofSorkCategory?: Maybe<SofSorkCategoryRecord>;
@@ -2293,15 +2303,11 @@ type Query = {
   /** Returns a specific record */
   sofSoundExerciseItem?: Maybe<SofSoundExerciseItemRecord>;
   /** Returns the single instance record */
-  sofStopAndThink?: Maybe<SofStopAndThinkRecord>;
-  /** Returns a specific record */
-  sofStopAndThinkTool?: Maybe<SofStopAndThinkToolRecord>;
-  /** Returns the single instance record */
   sofTakeCareOfMyself?: Maybe<SofTakeCareOfMyselfRecord>;
   /** Returns a specific record */
   sofTakeCareOfYourselfCategory?: Maybe<SofTakeCareOfYourselfCategoryRecord>;
   /** Returns the single instance record */
-  sofValuedDirection?: Maybe<SofValuedDirectionRecord>;
+  sofToleranceWindow?: Maybe<SofToleranceWindowRecord>;
   /** Returns the single instance record */
   sovAssessViolence?: Maybe<SovAssessViolenceRecord>;
   /** Returns a specific record */
@@ -2346,8 +2352,15 @@ type Query = {
 
 
 /** The query root for this schema */
-type Query_allSofAssessViolenceCategoriesMetaArgs = {
-  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+type Query_allSofAssessProgressCategoriesMetaArgs = {
+  filter?: InputMaybe<SofAssessProgressCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allSofCalmingToolingToolsMetaArgs = {
+  filter?: InputMaybe<SofCalmingToolingToolModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2390,13 +2403,6 @@ type Query_allSofSorkCategoriesMetaArgs = {
 /** The query root for this schema */
 type Query_allSofSoundExerciseItemsMetaArgs = {
   filter?: InputMaybe<SofSoundExerciseItemModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
-type Query_allSofStopAndThinkToolsMetaArgs = {
-  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2486,12 +2492,23 @@ type Query_siteArgs = {
 
 
 /** The query root for this schema */
-type QueryallSofAssessViolenceCategoriesArgs = {
+type QueryallSofAssessProgressCategoriesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+  filter?: InputMaybe<SofAssessProgressCategoryModelFilter>;
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofAssessProgressCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallSofCalmingToolingToolsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofCalmingToolingToolModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofCalmingToolingToolModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2558,17 +2575,6 @@ type QueryallSofSoundExerciseItemsArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SofSoundExerciseItemModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-};
-
-
-/** The query root for this schema */
-type QueryallSofStopAndThinkToolsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2695,23 +2701,53 @@ type QueryallUploadsArgs = {
 
 
 /** The query root for this schema */
-type QuerysofAssessViolenceArgs = {
+type QuerysofAssessProgressArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** The query root for this schema */
-type QuerysofAssessViolenceCategoryArgs = {
+type QuerysofAssessProgressCategoryArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SofAssessViolenceCategoryModelFilter>;
+  filter?: InputMaybe<SofAssessProgressCategoryModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofAssessProgressCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofCalmingToolingArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofCalmingToolingToolArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SofCalmingToolingToolModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SofCalmingToolingToolModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysofCreateEverydayFlowArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** The query root for this schema */
 type QuerysofEmotionalDiaryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerysofExpandLifeSpaceArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2775,6 +2811,13 @@ type QuerysofMaintenencePlanQuestionArgs = {
 
 
 /** The query root for this schema */
+type QuerysofMyGoalArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 type QuerysofSorkArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -2807,22 +2850,6 @@ type QuerysofSoundExerciseItemArgs = {
 
 
 /** The query root for this schema */
-type QuerysofStopAndThinkArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
-type QuerysofStopAndThinkToolArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SofStopAndThinkToolModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelOrderBy>>>;
-};
-
-
-/** The query root for this schema */
 type QuerysofTakeCareOfMyselfArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -2839,7 +2866,7 @@ type QuerysofTakeCareOfYourselfCategoryArgs = {
 
 
 /** The query root for this schema */
-type QuerysofValuedDirectionArgs = {
+type QuerysofToleranceWindowArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3105,9 +3132,9 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-type SofAssessViolenceCategoryModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<SofAssessViolenceCategoryModelFilter>>>;
+type SofAssessProgressCategoryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofAssessProgressCategoryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofAssessProgressCategoryModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -3120,7 +3147,7 @@ type SofAssessViolenceCategoryModelFilter = {
   title?: InputMaybe<StringFilter>;
 };
 
-enum SofAssessViolenceCategoryModelOrderBy {
+enum SofAssessProgressCategoryModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
   _createdAt_DESC = '_createdAt_DESC',
   _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
@@ -3143,9 +3170,9 @@ enum SofAssessViolenceCategoryModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Skatta våld (kategori) (sof) (sof_assess_violence_category) */
-type SofAssessViolenceCategoryRecord = RecordInterface & {
-  __typename?: 'SofAssessViolenceCategoryRecord';
+/** Record of type Skatta framsteg (kategori) (sof) (sof_assess_progress_category) */
+type SofAssessProgressCategoryRecord = RecordInterface & {
+  __typename?: 'SofAssessProgressCategoryRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3164,14 +3191,14 @@ type SofAssessViolenceCategoryRecord = RecordInterface & {
 };
 
 
-/** Record of type Skatta våld (kategori) (sof) (sof_assess_violence_category) */
-type SofAssessViolenceCategoryRecord_seoMetaTagsArgs = {
+/** Record of type Skatta framsteg (kategori) (sof) (sof_assess_progress_category) */
+type SofAssessProgressCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Record of type Skatta våld (sof) (sof_assess_violence) */
-type SofAssessViolenceRecord = RecordInterface & {
-  __typename?: 'SofAssessViolenceRecord';
+/** Record of type Skatta framsteg (sof) (sof_assess_progress) */
+type SofAssessProgressRecord = RecordInterface & {
+  __typename?: 'SofAssessProgressRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3186,21 +3213,162 @@ type SofAssessViolenceRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
+  inputs: Array<SofInputSliderRecord>;
   intro?: Maybe<Scalars['String']['output']>;
-  otherProblems: Array<SofInputSliderRecord>;
-  sinceLastSession: Array<SofInputSliderRecord>;
 };
 
 
-/** Record of type Skatta våld (sof) (sof_assess_violence) */
-type SofAssessViolenceRecord_seoMetaTagsArgs = {
+/** Record of type Skatta framsteg (sof) (sof_assess_progress) */
+type SofAssessProgressRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
-/** Record of type Skatta våld (sof) (sof_assess_violence) */
-type SofAssessViolenceRecordintroArgs = {
+/** Record of type Skatta framsteg (sof) (sof_assess_progress) */
+type SofAssessProgressRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Lugnande verktyg (sof) (sof_calming_tooling) */
+type SofCalmingToolingRecord = RecordInterface & {
+  __typename?: 'SofCalmingToolingRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  steps: Array<Scalars['String']['output']>;
+};
+
+
+/** Record of type Lugnande verktyg (sof) (sof_calming_tooling) */
+type SofCalmingToolingRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofCalmingToolingToolModelContentBlocksField = AudioBlockRecord | ImageBlockRecord | TableBlockRecord | TextInputBlockSofRecord;
+
+type SofCalmingToolingToolModelContentField = {
+  __typename?: 'SofCalmingToolingToolModelContentField';
+  blocks: Array<SofCalmingToolingToolModelContentBlocksField>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+type SofCalmingToolingToolModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SofCalmingToolingToolModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SofCalmingToolingToolModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  description?: InputMaybe<TextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum SofCalmingToolingToolModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Lugnande Verktyg - Verktyg (sof) (sof_calming_tooling_tool) */
+type SofCalmingToolingToolRecord = RecordInterface & {
+  __typename?: 'SofCalmingToolingToolRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  content?: Maybe<SofCalmingToolingToolModelContentField>;
+  description: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Lugnande Verktyg - Verktyg (sof) (sof_calming_tooling_tool) */
+type SofCalmingToolingToolRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Lugnande Verktyg - Verktyg (sof) (sof_calming_tooling_tool) */
+type SofCalmingToolingToolRecorddescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+type SofCreateEverydayFlowModelIntroField = {
+  __typename?: 'SofCreateEverydayFlowModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Skapa vardagsflyt (sof_create_everyday_flow) */
+type SofCreateEverydayFlowRecord = RecordInterface & {
+  __typename?: 'SofCreateEverydayFlowRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<SofCreateEverydayFlowModelIntroField>;
+};
+
+
+/** Record of type Skapa vardagsflyt (sof_create_everyday_flow) */
+type SofCreateEverydayFlowRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type SofEmotionalDiaryModelInputsField = SofInputSliderRecord | SofInputTextRecord;
@@ -3228,6 +3396,39 @@ type SofEmotionalDiaryRecord = RecordInterface & {
 
 /** Record of type Enkel känslodagbok (sof) (sof_emotional_diary) */
 type SofEmotionalDiaryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type SofExpandLifeSpaceModelIntroField = {
+  __typename?: 'SofExpandLifeSpaceModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Vidga livsutrymmet (sof) (sof_expand_life_space) */
+type SofExpandLifeSpaceRecord = RecordInterface & {
+  __typename?: 'SofExpandLifeSpaceRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  intro?: Maybe<SofExpandLifeSpaceModelIntroField>;
+};
+
+
+/** Record of type Vidga livsutrymmet (sof) (sof_expand_life_space) */
+type SofExpandLifeSpaceRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3608,6 +3809,34 @@ type SofMaintenencePlanQuestionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Record of type Mina målsättningar (sof) (sof_my_goal) */
+type SofMyGoalRecord = RecordInterface & {
+  __typename?: 'SofMyGoalRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  behavioralGoals: Array<SofInputTextRecord>;
+  header?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  performanceGoals: Array<SofInputTextRecord>;
+};
+
+
+/** Record of type Mina målsättningar (sof) (sof_my_goal) */
+type SofMyGoalRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type SofSorkCategoryModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<SofSorkCategoryModelFilter>>>;
@@ -3809,115 +4038,6 @@ type SofSoundExerciseRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Record of type Stop & Tänk (sof) (sof_stop_and_think) */
-type SofStopAndThinkRecord = RecordInterface & {
-  __typename?: 'SofStopAndThinkRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  steps: Array<Scalars['String']['output']>;
-};
-
-
-/** Record of type Stop & Tänk (sof) (sof_stop_and_think) */
-type SofStopAndThinkRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-type SofStopAndThinkToolModelContentBlocksField = AudioBlockRecord | ImageBlockRecord | TableBlockRecord | TextInputBlockSofRecord;
-
-type SofStopAndThinkToolModelContentField = {
-  __typename?: 'SofStopAndThinkToolModelContentField';
-  blocks: Array<SofStopAndThinkToolModelContentBlocksField>;
-  links: Array<Scalars['String']['output']>;
-  value: Scalars['JsonField']['output'];
-};
-
-type SofStopAndThinkToolModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<SofStopAndThinkToolModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  content?: InputMaybe<StructuredTextFilter>;
-  description?: InputMaybe<TextFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-enum SofStopAndThinkToolModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
-  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC'
-}
-
-/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
-type SofStopAndThinkToolRecord = RecordInterface & {
-  __typename?: 'SofStopAndThinkToolRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  content?: Maybe<SofStopAndThinkToolModelContentField>;
-  description: Scalars['String']['output'];
-  id: Scalars['ItemId']['output'];
-  title: Scalars['String']['output'];
-};
-
-
-/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
-type SofStopAndThinkToolRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Stop & Tänk Verktyg (sof) (sof_stop_and_think_tool) */
-type SofStopAndThinkToolRecorddescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 /** Record of type Ta hand om mig själv (sof) (sof_take_care_of_myself) */
 type SofTakeCareOfMyselfRecord = RecordInterface & {
   __typename?: 'SofTakeCareOfMyselfRecord';
@@ -4015,9 +4135,23 @@ type SofTakeCareOfYourselfCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
-type SofValuedDirectionRecord = RecordInterface & {
-  __typename?: 'SofValuedDirectionRecord';
+type SofToleranceWindowModelIntroField = {
+  __typename?: 'SofToleranceWindowModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+type SofToleranceWindowModelIntroToolsField = {
+  __typename?: 'SofToleranceWindowModelIntroToolsField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Toleransfönstret (sof_tolerance_window) */
+type SofToleranceWindowRecord = RecordInterface & {
+  __typename?: 'SofToleranceWindowRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -4031,30 +4165,16 @@ type SofValuedDirectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  header?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  image?: Maybe<FileField>;
-  input: SofInputTextRecord;
-  intro?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  inputs: Array<SofInputTextRecord>;
+  intro?: Maybe<SofToleranceWindowModelIntroField>;
+  introTools?: Maybe<SofToleranceWindowModelIntroToolsField>;
 };
 
 
-/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
-type SofValuedDirectionRecord_seoMetaTagsArgs = {
+/** Record of type Toleransfönstret (sof_tolerance_window) */
+type SofToleranceWindowRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
-type SofValuedDirectionRecordintroArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** Record of type Värderad riktning med mål (sof) (sof_valued_direction) */
-type SofValuedDirectionRecordtextArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 type SovAssessViolenceCategoryModelFilter = {
