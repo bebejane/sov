@@ -1,28 +1,35 @@
 {
-	"build": {
-		"development": {
-			"ios": { "image": "latest" },
-			"android": {
-				"developmentClient": false
-			},
-			"distribution": "internal"
-		},
-		"preview": {
-			"ios": { "image": "latest" },
-			"android": {
-				"buildType": "apk"
-			},
-			"developmentClient": false,
-			"distribution": "internal"
-		},
-		"production": {
-			"android": {
-				"credentialsSource": "remote",
-				"autoIncrement": true
-			}
-		}
-	},
-	"submit": {
-		"production": {}
-	}
+  "build": {
+    "development": {
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "developmentClient": false
+      },
+      "distribution": "internal"
+    },
+    "preview": {
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "buildType": "apk"
+      },
+      "developmentClient": false,
+      "distribution": "internal"
+    },
+    "production": {
+      "android": {
+        "credentialsSource": "remote",
+        "autoIncrement": true
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  },
+  "cli": {
+    "appVersionSource": "remote"
+  }
 }
