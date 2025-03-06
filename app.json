@@ -27,7 +27,8 @@
 				"foregroundImage": "./assets/icons/adaptive-icon.png",
 				"backgroundColor": "#015154"
 			},
-			"package": "org.redphalarope.sov"
+			"package": "org.redphalarope.sov",
+			"versionCode": 2
 		},
 		"web": {
 			"bundler": "metro",

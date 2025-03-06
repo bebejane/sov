@@ -15,7 +15,12 @@
 			"developmentClient": false,
 			"distribution": "internal"
 		},
-		"production": {}
+		"production": {
+			"android": {
+				"credentialsSource": "remote",
+				"autoIncrement": true
+			}
+		}
 	},
 	"submit": {
 		"production": {}
