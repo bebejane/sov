@@ -1,4 +1,10 @@
-import { AVPlaybackStatus, AVPlaybackStatusSuccess, Audio } from 'expo-av';
+import {
+	AVPlaybackStatus,
+	AVPlaybackStatusSuccess,
+	Audio,
+	InterruptionModeAndroid,
+	InterruptionModeIOS,
+} from 'expo-av';
 import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 import React, { useEffect, useRef } from 'react';
@@ -62,6 +68,16 @@ export default function AudioPlayer({ src }: { src: string }) {
 			}
 			setLoading(false);
 		}
+
+		await Audio.setAudioModeAsync({
+			allowsRecordingIOS: false,
+			staysActiveInBackground: true,
+			playsInSilentModeIOS: true,
+			interruptionModeIOS: InterruptionModeIOS.DuckOthers,
+			interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
+			shouldDuckAndroid: true,
+			playThroughEarpieceAndroid: true,
+		});
 
 		soundRef.current?.playAsync();
 	};

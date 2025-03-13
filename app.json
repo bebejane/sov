@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "S o V",
 		"slug": "sov",
-		"version": "1.0.2",
+		"version": "1.0.3",
 		"owner": "red_phalarope",
 		"orientation": "portrait",
 		"scheme": "myapp",
@@ -18,7 +18,8 @@
 			"supportsTablet": true,
 			"bundleIdentifier": "org.name.sov",
 			"infoPlist": {
-				"ITSAppUsesNonExemptEncryption": false
+				"ITSAppUsesNonExemptEncryption": false,
+				"UIBackgroundModes": ["audio"]
 			}
 		},
 		"android": {
@@ -28,7 +29,8 @@
 				"backgroundColor": "#015154"
 			},
 			"package": "org.redphalarope.sov",
-			"versionCode": 2
+			"versionCode": 2,
+			"permissions": ["android.permission.WAKE_LOCK"]
 		},
 		"web": {
 			"bundler": "metro",
