@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "S o V",
 		"slug": "sov",
-		"version": "1.0.3",
+		"version": "1.0.4",
 		"owner": "red_phalarope",
 		"orientation": "portrait",
 		"scheme": "myapp",
@@ -37,6 +37,7 @@
 			"output": "static",
 			"favicon": "./assets/icons/favicon.png"
 		},
+
 		"plugins": [
 			"expo-router",
 			[
@@ -54,6 +55,16 @@
 						"image": "./assets/icons/splash-icon-android.png",
 						"backgroundColor": "#FFFFFF",
 						"imageWidth": 200
+					}
+				}
+			],
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"compileSdkVersion": 35,
+						"targetSdkVersion": 35,
+						"buildToolsVersion": "35.0.0"
 					}
 				}
 			]
