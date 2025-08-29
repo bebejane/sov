@@ -154,6 +154,18 @@ fragment StopAndThinkToolFragment on SovStopAndThinkToolRecord {
 					url
 				}
 			}
+			... on VideoBlockRecord {
+				id
+				youtube {
+					width
+					height
+					provider
+					providerUid
+					thumbnailUrl
+					title
+					url
+				}
+			}
 			... on TextInputBlockRecord {
 				id
 				input {
