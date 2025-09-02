@@ -16,6 +16,7 @@
 		"build:local:android": "eas build --local --profile production --platform android",
 		"build:ios": "EXPO_APPLE_TEAM_ID=85KU5LMS57 eas build --profile production --platform ios",
 		"build:android": "eas build --profile production --platform android --clear-cache",
+		"submit:ios": "eas submit --platform ios",
 		"codegen": "graphql-codegen --watch"
 	},
 	"jest": {
