@@ -27,13 +27,9 @@ export default function AudioPlayer({ src }: { src: string }) {
 		soundRef.current = null;
 
 		try {
-			const { sound, status } = await Audio.Sound.createAsync(
-				{ uri: src },
-				{ isLooping: false, shouldPlay: false }
-			);
+			const { sound, status } = await Audio.Sound.createAsync({ uri: src }, { isLooping: false, shouldPlay: false });
 			soundRef.current = sound;
 		} catch (e) {
-			console.log(e);
 			setError((e as Error).message);
 		}
 		if (Platform.OS === 'ios') {

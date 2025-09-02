@@ -21,7 +21,6 @@ export default function StopAndThinkTool() {
 		variables: { id },
 	});
 
-	console.log(JSON.stringify(data, null, 2));
 	useEffect(() => {
 		navigation.setOptions({ title: data.sovStopAndThinkTool?.title });
 	}, [data]);
