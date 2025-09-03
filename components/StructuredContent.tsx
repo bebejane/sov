@@ -17,7 +17,7 @@ export default function StructuredContent({ content, styles }: { content: any; s
 				case 'VideoBlockRecord':
 					const { url } = record?.youtube as { url: string };
 					return renderNode('video', { src: url });
-				case 'TextInputBlockSofRecord':
+				case 'TextInputBlockRecord':
 					const { id, text, label, slug } = record?.input as any;
 					return renderNode('input', { id, label, text, slug });
 				case 'TableBlockRecord':
