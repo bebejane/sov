@@ -1,3 +1,23 @@
+query MyChanges {
+	sovMyChange {
+		id
+		introViolence
+		introVulnerable
+		inputsViolence {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+		}
+		inputsVulnerable {
+			__typename
+			... on SovInputTextRecord {
+				...TextInputFragment
+			}
+		}
+	}
+}
+
 query ValuedDirection {
 	sovValuedDirection {
 		id

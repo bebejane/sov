@@ -2335,6 +2335,8 @@ type Query = {
   /** Returns a specific record */
   sovMaintenencePlanQuestion?: Maybe<SovMaintenencePlanQuestionRecord>;
   /** Returns the single instance record */
+  sovMyChange?: Maybe<SovMyChangeRecord>;
+  /** Returns the single instance record */
   sovSork?: Maybe<SovSorkRecord>;
   /** Returns a specific record */
   sovSorkCategory?: Maybe<SovSorkCategoryRecord>;
@@ -2982,6 +2984,13 @@ type QuerysovMaintenencePlanQuestionArgs = {
   filter?: InputMaybe<SovMaintenencePlanQuestionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SovMaintenencePlanQuestionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerysovMyChangeArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -4818,6 +4827,51 @@ type SovMaintenencePlanQuestionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+type SovMyChangeModelInputsViolenceField = SovInputSliderRecord | SovInputTextRecord;
+
+type SovMyChangeModelInputsVulnerableField = SovInputSliderRecord | SovInputTextRecord;
+
+/** Record of type Min förändring (sov_my_change) */
+type SovMyChangeRecord = RecordInterface & {
+  __typename?: 'SovMyChangeRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  inputsViolence: Array<SovMyChangeModelInputsViolenceField>;
+  inputsVulnerable: Array<SovMyChangeModelInputsVulnerableField>;
+  introViolence?: Maybe<Scalars['String']['output']>;
+  introVulnerable?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Min förändring (sov_my_change) */
+type SovMyChangeRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Min förändring (sov_my_change) */
+type SovMyChangeRecordintroViolenceArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Record of type Min förändring (sov_my_change) */
+type SovMyChangeRecordintroVulnerableArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 type SovSorkCategoryModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<SovSorkCategoryModelFilter>>>;
@@ -5554,6 +5608,7 @@ type UploadFilter = {
   mimeType?: InputMaybe<UploadMimeTypeFilter>;
   notes?: InputMaybe<UploadNotesFilter>;
   orientation?: InputMaybe<OrientationFilter>;
+  path?: InputMaybe<UploadPathFilter>;
   resolution?: InputMaybe<ResolutionFilter>;
   size?: InputMaybe<UploadSizeFilter>;
   smartTags?: InputMaybe<UploadTagsFilter>;
@@ -5667,6 +5722,18 @@ enum UploadOrientation {
   portrait = 'portrait',
   square = 'square'
 }
+
+/** Specifies how to filter by path */
+type UploadPathFilter = {
+  /** Search the asset with the specified path */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Search assets with the specified paths */
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Exclude the asset with the specified path */
+  neq?: InputMaybe<Scalars['String']['input']>;
+  /** Search assets that do not have the specified paths */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
 /** Specifies how to filter by size */
 type UploadSizeFilter = {
@@ -5864,6 +5931,11 @@ type focalPoint = {
 };
 
 type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null };
+
+type MyChangesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MyChangesQuery = { __typename?: 'Query', sovMyChange?: { __typename?: 'SovMyChangeRecord', id: any, introViolence?: string | null, introVulnerable?: string | null, inputsViolence: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }>, inputsVulnerable: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type ValuedDirectionQueryVariables = Exact<{ [key: string]: never; }>;
 

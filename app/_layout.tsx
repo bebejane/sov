@@ -61,6 +61,13 @@ export const menu: Menu = [
 		},
 	},
 	{
+		href: '/my-changes',
+		name: 'my-changes',
+		options: {
+			title: 'Min förändring',
+		},
+	},
+	{
 		href: '/sound-exercises',
 		name: 'sound-exercises/index',
 		options: {
@@ -108,13 +115,13 @@ const groups = [
 	{
 		id: 'my-change',
 		title: 'Min förändring',
-		items: menu.slice(1, 8),
+		items: menu.slice(1, 9),
 		open: true,
 	},
 	{
 		id: 'diary',
 		title: 'Dagbok mellan samtal',
-		items: menu.slice(8),
+		items: menu.slice(9),
 		open: true,
 	},
 ];
