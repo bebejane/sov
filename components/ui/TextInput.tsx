@@ -12,12 +12,14 @@ export const TextInput = ({
 	slug,
 	placeholder,
 	obligatory,
+	rows = 5,
 }: {
 	title?: string;
 	label?: string | undefined | null;
 	slug: string | undefined | null;
 	placeholder?: string;
 	obligatory?: boolean;
+	rows?: number;
 }) => {
 	const [section] = useSegments();
 	const { updateData, data } = useStore();
@@ -44,6 +46,7 @@ export const TextInput = ({
 			<TextInputElement
 				style={[
 					s.input,
+					{ height: Theme.fontSize.default * rows },
 					haveText && {
 						backgroundColor: Theme.color.white,
 						borderColor: Theme.color.grey,
@@ -76,7 +79,6 @@ const s = StyleSheet.create({
 		lineHeight: Theme.lineHeight.default,
 	},
 	input: {
-		height: Theme.fontSize.default * 5,
 		padding: 10,
 		paddingLeft: 15,
 		paddingRight: 15,

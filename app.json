@@ -67,6 +67,13 @@
 					}
 				}
 			],
+			[
+				"expo-image-picker",
+				{
+					"photosPermission": "The app accesses your photos to let you use them in the app.",
+					"cameraPermission": "The app accesses your camera to let you use it in the app."
+				}
+			],
 			"expo-font"
 		],
 		"experiments": {

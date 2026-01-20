@@ -102,6 +102,13 @@ export const menu: Menu = [
 			title: 'Enkel känslodagbok',
 		},
 	},
+	{
+		href: '/notepad',
+		name: 'notepad',
+		options: {
+			title: 'Anteckningsblocket',
+		},
+	},
 ].map((screen) => ({
 	...screen,
 	options: {

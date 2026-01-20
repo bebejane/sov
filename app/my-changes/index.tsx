@@ -18,7 +18,7 @@ import React, { useEffect } from 'react';
 import useStore from '@/lib/store';
 import { useNavigation, useRouter, useSegments } from 'expo-router';
 
-export default function Sork() {
+export default function MyChanges() {
 	const [section] = useSegments();
 	const router = useRouter();
 	const navigation = useNavigation();
