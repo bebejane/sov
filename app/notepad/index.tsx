@@ -116,11 +116,6 @@ const s = StyleSheet.create({
 		position: 'relative',
 		width: '100%',
 	},
-	image: {
-		marginLeft: -3,
-		marginRight: -3,
-		marginBottom: Theme.margin,
-	},
 	imageRemove: {
 		position: 'absolute',
 		flex: 0,
