@@ -62,6 +62,7 @@ export default function Notepad() {
 		}
 	};
 
+	console.log(!storeData?.notepad?.note);
 	return (
 		<PageView>
 			<TextInput slug={'note'} label={'Anteckning'} rows={10} />
@@ -79,7 +80,9 @@ export default function Notepad() {
 			))}
 			<Button onPress={pickImage}>+ Bild</Button>
 			<Spacer />
-			<Button onPress={save}>Spara</Button>
+			<Button onPress={save} disabled={!storeData?.notepad?.note}>
+				Spara
+			</Button>
 			<Spacer />
 			<List
 				onPress={(id) => router.navigate(`/notepad/${id}`)}
