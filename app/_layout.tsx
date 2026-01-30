@@ -61,10 +61,10 @@ export const menu: Menu = [
 		},
 	},
 	{
-		href: '/my-changes',
-		name: 'my-changes',
+		href: '/my-inner-life',
+		name: 'my-inner-life/index',
 		options: {
-			title: 'Min förändring',
+			title: 'Mina inre sidor',
 		},
 	},
 	{

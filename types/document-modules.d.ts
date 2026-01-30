@@ -11,7 +11,7 @@ declare module '*/MediaFragment.gql' {
 declare module '*/sov.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const MyChanges: DocumentNode;
+  export const MyInnerLife: DocumentNode;
 export const ValuedDirection: DocumentNode;
 export const TakeCareOfYourself: DocumentNode;
 export const HomeAssignment: DocumentNode;

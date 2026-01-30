@@ -1,5 +1,5 @@
-query MyChanges {
-	sovMyChange {
+query MyInnerLife {
+	sovMyInnerLife {
 		id
 		introViolence
 		introVulnerable

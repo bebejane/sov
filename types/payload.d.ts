@@ -2335,7 +2335,7 @@ type Query = {
   /** Returns a specific record */
   sovMaintenencePlanQuestion?: Maybe<SovMaintenencePlanQuestionRecord>;
   /** Returns the single instance record */
-  sovMyChange?: Maybe<SovMyChangeRecord>;
+  sovMyInnerLife?: Maybe<SovMyInnerLifeRecord>;
   /** Returns the single instance record */
   sovSork?: Maybe<SovSorkRecord>;
   /** Returns a specific record */
@@ -2988,7 +2988,7 @@ type QuerysovMaintenencePlanQuestionArgs = {
 
 
 /** The query root for this schema */
-type QuerysovMyChangeArgs = {
+type QuerysovMyInnerLifeArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -4827,13 +4827,13 @@ type SovMaintenencePlanQuestionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-type SovMyChangeModelInputsViolenceField = SovInputSliderRecord | SovInputTextRecord;
+type SovMyInnerLifeModelInputsViolenceField = SovInputSliderRecord | SovInputTextRecord;
 
-type SovMyChangeModelInputsVulnerableField = SovInputSliderRecord | SovInputTextRecord;
+type SovMyInnerLifeModelInputsVulnerableField = SovInputSliderRecord | SovInputTextRecord;
 
-/** Record of type Min förändring (sov_my_change) */
-type SovMyChangeRecord = RecordInterface & {
-  __typename?: 'SovMyChangeRecord';
+/** Record of type Mina inre sidor (sov_my_inner_life) */
+type SovMyInnerLifeRecord = RecordInterface & {
+  __typename?: 'SovMyInnerLifeRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -4848,27 +4848,27 @@ type SovMyChangeRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  inputsViolence: Array<SovMyChangeModelInputsViolenceField>;
-  inputsVulnerable: Array<SovMyChangeModelInputsVulnerableField>;
+  inputsViolence: Array<SovMyInnerLifeModelInputsViolenceField>;
+  inputsVulnerable: Array<SovMyInnerLifeModelInputsVulnerableField>;
   introViolence?: Maybe<Scalars['String']['output']>;
   introVulnerable?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Record of type Min förändring (sov_my_change) */
-type SovMyChangeRecord_seoMetaTagsArgs = {
+/** Record of type Mina inre sidor (sov_my_inner_life) */
+type SovMyInnerLifeRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
-/** Record of type Min förändring (sov_my_change) */
-type SovMyChangeRecordintroViolenceArgs = {
+/** Record of type Mina inre sidor (sov_my_inner_life) */
+type SovMyInnerLifeRecordintroViolenceArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Record of type Min förändring (sov_my_change) */
-type SovMyChangeRecordintroVulnerableArgs = {
+/** Record of type Mina inre sidor (sov_my_inner_life) */
+type SovMyInnerLifeRecordintroVulnerableArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -5932,10 +5932,10 @@ type focalPoint = {
 
 type MediaFragment = { __typename?: 'FileField', id: any, url: string, alt?: string | null, width?: any | null, height?: any | null, video?: { __typename?: 'UploadVideoField', streamingUrl: string } | null };
 
-type MyChangesQueryVariables = Exact<{ [key: string]: never; }>;
+type MyInnerLifeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MyChangesQuery = { __typename?: 'Query', sovMyChange?: { __typename?: 'SovMyChangeRecord', id: any, introViolence?: string | null, introVulnerable?: string | null, inputsViolence: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }>, inputsVulnerable: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
+type MyInnerLifeQuery = { __typename?: 'Query', sovMyInnerLife?: { __typename?: 'SovMyInnerLifeRecord', id: any, introViolence?: string | null, introVulnerable?: string | null, inputsViolence: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }>, inputsVulnerable: Array<{ __typename: 'SovInputSliderRecord' } | { __typename: 'SovInputTextRecord', id: any, label: string, text?: string | null, slug: string }> } | null };
 
 type ValuedDirectionQueryVariables = Exact<{ [key: string]: never; }>;
 

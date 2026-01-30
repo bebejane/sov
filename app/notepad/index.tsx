@@ -62,7 +62,6 @@ export default function Notepad() {
 		}
 	};
 
-	console.log(!storeData?.notepad?.note);
 	return (
 		<PageView>
 			<TextInput slug={'note'} label={'Anteckning'} rows={10} />
