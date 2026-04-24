@@ -7,7 +7,6 @@
 		"orientation": "portrait",
 		"scheme": "myapp",
 		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
 		"icon": "./assets/icons/icon.png",
 		"ios": {
 			"icon": {

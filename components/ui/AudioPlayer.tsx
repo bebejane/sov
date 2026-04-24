@@ -1,86 +1,45 @@
-import {
-	AVPlaybackStatus,
-	AVPlaybackStatusSuccess,
-	Audio,
-	InterruptionModeAndroid,
-	InterruptionModeIOS,
-} from 'expo-av';
+import { useAudioPlayer, useAudioPlayerStatus, setAudioModeAsync, type AudioStatus } from 'expo-audio';
 import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ActivityIndicator } from 'react-native';
 import Theme from '@/styles/theme';
 
 export default function AudioPlayer({ src }: { src: string }) {
-	const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
 	const [error, setError] = React.useState<string | null>(null);
 	const [loading, setLoading] = React.useState(false);
 	const [playing, setPlaying] = React.useState(false);
-	const soundRef = useRef<Audio.Sound | null>(null);
-	const intervalRef = useRef<any | null>(null);
-	const totalDuration = status?.durationMillis ? status?.durationMillis : 0;
+	const player = useAudioPlayer(src);
+	const status: AudioStatus | null = useAudioPlayerStatus(player);
 
-	const loadAudio = async () => {
+	const positionMs = status?.currentTime ? status.currentTime * 1000 : 0;
+	const durationMs = status?.duration ? status.duration * 1000 : 0;
+
+	useEffect(() => {
+		if (status?.playbackState) {
+			setPlaying(status.playbackState === 'playing');
+		}
+	}, [status?.playbackState]);
+
+	const play = async () => {
+		setLoading(true);
 		setError(null);
-		soundRef.current = null;
-
 		try {
-			const { sound, status } = await Audio.Sound.createAsync({ uri: src }, { isLooping: false, shouldPlay: false });
-			soundRef.current = sound;
-			await soundRef.current?.setVolumeAsync(1.0);
+			await setAudioModeAsync({
+				playsInSilentMode: true,
+				shouldPlayInBackground: true,
+			});
+			player.play();
 		} catch (e) {
 			setError((e as Error).message);
 		}
-		if (Platform.OS === 'ios') {
-			soundRef.current?.setOnPlaybackStatusUpdate(function (status: AVPlaybackStatus) {
-				setStatus(status as AVPlaybackStatusSuccess);
-			});
-		} else if (Platform.OS === 'android') {
-			const updatePlaybackStatus = async () => {
-				const status = (await soundRef.current?.getStatusAsync()) as AVPlaybackStatusSuccess;
-				setStatus(status);
-				setPlaying(status.isPlaying);
-			};
-
-			clearInterval(intervalRef.current);
-			intervalRef.current = setInterval(() => {
-				updatePlaybackStatus();
-			}, 500);
-
-			updatePlaybackStatus();
-		}
-	};
-
-	const play = async () => {
-		if (!status?.isLoaded) {
-			setLoading(true);
-			try {
-				await loadAudio();
-			} catch (e) {
-				setError((e as Error).message);
-				setLoading(false);
-				return;
-			}
-			setLoading(false);
-		}
-
-		await Audio.setAudioModeAsync({
-			allowsRecordingIOS: false,
-			staysActiveInBackground: true,
-			playsInSilentModeIOS: true,
-			interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-			interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-			shouldDuckAndroid: true,
-			playThroughEarpieceAndroid: false,
-		});
-
-		soundRef.current?.playAsync();
+		setLoading(false);
 	};
 
 	const pause = () => {
-		soundRef.current?.pauseAsync();
+		player.pause();
 	};
 
 	const handleIconClick = (e: any) => {
@@ -97,8 +56,12 @@ export default function AudioPlayer({ src }: { src: string }) {
 		setPlaying(!playing);
 	};
 
+	const handleSeek = (val: number) => {
+		player.seekTo(val / 1000);
+	};
+
 	const audioDuration = (totalDuration: number, currentDuration: number) => {
-		if (totalDuration == 0) {
+		if (totalDuration === 0) {
 			return '00:00';
 		}
 		const minutes = Math.floor((totalDuration - currentDuration) / 60000);
@@ -126,18 +89,16 @@ export default function AudioPlayer({ src }: { src: string }) {
 			)}
 			<Slider
 				style={s.slider}
-				value={status?.positionMillis ?? 0}
+				value={positionMs}
 				minimumValue={0}
-				maximumValue={totalDuration == 0 ? 100 : totalDuration}
+				maximumValue={durationMs === 0 ? 100 : durationMs}
 				step={1}
 				minimumTrackTintColor={Theme.color.green}
 				maximumTrackTintColor={Theme.color.white}
 				accessibilityLabel='Audio Player'
-				onSlidingComplete={(val: number) => {
-					soundRef.current?.setPositionAsync(val);
-				}}
+				onSlidingComplete={handleSeek}
 			/>
-			<Text style={s.duration}>{audioDuration(totalDuration, status?.positionMillis ?? 0)}</Text>
+			<Text style={s.duration}>{audioDuration(durationMs, positionMs)}</Text>
 		</View>
 	);
 }
