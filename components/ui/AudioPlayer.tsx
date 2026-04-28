@@ -1,4 +1,9 @@
-import { useAudioPlayer, useAudioPlayerStatus, setAudioModeAsync, type AudioStatus } from 'expo-audio';
+import {
+	useAudioPlayer,
+	useAudioPlayerStatus,
+	setAudioModeAsync,
+	type AudioStatus,
+} from 'expo-audio';
 import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 import React, { useState, useEffect } from 'react';
@@ -128,8 +133,8 @@ const s = StyleSheet.create({
 	},
 	duration: {
 		color: Theme.color.green,
-		flexGrow: 1,
-		flexShrink: 1,
+		flexGrow: 0,
+		flexShrink: 0,
 		marginRight: 20,
 	},
 });
