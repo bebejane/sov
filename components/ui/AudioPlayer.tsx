@@ -12,7 +12,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { ActivityIndicator } from 'react-native';
 import Theme from '@/styles/theme';
 
-export default function AudioPlayer({ src }: { src: string }) {
+export default function AudioPlayer({ src, title }: { src: string; title: string }) {
 	const [error, setError] = React.useState<string | null>(null);
 	const [loading, setLoading] = React.useState(false);
 	const [playing, setPlaying] = React.useState(false);
@@ -31,11 +31,20 @@ export default function AudioPlayer({ src }: { src: string }) {
 	const play = async () => {
 		setLoading(true);
 		setError(null);
+
 		try {
 			await setAudioModeAsync({
 				playsInSilentMode: true,
 				shouldPlayInBackground: true,
+				interruptionMode: 'doNotMix',
 			});
+
+			player.setActiveForLockScreen(true, {
+				title: title ?? 'Ljudövning',
+				artist: 'S o V',
+				albumTitle: 'Ljudövningar',
+			});
+
 			player.play();
 		} catch (e) {
 			setError((e as Error).message);

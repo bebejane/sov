@@ -13,7 +13,8 @@ export default function StructuredContent({ content, styles }: { content: any; s
 					return renderNode('img', { image: JSON.stringify(record?.image) });
 				case 'AudioBlockRecord':
 					const { url: src } = record?.audio as { url: string };
-					return renderNode('audio', { src });
+					const title = record?.title as string;
+					return renderNode('audio', { src, title });
 				case 'VideoBlockRecord':
 					const { url } = record?.youtube as { url: string };
 					return renderNode('video', { src: url });
@@ -37,7 +38,7 @@ export default function StructuredContent({ content, styles }: { content: any; s
 					case 'img':
 						return <Image key={index} data={JSON.parse(unescape(node.attribs.image))} />;
 					case 'audio':
-						return <AudioPlayer key={index} src={node.attribs.src} />;
+						return <AudioPlayer key={index} src={node.attribs.src} title={node.attribs.title} />;
 					case 'video':
 						return <YoutubePlayer key={index} src={node.attribs.src} />;
 					case 'input':
@@ -76,7 +77,7 @@ export default function StructuredContent({ content, styles }: { content: any; s
 										<Text key={i} style={{ ...styles?.p }}>
 											{n.data}
 										</Text>
-									)
+									),
 								)}
 							</Paragraph>
 						);
