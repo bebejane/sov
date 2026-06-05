@@ -1,7 +1,7 @@
 {
 	"name": "sov",
 	"main": "expo-router/entry",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"scripts": {
 		"dev": "pnpm run codegen & expo start --ios",
 		"dev:android": "pnpm run codegen & expo start --android",
