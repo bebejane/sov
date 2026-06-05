@@ -1,53 +1,117 @@
 import {
-	useAudioPlayer,
+	createAudioPlayer,
 	useAudioPlayerStatus,
 	setAudioModeAsync,
+	setIsAudioActiveAsync,
+	requestNotificationPermissionsAsync,
+	type AudioPlayer as ExpoAudioPlayer,
 	type AudioStatus,
 } from 'expo-audio';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, AppState, Platform } from 'react-native';
 import Slider from '@react-native-community/slider';
-import React, { useState, useEffect } from 'react';
-import { Platform } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ActivityIndicator } from 'react-native';
 import Theme from '@/styles/theme';
 
-export default function AudioPlayer({ src, title }: { src: string; title: string }) {
+export default function AudioPlayer({ src, title }: { src: string; title?: string }) {
 	const [error, setError] = React.useState<string | null>(null);
 	const [loading, setLoading] = React.useState(false);
 	const [playing, setPlaying] = React.useState(false);
-	const player = useAudioPlayer(src);
+	const [player, setPlayer] = useState<ExpoAudioPlayer>(() =>
+		createAudioPlayer(src, { keepAudioSessionActive: true })
+	);
+	const playerRef = useRef(player);
+	const appState = useRef(AppState.currentState);
+
 	const status: AudioStatus | null = useAudioPlayerStatus(player);
 
 	const positionMs = status?.currentTime ? status.currentTime * 1000 : 0;
 	const durationMs = status?.duration ? status.duration * 1000 : 0;
 
+	// Keep ref in sync with player state (needed for cleanup on unmount)
 	useEffect(() => {
-		if (status?.playbackState) {
-			setPlaying(status.playbackState === 'playing');
+		playerRef.current = player;
+	}, [player]);
+
+	// Update player source when src prop changes
+	useEffect(() => {
+		player.replace(src);
+	}, [src]);
+
+	// Cleanup player on unmount
+	useEffect(() => {
+		return () => {
+			playerRef.current?.release();
+		};
+	}, []);
+
+	// Sync playing state from player status
+	useEffect(() => {
+		if (status?.playing !== undefined) {
+			setPlaying(status.playing);
 		}
-	}, [status?.playbackState]);
+	}, [status?.playing]);
+
+	// AppState listener: re-activate audio when returning to foreground
+	useEffect(() => {
+		const sub = AppState.addEventListener('change', (nextState) => {
+			if (appState.current.match(/inactive|background/) && nextState === 'active') {
+				setIsAudioActiveAsync(true);
+				setAudioModeAsync({
+					playsInSilentMode: true,
+					shouldPlayInBackground: true,
+					interruptionMode: 'doNotMix',
+				});
+			}
+			appState.current = nextState;
+		});
+		return () => sub.remove();
+	}, []);
+
+	// Request notification permission on Android 13+ (required for foreground service)
+	useEffect(() => {
+		if (Platform.OS === 'android') {
+			requestNotificationPermissionsAsync();
+		}
+	}, []);
+
+	const setupAndPlay = async (p: ExpoAudioPlayer) => {
+		await setAudioModeAsync({
+			playsInSilentMode: true,
+			shouldPlayInBackground: true,
+			interruptionMode: 'doNotMix',
+		});
+
+		p.setActiveForLockScreen(true, {
+			title: title ?? 'Ljudövning',
+			artist: 'S o V',
+			albumTitle: 'Ljudövningar',
+		});
+
+		p.play();
+	};
 
 	const play = async () => {
 		setLoading(true);
 		setError(null);
 
 		try {
-			await setAudioModeAsync({
-				playsInSilentMode: true,
-				shouldPlayInBackground: true,
-				interruptionMode: 'doNotMix',
-			});
-
-			player.setActiveForLockScreen(true, {
-				title: title ?? 'Ljudövning',
-				artist: 'S o V',
-				albumTitle: 'Ljudövningar',
-			});
-
-			player.play();
+			await setupAndPlay(player);
 		} catch (e) {
-			setError((e as Error).message);
+			// Player may be stale (e.g. after Android Activity destruction),
+			// recreate it and retry
+			try {
+				const oldPlayer = playerRef.current;
+				const newPlayer = createAudioPlayer(src, { keepAudioSessionActive: true });
+				playerRef.current = newPlayer;
+				setPlayer(newPlayer);
+				oldPlayer?.release();
+				await setupAndPlay(newPlayer);
+			} catch (e2) {
+				setPlaying(false);
+				setError((e2 as Error).message);
+			}
 		}
 		setLoading(false);
 	};
@@ -67,7 +131,6 @@ export default function AudioPlayer({ src, title }: { src: string; title: string
 		} else {
 			pause();
 		}
-		setPlaying(!playing);
 	};
 
 	const handleSeek = (val: number) => {
